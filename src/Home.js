@@ -30,7 +30,13 @@ function Home() {
             </div>
           </div>
         </div>
-        <div className="navigate"></div>
+        <div className="navigate">
+          <div className="buttn">All</div>
+          <div className="buttn">Unknown</div>
+          <div className="buttn">Female</div>
+          <div className="buttn">Male</div>
+          <div className="buttn">Genderless</div>
+        </div>
       </div>
       <div className="body">Home page</div>
       <div className="footer">

@@ -137,7 +137,7 @@
   border-radius: 6px;
   font-size: 18px;
   padding-left: 64px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .search_icon {
@@ -146,6 +146,29 @@
   margin-left: 15px;
   margin-top: 16px;
   background: transparent;
+}
+
+.navigate {
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #BDBDBD;
+  background: #f2f2f2;
+}
+
+.buttn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 162px;
+  height: 76px;
+}
+
+.buttn:hover {
+
+  border-bottom: 3px solid #34C759;
 }
 
 .footer {
