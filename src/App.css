@@ -1,38 +1,94 @@
-.App {
-  text-align: center;
+.background {
+  /* portal-morty-smith-rick */
+
+  width: 100vw;
+  height: 100vh;
+
+  background: url(../src/image/portal-morty-smith-rick.png);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+.overlay {
+  /* overlay */
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+
+  background: rgba(0, 0, 0, 0.7);
 }
 
-.App-link {
-  color: #61dafb;
+.horizontal {
+  width: 134.81px;
+  height: 50px;
+
+  background: url(../src/image/Horizontal.png);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.rickandmorty {
+  /* rick and morty */
+
+  width: 664px;
+  height: 233px;
+
+  background: url(../src/image/rick-and-morty.png);
+  background-size: cover;
+}
+
+.bien {
+  width: 872px;
+  height: 53px;
+  margin: 20px 0px 0px 0px;
+
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 44px;
+  text-align: center;
+
+  color: #ffffff;
+}
+
+.en {
+  width: 872px;
+  height: 62px;
+  margin: 10px 0px 0px 0px;
+
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 30px;
+  text-align: center;
+
+  color: #ffffff;
+}
+
+.btn {
+  width: 120px;
+  height: 44px;
+  margin: 40px 0px 0px 0px;
+
+  background: #11555f;
+  border-radius: 60px;
+}
+
+.btn:hover {
+  background: #081f32;
+}
+
+.continuar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+
+  color: #ffffff;
 }
