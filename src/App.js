@@ -2,8 +2,8 @@ import React from "react"
 import "./App.css"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 
-import Welcome from '../src/Welcome'
-import Home from '../src/Home'
+import Welcome from "./Welcome.js"
+import Home from "./Home.js"
 
 function App() {
   return (
@@ -15,6 +15,5 @@ function App() {
     </Router>
   )
 }
-
 
 export default App
