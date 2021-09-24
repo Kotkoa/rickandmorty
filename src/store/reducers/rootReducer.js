@@ -1,15 +1,17 @@
 import axios from "axios"
 
-const ADD = "ADD"
+const ADDCHARACTERS = "ADDCHARACTERS"
 
 const initialState = {
-  list: "empty_text",
+  list: "empty",
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "ADD":
-      return state
+    case "ADDCHARACTERS":
+     return {
+       list: action.list,
+     }
     default:
       return state
   }
@@ -20,7 +22,9 @@ export default reducer
 export function getCharacters() {
   return function getFoo(dispatch) {
     axios("https://rickandmortyapi.com/api/character").then(({ data }) => {
-      dispatch({ type: ADD, list: data })
+      // const info = data.info
+      const results = data.results
+      dispatch({ type: ADDCHARACTERS, list: results })
     })
   }
 }
