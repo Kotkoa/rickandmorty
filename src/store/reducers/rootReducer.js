@@ -34,3 +34,7 @@ export function getCharacters() {
 export function setBase(base) {
   return { type: SET_BASE, base }
 }
+
+export function getEpisode(link) {
+  return axios(link).then((data) => {return data.name})
+}
