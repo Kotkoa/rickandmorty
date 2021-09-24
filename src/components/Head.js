@@ -1,4 +1,5 @@
 import "../App.css"
+import Navigate from "./Navigate"
 
 function Head() {
   return (
@@ -28,13 +29,7 @@ function Head() {
           </div>
         </div>
       </div>
-      <div className="navigate">
-        <div className="buttn">All</div>
-        <div className="buttn">Unknown</div>
-        <div className="buttn">Female</div>
-        <div className="buttn">Male</div>
-        <div className="buttn">Genderless</div>
-      </div>
+      <Navigate title="navigate" />
     </div>
   )
 }

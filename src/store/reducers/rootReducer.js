@@ -1,17 +1,19 @@
 import axios from "axios"
 
 const ADDCHARACTERS = "ADDCHARACTERS"
+const SET_BASE = "SET_BASE"
 
 const initialState = {
-  list: "empty",
+  base: 'All',
+  list: {}
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "ADDCHARACTERS":
-     return {
-       list: action.list,
-     }
+    case ADDCHARACTERS:
+      return { ...state, list: action.list }
+    case SET_BASE:
+      return { ...state, base: action.base }
     default:
       return state
   }
@@ -27,4 +29,8 @@ export function getCharacters() {
       dispatch({ type: ADDCHARACTERS, list: results })
     })
   }
+}
+
+export function setBase(base) {
+  return { type: SET_BASE, base }
 }
