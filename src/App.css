@@ -152,7 +152,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px solid #BDBDBD;
+  border-bottom: 1px solid #bdbdbd;
   background: #f2f2f2;
 }
 
@@ -162,7 +162,7 @@
   justify-content: center;
   border: 0px;
   width: 162px;
-  height: 78px;
+  height: 80px;
 }
 
 .buttnHover {
@@ -171,8 +171,8 @@
   border: 0px;
   justify-content: center;
   width: 162px;
-  height: 78px;
-  border-bottom: 3px solid #34C759;
+  height: 80px;
+  border-bottom: 3px solid #34c759;
 }
 
 .buttn:hover {
@@ -208,4 +208,53 @@
   /* margin: auto; */
 
   background-image: url(../src/image/Horizontal.png);
+}
+
+.favorites {
+  height: 98px;
+  display: flex;
+  align-items: center;
+}
+
+.favoText {
+}
+
+.body {
+}
+
+.charcardContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-items: space-between;
+  display: flex;
+  align-items: center;
+}
+
+.cardContainer {
+  padding: 0px 150px;
+  padding-bottom: 58px;
+}
+
+.cardBorder {
+  border: 1px solid #e0e0e0;
+  box-sizing: border-box;
+  border-radius: 10px;
+  width: 326px;
+  height: 140px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.charImage {
+  width: 140px;
+  height: 140px;
+}
+
+.charImg {
+  width: 140px;
+  height: 140px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }

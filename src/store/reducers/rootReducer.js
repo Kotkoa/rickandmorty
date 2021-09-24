@@ -4,8 +4,8 @@ const ADDCHARACTERS = "ADDCHARACTERS"
 const SET_BASE = "SET_BASE"
 
 const initialState = {
-  base: 'All',
-  list: {}
+  base: "All",
+  list: [],
 }
 
 const reducer = (state = initialState, action) => {
