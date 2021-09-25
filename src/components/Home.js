@@ -21,7 +21,7 @@ function Home() {
         <div className="favorites">
           <p className="favoText">Mostrar favoritos:</p>
           <div class="round">
-            <div className="star">
+            <div className="starFav">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="18"

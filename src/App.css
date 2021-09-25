@@ -233,7 +233,7 @@
   background-color: #e0e0e0;
 }
 
-.star {
+.starFav {
   display: flex;
   justify-content: center;
   margin-top: 5px;
@@ -275,6 +275,7 @@
 }
 
 .charImage {
+  position: relative;
   width: 140px;
   height: 140px;
 }
@@ -345,11 +346,21 @@
 }
 
 .starButton {
-  position: relative;
-  left: 0px;
-  top: 0px;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  margin: 5px;
   width: 30px;
   height: 30px;
   border-radius: 50%;
   background-color: #e0e0e0;
+}
+
+.star {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  margin-right: 6px;
+  margin-bottom: 3px;
+  background: transparent;
 }
