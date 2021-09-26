@@ -1,7 +1,7 @@
 import "../App.css"
 import React from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { setBase, getChar } from "../store/reducers/rootReducer"
+import { setBase, getChar, setShow } from "../store/reducers/rootReducer"
 
 const listButtn = ["All", "Unknown", "Female", "Male", "Genderless"]
 const listGetUrls = [
@@ -14,7 +14,7 @@ const listGetUrls = [
 
 function Navigate() {
   const dispatch = useDispatch()
-  const base = useSelector((store) => store.account.base)
+  const base = useSelector((store) => store.account.button)
 
   return (
     <div className="navigate">
@@ -26,6 +26,7 @@ function Navigate() {
             type="button"
             onClick={() => {
               dispatch(setBase(it))
+              dispatch(setShow("hideFavo"))
               dispatch(getChar(listGetUrls[id]))
             }}
           >

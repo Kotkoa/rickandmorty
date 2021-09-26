@@ -2,11 +2,14 @@ import axios from "axios"
 
 const ADD_CHARACTERS = "ADD_CHARACTERS"
 const SET_BASE = "SET_BASE"
-const ADD_EPINAME = "ADD_EPINAME"
+const SET_SHOW = "SET_SHOW"
+const SET_FAVORIT = "SET_FAVORIT"
 
 const initialState = {
-  base: "",
+  button: "",
+  bodyShow: "",
   list: [],
+  favorite:""
 }
 
 const reducer = (state = initialState, action) => {
@@ -14,16 +17,11 @@ const reducer = (state = initialState, action) => {
     case ADD_CHARACTERS:
       return { ...state, list: action.list }
     case SET_BASE:
-      return { ...state, base: action.base }
-    case ADD_EPINAME: {
-      const newList = state.list.map((it, id) =>
-        id === action.i ? { ...it, name: action.name } : it
-      )
-      return {
-        ...state,
-        list: newList,
-      }
-    }
+      return { ...state, button: action.base }
+    case SET_SHOW:
+      return { ...state, bodyShow: action.show }
+    case SET_FAVORIT:
+      return { ...state, favorite: action.stat }
     default:
       return state
   }
@@ -52,4 +50,12 @@ export function getChar(url) {
 
 export function setBase(base) {
   return { type: SET_BASE, base }
+}
+
+export function setShow(show) {
+  return { type: SET_SHOW, show }
+}
+
+export function getFavoStatus(stat) {
+  return { type: SET_FAVORIT, stat }
 }

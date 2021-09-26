@@ -1,5 +1,6 @@
 import "../App.css"
 import Navigate from "./Navigate"
+import Favorite from "./Favorite"
 
 function Head() {
   return (
@@ -29,7 +30,8 @@ function Head() {
           </div>
         </div>
       </div>
-      <Navigate title="navigate" />
+      <Navigate />
+      <Favorite />
     </div>
   )
 }

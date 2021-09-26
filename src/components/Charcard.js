@@ -3,16 +3,21 @@ import React from "react"
 import { useSelector } from "react-redux"
 
 function Charcard() {
-
   const { list } = useSelector((state) => state.account)
+  const show = useSelector((state) => state.account.bodyShow)
+
   return (
-    <div className="charcardContainer">
-      {list.map((char) => {
+    <div
+      className={`${
+        show !== "hideFavo" ? "hideWindow" : "charcardContainer"
+      }`}
+    >
+      {list.map((char, id) => {
         return (
-          <div className="cardBorder">
+          <div className="cardBorder" key={`${id}`}>
             <div className="charImage">
               <img className="charImg" alt={char.name} src={char.image} />
-              <div class="starButton">
+              <div className="starButton">
                 <div className="star">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
