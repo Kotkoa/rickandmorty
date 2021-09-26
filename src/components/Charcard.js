@@ -3,8 +3,8 @@ import React from "react"
 import { useSelector } from "react-redux"
 
 function Charcard() {
-  const { list } = useSelector((state) => state.account)
 
+  const { list } = useSelector((state) => state.account)
   return (
     <div className="charcardContainer">
       {list.map((char) => {
@@ -43,7 +43,7 @@ function Charcard() {
               </div>
               <div className="charFirstseen">
                 <div className="textLocation">First seen in:</div>
-                {}
+                {char.episode}
               </div>
             </div>
           </div>

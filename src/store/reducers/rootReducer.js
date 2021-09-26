@@ -1,19 +1,29 @@
 import axios from "axios"
 
-const ADDCHARACTERS = "ADDCHARACTERS"
+const ADD_CHARACTERS = "ADD_CHARACTERS"
 const SET_BASE = "SET_BASE"
+const ADD_EPINAME = "ADD_EPINAME"
 
 const initialState = {
-  base: "All",
+  base: "",
   list: [],
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADDCHARACTERS:
+    case ADD_CHARACTERS:
       return { ...state, list: action.list }
     case SET_BASE:
       return { ...state, base: action.base }
+    case ADD_EPINAME: {
+      const newList = state.list.map((it, id) =>
+        id === action.i ? { ...it, name: action.name } : it
+      )
+      return {
+        ...state,
+        list: newList,
+      }
+    }
     default:
       return state
   }
@@ -21,20 +31,25 @@ const reducer = (state = initialState, action) => {
 
 export default reducer
 
-export function getCharacters() {
+export function getChar(url) {
   return function getFoo(dispatch) {
-    axios("https://rickandmortyapi.com/api/character").then(({ data }) => {
-      // const info = data.info
-      const results = data.results
-      dispatch({ type: ADDCHARACTERS, list: results })
+    axios(`https://rickandmortyapi.com/api${url}`).then(({ data }) => {
+      const { results } = data
+      axios
+        .all(
+          results.map((it) => it.episode[0]).map((epiUrl) => axios(epiUrl))
+        )
+        .then((allNamesData) => allNamesData.map(({ data }) => data.name))
+        .then((allNamesArr) =>{
+          const ser = results.map((it, id) => {
+            return { ...it, episode: allNamesArr[id] }
+          } )
+          dispatch({ type: ADD_CHARACTERS, list: ser })
+        })
     })
   }
 }
 
 export function setBase(base) {
   return { type: SET_BASE, base }
-}
-
-export function getEpisode(link) {
-  return axios(link).then((data) => {return data.name})
 }

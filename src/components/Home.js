@@ -7,13 +7,13 @@ import Head from "./Head"
 import Charcard from "./Charcard"
 
 function Home() {
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
-  // const { list } = useSelector((state) => state.account)
+  // // const { list } = useSelector((state) => state.account)
 
-  useEffect(() => {
-    dispatch(getCharacters())
-  })
+  // useEffect(() => {
+  //   dispatch(getCharacters())
+  // })
   return (
     <div className="container">
       <Head title="header" />
