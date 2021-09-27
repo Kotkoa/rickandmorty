@@ -1,11 +1,12 @@
 import "../App.css"
 import React from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { setBase, setShow } from "../store/reducers/rootReducer"
+import { setBase, getSele } from "../store/reducers/rootReducer"
 
 function Favorite() {
   const dispatch = useDispatch()
   const show = useSelector((state) => state.account.bodyShow)
+  const select = useSelector((state) => state.account.select)
 
   return (
     <div className="favoriteButtonback">
@@ -15,8 +16,8 @@ function Favorite() {
           className="favoritOff"
           type="button"
           onClick={() => {
+            dispatch(getSele(`${select.join()}`))
             dispatch(setBase("Favorite"))
-            dispatch(setShow("hideChar"))
           }}
         >
           <div className="favoText">Mostrar favoritos:</div>

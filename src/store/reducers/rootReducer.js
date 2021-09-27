@@ -4,12 +4,14 @@ const ADD_CHARACTERS = "ADD_CHARACTERS"
 const SET_BASE = "SET_BASE"
 const SET_SHOW = "SET_SHOW"
 const SET_FAVORIT = "SET_FAVORIT"
+const SET_SELECTED = "SET_SELECTED"
 
 const initialState = {
   button: "",
   bodyShow: "",
   list: [],
-  favorite:""
+  favorite:"",
+  select: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -22,6 +24,9 @@ const reducer = (state = initialState, action) => {
       return { ...state, bodyShow: action.show }
     case SET_FAVORIT:
       return { ...state, favorite: action.stat }
+    case SET_SELECTED:
+      return { ...state, select: [ ...state.select, +action.id] }
+
     default:
       return state
   }
@@ -48,6 +53,23 @@ export function getChar(url) {
   }
 }
 
+export function getSele(url) {
+  return function getFoo(dispatch) {
+    axios(`https://rickandmortyapi.com/api/character/${url}`).then(({ data }) => {
+      const results = data
+      axios
+        .all(results.map((it) => it.episode[0]).map((epiUrl) => axios(epiUrl)))
+        .then((allNamesData) => allNamesData.map(({ data }) => data.name))
+        .then((allNamesArr) => {
+          const ser = results.map((it, id) => {
+            return { ...it, episode: allNamesArr[id] }
+          })
+          dispatch({ type: ADD_CHARACTERS, list: ser })
+        })
+    })
+  }
+}
+
 export function setBase(base) {
   return { type: SET_BASE, base }
 }
@@ -58,4 +80,8 @@ export function setShow(show) {
 
 export function getFavoStatus(stat) {
   return { type: SET_FAVORIT, stat }
+}
+
+export function setSelected(id) {
+  return { type: SET_SELECTED, id}
 }

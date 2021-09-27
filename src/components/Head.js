@@ -1,8 +1,17 @@
 import "../App.css"
+import { useDispatch } from "react-redux"
+import { getChar, setShow, setBase } from "../store/reducers/rootReducer"
+
 import Navigate from "./Navigate"
 import Favorite from "./Favorite"
 
 function Head() {
+  const dispatch = useDispatch()
+  const doAfter = (vol) => {
+    dispatch(getChar(vol))
+    dispatch(setShow("hideFavo"))
+    dispatch(setBase("Search"))
+  }
   return (
     <div className="header">
       <div className="header_background">
@@ -13,6 +22,11 @@ function Head() {
               type="text"
               className="search_input"
               placeholder="Buscar personaje..."
+              onKeyPress={(e) =>
+                e.key === "Enter"
+                  ? doAfter(`/character/?name=${e.target.value}`)
+                  : null
+              }
             />
             <svg
               className="search_icon"

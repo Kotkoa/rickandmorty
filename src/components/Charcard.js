@@ -1,23 +1,29 @@
 import "../App.css"
 import React from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { setSelected } from "../store/reducers/rootReducer"
 
 function Charcard() {
+  const dispatch = useDispatch()
+
   const { list } = useSelector((state) => state.account)
   const show = useSelector((state) => state.account.bodyShow)
 
   return (
     <div
-      className={`${
-        show !== "hideFavo" ? "hideWindow" : "charcardContainer"
-      }`}
+      className={`${show !== "hideFavo" ? "hideWindow" : "charcardContainer"}`}
     >
-      {list.map((char, id) => {
+      {list.map((char, iden) => {
         return (
-          <div className="cardBorder" key={`${id}`}>
+          <div className="cardBorder" key={`${iden}`}>
             <div className="charImage">
               <img className="charImg" alt={char.name} src={char.image} />
-              <div className="starButton">
+              <div
+                className="starButton"
+                key="setSelected"
+                type="button"
+                onClick={() => dispatch(setSelected(char.id))}
+              >
                 <div className="star">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
