@@ -3,7 +3,7 @@ import React from "react"
 
 import Head from "./Head"
 import Charcard from "./Charcard"
-import Selection from "./Selection"
+import Ohno from "./Ohno"
 
 function Home() {
   return (
@@ -11,7 +11,7 @@ function Home() {
       <Head title="header" />
       <div className="body">
         <Charcard />
-        <Selection />
+        <Ohno />
       </div>
       <div className="footer">
         <div className="horizontal">
