@@ -5,10 +5,12 @@ const SET_BASE = "SET_BASE"
 const SET_SHOW = "SET_SHOW"
 const SET_FAVORIT = "SET_FAVORIT"
 const SET_SELECTED = "SET_SELECTED"
+const SET_DETAILS = "SET_DETAILS"
 
 const initialState = {
   button: "",
   bodyShow: "",
+  details: "hideDetails",
   list: [],
   favorite: "",
   select: [],
@@ -22,6 +24,8 @@ const reducer = (state = initialState, action) => {
       return { ...state, button: action.base }
     case SET_SHOW:
       return { ...state, bodyShow: action.show }
+    case SET_DETAILS:
+      return { ...state, details: action.show }
     case SET_FAVORIT:
       return { ...state, favorite: action.stat }
     case SET_SELECTED:
@@ -90,9 +94,12 @@ export function setBase(base) {
   return { type: SET_BASE, base }
 }
 
-// delit
 export function setShow(show) {
   return { type: SET_SHOW, show }
+}
+
+export function setDetails(show) {
+  return { type: SET_DETAILS, show }
 }
 
 export function getFavoStatus(stat) {

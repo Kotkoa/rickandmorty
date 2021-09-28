@@ -1,7 +1,7 @@
 import "../App.css"
 import React from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { setSelected } from "../store/reducers/rootReducer"
+import { setSelected, setDetails } from "../store/reducers/rootReducer"
 
 function Charcard() {
   const dispatch = useDispatch()
@@ -40,7 +40,11 @@ function Charcard() {
                 </div>
               </div>
             </div>
-            <div className="charDetails">
+            <div
+              className="charDetails"
+              type="button"
+              onClick={() => dispatch(setDetails(char.id))}
+            >
               <div className="charStatus">
                 <div className="sphereStatus"></div>
                 <div className="textStatus">

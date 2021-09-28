@@ -258,6 +258,7 @@
   height: 30px;
   border-radius: 50%;
   background-color: #c7c4c4;
+  cursor: pointer;
 }
 
 .starFav {
@@ -279,8 +280,14 @@
 }
 
 .charDetails {
+  height: 140px;
   padding-left: 15px;
+  padding-top: 17px;
   overflow: hidden;
+}
+
+.charDetails:hover {
+  cursor: pointer;
 }
 
 .cardBorder {
@@ -420,24 +427,161 @@
   color: #5e5e5e;
 }
 
-.removeFilter{
-width: 156px;
-height: 44px;
-left: 647px;
-top: 836px;
+.removeFilter {
+  width: 156px;
+  height: 44px;
+  left: 647px;
+  top: 836px;
 
-margin-top: 20px;
+  margin-top: 20px;
 
-background: #11555F;
-border-radius: 60px;
-display: flex;
-align-items: center;
-justify-content: center;
+  background: #11555f;
+  border-radius: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-font-style: normal;
-font-weight:lighter;
-font-size: 18px;
-line-height: 22px;
+  font-style: normal;
+  font-weight: lighter;
+  font-size: 18px;
+  line-height: 22px;
 
-color: #FFFFFF;
+  color: #ffffff;
+}
+
+.detailsLayer {
+  position: absolute;
+  width: 100%;
+  height: screen;
+  z-index: +1;
+  display: flex;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.54);
+}
+
+.containerDetails {
+  margin-top: 295px;
+  width: 740px;
+  height: 1430px;
+  background: #ffffff;
+  border-radius: 10px;
+  margin-bottom: 70px;
+}
+
+.infoPrimary {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 400px;
+  width: 100%;
+  background: #f2f2f2;
+}
+
+.bgImg {
+  background: url(../src/image/27345-rick-y-morty.jpg);
+  border-radius: 10px 10px 0px 0px;
+  height: 220px;
+}
+
+.informacion {
+  height: 415px;
+  width: 100%;
+}
+
+.episodes {
+  height: 265px;
+  width: 100%;
+}
+
+.personajes {
+  height: 350px;
+  width: 90%;
+}
+
+.overlay {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.closet {
+  padding-top: 13px;
+  padding-right: 13px;
+}
+
+.closet:hover {
+  cursor: pointer;
+}
+
+.infoBasic {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  top: -75px;
+}
+
+.infoImg {
+  width: 155px;
+  height: 155px;
+  border: 4px solid #fffbfb;
+  border-radius: 50%;
+  overflow: hidden;
+  align-self: center;
+}
+
+.charIm {
+  width: 100%;
+  height: 100%;
+}
+
+.infoText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.status {
+  margin-top: 12px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: #4f4f4f;
+}
+
+.name {
+  margin-top: 5px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  color: #081f32;
+}
+
+.species {
+  margin-top: 5px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: #4f4f4f;
+}
+
+.textStyle {
+  margin-top: 20px;
+  margin-left: 22px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+
+  color: #4f4f4f;
 }

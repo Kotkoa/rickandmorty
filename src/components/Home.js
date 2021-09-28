@@ -4,10 +4,12 @@ import React from "react"
 import Head from "./Head"
 import Charcard from "./Charcard"
 import Ohno from "./Ohno"
+import Details from "./Details"
 
 function Home() {
   return (
     <div className="container">
+      <Details />
       <Head title="header" />
       <div className="body">
         <Charcard />
