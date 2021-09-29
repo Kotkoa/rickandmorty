@@ -15,8 +15,10 @@ function Favorite() {
           className="favoritOff"
           type="button"
           onClick={() => {
-            if ( select.length >= 1 ) {dispatch(getSele(select))
-            dispatch(setBase("Favorite"))}
+            if (select.length >= 1) {
+              dispatch(getSele(select))
+              dispatch(setBase("Favorite"))
+            }
           }}
         >
           <div className="favoText">Mostrar favoritos:</div>

@@ -6,6 +6,7 @@ const SET_SHOW = "SET_SHOW"
 const SET_FAVORIT = "SET_FAVORIT"
 const SET_SELECTED = "SET_SELECTED"
 const SET_DETAILS = "SET_DETAILS"
+const SET_INTEREST = "SET_INTEREST"
 
 const initialState = {
   button: "",
@@ -14,6 +15,7 @@ const initialState = {
   list: [],
   favorite: "",
   select: [],
+  interest: "",
 }
 
 const reducer = (state = initialState, action) => {
@@ -30,6 +32,8 @@ const reducer = (state = initialState, action) => {
       return { ...state, favorite: action.stat }
     case SET_SELECTED:
       return { ...state, select: [...state.select, action.id] }
+    case SET_INTEREST:
+      return { ...state, interest: action.pers }
 
     default:
       return state
@@ -90,6 +94,10 @@ export function getSele(url) {
   }
 }
 
+export function setInterest(pers) {
+  return { type: SET_INTEREST, pers }
+}
+
 export function setBase(base) {
   return { type: SET_BASE, base }
 }
@@ -99,7 +107,27 @@ export function setShow(show) {
 }
 
 export function setDetails(show) {
-  return { type: SET_DETAILS, show }
+  if (show === "hideDetails") {
+    return function getFoo(dispatch) {
+      dispatch({ type: SET_DETAILS, show })
+    }
+  }
+  return function getFoo(dispatch) {
+    axios(`https://rickandmortyapi.com/api/character/${show}`).then(
+      ({ data }) => {
+        const res = data
+        axios
+          .all(res.episode.map((epiUrl) => axios(epiUrl)))
+          .then((allEpisodesData) => allEpisodesData.map((it) => it.data))
+          .then((allEpisodes) =>
+            dispatch({
+              type: SET_DETAILS,
+              show: { ...res, episode: allEpisodes },
+            })
+          )
+      }
+    )
+  }
 }
 
 export function getFavoStatus(stat) {

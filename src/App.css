@@ -452,7 +452,7 @@
 .detailsLayer {
   position: absolute;
   width: 100%;
-  height: screen;
+  height: full;
   z-index: +1;
   display: flex;
   justify-content: center;
@@ -462,10 +462,9 @@
 .containerDetails {
   margin-top: 295px;
   width: 740px;
-  height: 1430px;
+  height: full;
   background: #ffffff;
   border-radius: 10px;
-  margin-bottom: 70px;
 }
 
 .infoPrimary {
@@ -483,17 +482,17 @@
 }
 
 .informacion {
-  height: 415px;
+  height: full;
   width: 100%;
 }
 
 .episodes {
-  height: 265px;
+  height: full;
   width: 100%;
 }
 
 .personajes {
-  height: 350px;
+  height: full;
   width: 90%;
 }
 
@@ -584,4 +583,114 @@
   line-height: 24px;
 
   color: #4f4f4f;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 18px;
+}
+
+.infoTab {
+  background: #ffffff;
+  border-radius: 8px;
+  width: 163px;
+  height: 58px;
+  border: 1px solid #bdbdbd;
+  overflow: hidden;
+}
+
+.ifoSvg {
+  margin-left: 12px;
+  margin-top: 8px;
+}
+
+.titleInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-left: 4px;
+}
+
+.infoTabText {
+  margin-left: 4px;
+  margin-top: 10px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: inherit;
+  font-size: 11px;
+  letter-spacing: 0.07px;
+  color: #828282;
+}
+
+.tabs {
+  margin-left: 20px;
+  margin-right: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.infoTabTextDetails {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  margin-left: 14px;
+  color: #081f32;
+}
+
+.borderLine {
+  border-bottom: 1px solid #e0e0e0;
+  height: 30px;
+  width: 670px;
+  margin: auto;
+}
+
+.episodeTabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.infEpisoTab {
+  background: #ffffff;
+  border-radius: 8px;
+  width: 163px;
+  height: 72px;
+  border: 1px solid #bdbdbd;
+  overflow: hidden;
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+.epiInfo {
+  margin-left: 12px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.epiName {
+  color: #828282;
+  font-size: 11px;
+}
+
+.episode {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.41px;
+  font-family: Montserrat;
+  color: #081f32;
+}
+
+.epiDate {
+  color: #828282;
+  font-size: 11px;
+}
+
+.personageTabs {
+  margin-top: 18px;
 }

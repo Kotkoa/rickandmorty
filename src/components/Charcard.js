@@ -1,7 +1,7 @@
 import "../App.css"
 import React from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { setSelected, setDetails } from "../store/reducers/rootReducer"
+import { setDetails } from "../store/reducers/rootReducer.js"
 
 function Charcard() {
   const dispatch = useDispatch()
@@ -22,7 +22,9 @@ function Charcard() {
                 className="starButton"
                 key="setSelected"
                 type="button"
-                onClick={() => dispatch(setSelected(char.id))}
+                onClick={() => {
+                  dispatch(setDetails(char.id))
+                }}
               >
                 <div className="star">
                   <svg
