@@ -31,7 +31,10 @@ const reducer = (state = initialState, action) => {
     case SET_FAVORIT:
       return { ...state, favorite: action.stat }
     case SET_SELECTED:
-      return { ...state, select: [...state.select, action.id] }
+      const selectArr = (+state.select.filter((it) => it === action.id).join() === action.id)
+        ? state.select.filter((it) => it !== action.id)
+        : [...state.select, action.id]
+      return { ...state, select: selectArr }
     case SET_INTEREST:
       return { ...state, interest: action.pers }
 
