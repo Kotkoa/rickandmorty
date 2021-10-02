@@ -329,6 +329,13 @@
   background-color: #27ae60;
 }
 
+.sphereStatusred {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #EB5757;
+}
+
 .textStatus {
   padding-left: 6px;
   font-family: Montserrat;
