@@ -79,7 +79,6 @@
 }
 
 .continuar {
-  padding-top: 8px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -720,4 +719,33 @@
 
 .infoStarImg {
   margin-top: 5px;
+}
+
+.compartir {
+  width: full;
+  margin-top: 50px;
+  margin-bottom: 37px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.compButtn {
+  padding-top: 0px;
+  width: 204px;
+  height: 44px;
+
+  margin-right: 20px;
+
+  background: #11555f;
+  border-radius: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-style: normal;
+  font-weight: lighter;
+  font-size: 18px;
+
+  color: #ffffff;
 }

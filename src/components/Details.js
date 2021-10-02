@@ -192,6 +192,8 @@ function Details() {
             </div>
             <div
               className="charDetails"
+              type="button"
+              onClick={() => dispatch(setDetails(char.id))}
             >
               <div className="charStatus">
                 <div
@@ -215,6 +217,9 @@ function Details() {
         )
       })}
           </div>
+        </div>
+        <div className="compartir">
+          <div className="compButtn"><div className="continuar">Compartir personaje</div></div>
         </div>
       </div>
     </div>
