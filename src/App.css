@@ -333,7 +333,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background-color: #EB5757;
+  background-color: #eb5757;
 }
 
 .textStatus {
@@ -546,13 +546,14 @@
 }
 
 .infoText {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  top: -15px;
 }
 
 .status {
-  margin-top: 12px;
   font-family: Montserrat;
   font-style: normal;
   font-weight: 500;
@@ -701,4 +702,21 @@
 
 .personageTabs {
   margin-top: 18px;
+}
+
+.infoStar {
+  background: #f2f2f2;
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  position: relative;
+  top: -20px;
+  width: 30px;
+  height: 30px;
+  align-self: center;
+  display: flex;
+  justify-content: center;
+}
+
+.infoStarImg {
+  margin-top: 5px;
 }
