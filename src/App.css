@@ -270,7 +270,6 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-items: space-between;
-  display: flex;
   align-items: center;
 }
 
@@ -501,7 +500,6 @@
 
 .personajes {
   height: full;
-  width: 90%;
 }
 
 .overlay {
@@ -702,6 +700,9 @@
 
 .personageTabs {
   margin-top: 18px;
+  margin-left: 22px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .infoStar {

@@ -15,7 +15,7 @@ const initialState = {
   list: [],
   favorite: "",
   select: [],
-  interest: "",
+  interest: [],
 }
 
 const reducer = (state = initialState, action) => {
@@ -36,7 +36,7 @@ const reducer = (state = initialState, action) => {
         : [...state.select, action.id]
       return { ...state, select: selectArr }
     case SET_INTEREST:
-      return { ...state, interest: action.pers }
+      return { ...state, interest: action.arr }
 
     default:
       return state
@@ -97,8 +97,25 @@ export function getSele(url) {
   }
 }
 
-export function setInterest(pers) {
-  return { type: SET_INTEREST, pers }
+export function getRandom(...arr) {
+  return function getFoo(dispatch) {
+     axios(`https://rickandmortyapi.com/api/character/${arr}`).then(
+       ({ data }) => {
+         const results = data
+         axios
+           .all(
+             results.map((it) => it.episode[0]).map((epiUrl) => axios(epiUrl))
+           )
+           .then((allNamesData) => allNamesData.map(({ data }) => data.name))
+           .then((allNamesArr) => {
+             const arr = results.map((it, id) => {
+               return { ...it, episode: allNamesArr[id] }
+             })
+             dispatch({ type: SET_INTEREST, arr })
+           })
+       }
+     )
+  }
 }
 
 export function setBase(base) {
