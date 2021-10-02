@@ -383,6 +383,7 @@
   height: 30px;
   border-radius: 50%;
   background-color: #e0e0e0;
+  cursor: pointer;
 }
 
 .star {
