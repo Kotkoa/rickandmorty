@@ -7,6 +7,7 @@ const SET_FAVORIT = "SET_FAVORIT"
 const SET_SELECTED = "SET_SELECTED"
 const SET_DETAILS = "SET_DETAILS"
 const SET_INTEREST = "SET_INTEREST"
+const ADD_PAGES = "ADD_PAGES"
 
 const initialState = {
   button: "",
@@ -22,6 +23,8 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_CHARACTERS:
       return { ...state, list: action.list }
+    case ADD_PAGES:
+      return { ...state, pages: action.info }
     case SET_BASE:
       return { ...state, button: action.base }
     case SET_SHOW:
@@ -47,18 +50,24 @@ export default reducer
 
 export function getChar(url) {
   return function getFoo(dispatch) {
-    axios(`https://rickandmortyapi.com/api${url}`).then(({ data }) => {
-      const { results } = data
-      axios
-        .all(results.map((it) => it.episode[0]).map((epiUrl) => axios(epiUrl)))
-        .then((allNamesData) => allNamesData.map(({ data }) => data.name))
-        .then((allNamesArr) => {
-          const ser = results.map((it, id) => {
-            return { ...it, episode: allNamesArr[id] }
+    axios(`https://rickandmortyapi.com/api/character${url}`).then(
+      ({ data }) => {
+        const { info } = data
+        dispatch({ type: ADD_PAGES, info })
+        const { results } = data
+        axios
+          .all(
+            results.map((it) => it.episode[0]).map((epiUrl) => axios(epiUrl))
+          )
+          .then((allNamesData) => allNamesData.map(({ data }) => data.name))
+          .then((allNamesArr) => {
+            const ser = results.map((it, id) => {
+              return { ...it, episode: allNamesArr[id] }
+            })
+            dispatch({ type: ADD_CHARACTERS, list: ser })
           })
-          dispatch({ type: ADD_CHARACTERS, list: ser })
-        })
-    })
+      }
+    )
   }
 }
 

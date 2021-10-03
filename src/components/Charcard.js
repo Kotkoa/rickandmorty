@@ -3,6 +3,8 @@ import React from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { setSelected, setDetails } from "../store/reducers/rootReducer.js"
 
+import Pagination from "./Pagination"
+
 function Charcard() {
   const dispatch = useDispatch()
 
@@ -55,7 +57,9 @@ function Charcard() {
             >
               <div className="charStatus">
                 <div
-                  className={char.status === "Alive" ? "sphereStatus" : "sphereStatusred"}
+                  className={
+                    char.status === "Alive" ? "sphereStatus" : "sphereStatusred"
+                  }
                 ></div>
                 <div className="textStatus">
                   {char.status} - {char.species}
@@ -74,6 +78,7 @@ function Charcard() {
           </div>
         )
       })}
+      <Pagination />
     </div>
   )
 }

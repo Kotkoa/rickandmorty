@@ -5,11 +5,11 @@ import { setBase, getChar, setShow } from "../store/reducers/rootReducer"
 
 const listButtn = ["All", "Unknown", "Female", "Male", "Genderless"]
 const listGetUrls = [
-  "/character",
-  "/character/?gender=unknown",
-  "/character/?gender=female",
-  "/character/?gender=male",
-  "/character/?gender=genderless"
+  "",
+  "/?gender=unknown",
+  "/?gender=female",
+  "/?gender=male",
+  "/?gender=genderless"
 ]
 
 function Navigate() {
