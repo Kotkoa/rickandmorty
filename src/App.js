@@ -10,8 +10,8 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/" component={() => <Welcome />} />
-        <Route exact path="/home" component={() => <Home />} />
-        <Redirect to="/" />
+        <Route path="/home" component={() => <Home />} />
+        <Redirect to="/home" />
       </Switch>
     </Router>
   )

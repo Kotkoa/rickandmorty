@@ -1,7 +1,7 @@
 import "../App.css"
 import React from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { setBase, getSele } from "../store/reducers/rootReducer"
+import { setBase, getSele, setShow } from "../store/reducers/rootReducer"
 
 function Favorite() {
   const dispatch = useDispatch()
@@ -18,6 +18,7 @@ function Favorite() {
             if (select.length >= 1) {
               dispatch(getSele(select))
               dispatch(setBase("Favorite"))
+              dispatch(setShow("showFavo"))
             }
           }}
         >

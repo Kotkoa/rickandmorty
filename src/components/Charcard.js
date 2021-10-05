@@ -9,12 +9,12 @@ function Charcard() {
   const dispatch = useDispatch()
 
   const { list } = useSelector((state) => state.account)
-  const show = useSelector((state) => state.account.bodyShow)
   const select = useSelector((state) => state.account.select)
 
   return (
     <div
-      className={`${show !== "hideFavo" ? "hideWindow" : "charcardContainer"}`}
+      className="charcardContainer"
+      // className={`${show !== "hideFavo" ? "hideWindow" : "charcardContainer"}`}
     >
       {list.map((char, iden) => {
         return (
