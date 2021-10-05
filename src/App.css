@@ -1,3 +1,13 @@
+a {
+  text-decoration: none;
+}
+
+a:visited { 
+  color: inherit;
+}
+
+
+
 .background_layer {
   background: #081f32;
 }
@@ -457,6 +467,7 @@
 
 .detailsLayer {
   position: absolute;
+  top: 0px;
   width: 100%;
   height: full;
   z-index: +1;
@@ -750,4 +761,12 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+}
+
+.linkBar {
+  position: relative;
+  z-index: +1;
+  background: #bdbdbd;
+  width: 169px;
+  height: 140px;
 }

@@ -17,6 +17,7 @@ const initialState = {
   favorite: "",
   select: [],
   interest: [],
+  pages: {}
 }
 
 const reducer = (state = initialState, action) => {
@@ -73,6 +74,7 @@ export function getChar(url) {
 
 export function getSele(url) {
   return function getFoo(dispatch) {
+    dispatch({ type: ADD_PAGES, info: {pages:1,next:null,prev:null} })
     if (url.length > 1) {
       axios(`https://rickandmortyapi.com/api/character/${url}`).then(
         ({ data }) => {

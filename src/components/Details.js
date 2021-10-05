@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux"
+import { useHistory } from "react-router-dom"
 import { setDetails, getRandom, setSelected } from "../store/reducers/rootReducer"
 
 function Details() {
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const persDetail = useSelector((store) => store.account.details)
   const select = useSelector((state) => state.account.select)
@@ -33,11 +35,7 @@ function Details() {
 
 
   return (
-    <div
-      className={`${
-        persDetail === "hideDetails" ? "hideWindow" : "detailsLayer"
-      }`}
-    >
+    <div className="detailsLayer">
       <div className="containerDetails">
         <div className="infoPrimary">
           <div className="bgImg">
@@ -45,7 +43,7 @@ function Details() {
               <div
                 className="closet"
                 type="button"
-                onClick={() => dispatch(setDetails("hideDetails"))}
+                onClick={() => history.goBack()}
               >
                 <svg
                   width="30"

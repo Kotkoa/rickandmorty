@@ -7,15 +7,13 @@ function Pagination() {
   const dispatch = useDispatch()
 
   const info = useSelector((store) => store.account.pages) || {}
-   const show = useSelector((store) => store.account.bodyShow)
 
   const [counter, setCounter ] = useState(1)
 
   return (
     <div className="pagination">
       <div
-        className="paginConteiner"
-        // {`${show === "hideFavo" ? "paginConteiner" : "hideWindow"}`}
+        className={info.pages > 1 ? "paginConteiner" : "hideWindow"}
       >
         <button
           className="btn"
@@ -48,7 +46,7 @@ function Pagination() {
               setCounter(counter + 1)
               dispatch(
                 getChar(
-                  info.next.split(
+                  info.prev.split(
                     "https://rickandmortyapi.com/api/character"
                   )[1]
                 )
