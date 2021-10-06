@@ -23,8 +23,7 @@ function Head() {
   const history = useHistory()
   let { path } = useRouteMatch()
   const location = useLocation()
-  dispatch(getChar(location.search))
-  useEffect(() => {}, [])
+  useEffect(() => {dispatch(getChar(location.search))}, [location.search])
 
 
   const base = useSelector((store) => store.account.button)
