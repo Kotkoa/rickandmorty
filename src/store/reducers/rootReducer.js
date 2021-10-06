@@ -10,7 +10,7 @@ const SET_INTEREST = "SET_INTEREST"
 const ADD_PAGES = "ADD_PAGES"
 
 const initialState = {
-  button: "",
+  button: "All",
   bodyShow: "",
   details: "hideDetails",
   list: [],

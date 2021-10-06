@@ -1,4 +1,5 @@
 import "../App.css"
+import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import {
   getChar,
@@ -6,7 +7,7 @@ import {
   setBase,
   getSele,
 } from "../store/reducers/rootReducer"
-import { Link, useHistory, useRouteMatch } from "react-router-dom"
+import { Link, useHistory, useRouteMatch, useLocation } from "react-router-dom"
 
 const listButtn = ["All", "Unknown", "Female", "Male", "Genderless"]
 const listGetUrls = [
@@ -20,14 +21,17 @@ const listGetUrls = [
 function Head() {
   const dispatch = useDispatch()
   const history = useHistory()
-  let { path, url } = useRouteMatch()
+  let { path } = useRouteMatch()
+  const location = useLocation()
+  dispatch(getChar(location.search))
+  useEffect(() => {}, [])
+
 
   const base = useSelector((store) => store.account.button)
   const select = useSelector((state) => state.account.select)
 
   const doAfter = (vol) => {
     history.push(`/home?name=${vol}`)
-    dispatch(getChar(`?name=${vol}`))
   }
   return (
     <div className="header">
@@ -71,8 +75,6 @@ function Head() {
                 type="button"
                 onClick={() => {
                   dispatch(setBase(it))
-                  console.log(listGetUrls[id])
-                  dispatch(getChar(listGetUrls[id]))
                 }}
               >
                 {it}
