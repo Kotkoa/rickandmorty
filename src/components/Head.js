@@ -6,27 +6,28 @@ import {
   setBase,
   getSele,
 } from "../store/reducers/rootReducer"
-import { Link, useHistory } from "react-router-dom"
+import { Link, useHistory, useRouteMatch } from "react-router-dom"
 
 const listButtn = ["All", "Unknown", "Female", "Male", "Genderless"]
 const listGetUrls = [
-  "/",
-  "/?gender=unknown",
-  "/?gender=female",
-  "/?gender=male",
-  "/?gender=genderless",
+  "",
+  "?gender=unknown",
+  "?gender=female",
+  "?gender=male",
+  "?gender=genderless",
 ]
 
 function Head() {
   const dispatch = useDispatch()
   const history = useHistory()
+  let { path, url } = useRouteMatch()
 
   const base = useSelector((store) => store.account.button)
   const select = useSelector((state) => state.account.select)
 
   const doAfter = (vol) => {
-    history.push(`/home/name=${vol}`)
-    dispatch(getChar(`/?name=${vol}`))
+    history.push(`/home?name=${vol}`)
+    dispatch(getChar(`?name=${vol}`))
   }
   return (
     <div className="header">
@@ -62,10 +63,7 @@ function Head() {
         {listButtn.map((it, id) => {
           return (
             <Link
-              to={`/home${listGetUrls[id]
-                .split("")
-                .filter((it) => it !== "?")
-                .join("")}`}
+              to={`/home${listGetUrls[id]}`}
             >
               <button
                 key={it}

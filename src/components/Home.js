@@ -23,10 +23,10 @@ function Home() {
               <Details />
               <Charcard />
             </Route>
-            <Route exact path="/home">
+            <Route exact path="/home:any">
               <Charcard />
             </Route>
-            <Route path="/home/:any">
+            <Route path="/home/">
               <Charcard />
             </Route>
             <Route exact path="/favorite">
