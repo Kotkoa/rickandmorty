@@ -1,10 +1,12 @@
 import "../App.css"
-import React from "react"
+import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import {
   setSelected,
   setDetails,
+  getChar,
+  getSele,
 } from "../store/reducers/rootReducer.js"
 
 import Pagination from "./Pagination"
@@ -14,6 +16,16 @@ function Charcard() {
 
   const { list } = useSelector((state) => state.account)
   const select = useSelector((state) => state.account.select)
+  const location = useLocation()
+
+  useEffect(() => {
+    if (location.pathname === "/home") {
+      dispatch(getChar(location.search))
+    }
+    if (location.pathname === "/favorite/" + select) {
+      dispatch(getSele(select))
+    }
+  }, [dispatch, location.search, location.pathname, select])
 
   return (
     <div className="charcardContainer">

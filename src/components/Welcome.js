@@ -14,11 +14,9 @@ function Welcome() {
             aplicación mediante el análisis de código y la reproducción del
             siguiente diseño.
           </p>
-          <button className="btn">
-            <Link to="/home" className="continuar">
-              Continuar
-            </Link>
-          </button>
+          <Link to="/home" className="continuar">
+            <button className="btn">Continuar</button>
+          </Link>
         </div>
       </div>
     </div>

@@ -10,6 +10,7 @@ import Head from "./Head"
 import Charcard from "./Charcard"
 import Ohno from "./Ohno"
 import Details from "./Details"
+// import Selected from "./Selected"
 
 function Home() {
   return (
@@ -31,7 +32,10 @@ function Home() {
             <Route exact path="/favorite">
               <Charcard />
             </Route>
-            <Route path="/empty">
+            <Route path="/favorite/:any">
+              <Charcard />
+            </Route>
+            <Route exact path="/empty">
               <Ohno />
             </Route>
           </Switch>

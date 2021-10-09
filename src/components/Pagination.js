@@ -18,8 +18,6 @@ function Pagination() {
   const prevPage = info.prev
     ? info.prev.split("https://rickandmortyapi.com/api/character")[1]
     : ""
-  // const pageNum =
-    // location.search === "" ? "1" : location.search.match(/\d+/).join("")
 
   return (
     <div className="pagination">

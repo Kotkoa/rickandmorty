@@ -2,8 +2,6 @@ import axios from "axios"
 
 const ADD_CHARACTERS = "ADD_CHARACTERS"
 const SET_BASE = "SET_BASE"
-const SET_SHOW = "SET_SHOW"
-const SET_FAVORIT = "SET_FAVORIT"
 const SET_SELECTED = "SET_SELECTED"
 const SET_DETAILS = "SET_DETAILS"
 const SET_INTEREST = "SET_INTEREST"
@@ -11,13 +9,11 @@ const ADD_PAGES = "ADD_PAGES"
 
 const initialState = {
   button: "All",
-  bodyShow: "",
   details: "hideDetails",
   list: [],
-  favorite: "",
   select: [],
   interest: [],
-  pages: {}
+  pages: {},
 }
 
 const reducer = (state = initialState, action) => {
@@ -28,16 +24,15 @@ const reducer = (state = initialState, action) => {
       return { ...state, pages: action.info }
     case SET_BASE:
       return { ...state, button: action.base }
-    case SET_SHOW:
-      return { ...state, bodyShow: action.show }
+
     case SET_DETAILS:
       return { ...state, details: action.show }
-    case SET_FAVORIT:
-      return { ...state, favorite: action.stat }
+
     case SET_SELECTED:
-      const selectArr = (+state.select.filter((it) => it === action.id).join() === action.id)
-        ? state.select.filter((it) => it !== action.id)
-        : [...state.select, action.id]
+      const selectArr =
+        +state.select.filter((it) => it === action.id).join() === action.id
+          ? state.select.filter((it) => it !== action.id)
+          : [...state.select, action.id]
       return { ...state, select: selectArr }
     case SET_INTEREST:
       return { ...state, interest: action.arr }
@@ -74,7 +69,7 @@ export function getChar(url) {
 
 export function getSele(url) {
   return function getFoo(dispatch) {
-    dispatch({ type: ADD_PAGES, info: {pages:1,next:null,prev:null} })
+    dispatch({ type: ADD_PAGES, info: { pages: 1, next: null, prev: null } })
     if (url.length > 1) {
       axios(`https://rickandmortyapi.com/api/character/${url}`).then(
         ({ data }) => {
@@ -110,31 +105,27 @@ export function getSele(url) {
 
 export function getRandom(...arr) {
   return function getFoo(dispatch) {
-     axios(`https://rickandmortyapi.com/api/character/${arr}`).then(
-       ({ data }) => {
-         const results = data
-         axios
-           .all(
-             results.map((it) => it.episode[0]).map((epiUrl) => axios(epiUrl))
-           )
-           .then((allNamesData) => allNamesData.map(({ data }) => data.name))
-           .then((allNamesArr) => {
-             const arr = results.map((it, id) => {
-               return { ...it, episode: allNamesArr[id] }
-             })
-             dispatch({ type: SET_INTEREST, arr })
-           })
-       }
-     )
+    axios(`https://rickandmortyapi.com/api/character/${arr}`).then(
+      ({ data }) => {
+        const results = data
+        axios
+          .all(
+            results.map((it) => it.episode[0]).map((epiUrl) => axios(epiUrl))
+          )
+          .then((allNamesData) => allNamesData.map(({ data }) => data.name))
+          .then((allNamesArr) => {
+            const arr = results.map((it, id) => {
+              return { ...it, episode: allNamesArr[id] }
+            })
+            dispatch({ type: SET_INTEREST, arr })
+          })
+      }
+    )
   }
 }
 
 export function setBase(base) {
   return { type: SET_BASE, base }
-}
-
-export function setShow(show) {
-  return { type: SET_SHOW, show }
 }
 
 export function setDetails(show) {
@@ -159,10 +150,6 @@ export function setDetails(show) {
       }
     )
   }
-}
-
-export function getFavoStatus(stat) {
-  return { type: SET_FAVORIT, stat }
 }
 
 export function setSelected(id) {

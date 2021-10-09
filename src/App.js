@@ -11,7 +11,6 @@ function App() {
       <Switch>
         <Route exact path="/" component={() => <Welcome />} />
         <Route path="/home" component={() => <Home />} />
-        <Redirect to="/home" />
       </Switch>
     </Router>
   )
