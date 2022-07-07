@@ -95,7 +95,7 @@ function Details() {
                 </div>
                 <div className="infoTabText">Origin:</div>
               </div>
-              <div className="infoTabTextDetails">{JSON.stringify(persDetail.origin.name)}</div>
+              <div className="infoTabTextDetails">{JSON.stringify(persDetail.origin?.name)}</div>
             </div>
             <div className="infoTab" key="info-type">
               <div className="titleInfo">
