@@ -1,9 +1,9 @@
-import React from "react"
-import "./App.css"
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom"
+import React from 'react'
+import './App.css'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
-import Welcome from "./components/Welcome.js"
-import Home from "./components/Home.js"
+import Welcome from './components/Welcome.js'
+import Home from './components/Home.js'
 
 function App() {
   return (
