@@ -1,8 +1,5 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
+This project is already deployed on vercel server, and could be viewed by this link: 
+Open [https://rickandmorty-six-pearl.vercel.app/](https://rickandmorty-six-pearl.vercel.app/) here.
 
 In the project directory, you can run:
 
