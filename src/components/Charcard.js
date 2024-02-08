@@ -1,15 +1,15 @@
-import "../App.css"
-import React, { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { Link, useLocation } from "react-router-dom"
+import '../App.css'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useLocation } from 'react-router-dom'
 import {
   setSelected,
   setDetails,
   getChar,
   getSele,
-} from "../store/reducers/rootReducer.js"
+} from '../store/reducers/rootReducer.js'
 
-import Pagination from "./Pagination"
+import { Pagination } from './Pagination'
 
 function Charcard() {
   const dispatch = useDispatch()
@@ -19,10 +19,10 @@ function Charcard() {
   const location = useLocation()
 
   useEffect(() => {
-    if (location.pathname === "/home") {
+    if (location.pathname === '/home') {
       dispatch(getChar(location.search))
     }
-    if (location.pathname === "/favorite/" + select) {
+    if (location.pathname === '/favorite/' + select) {
       dispatch(getSele(select))
     }
   }, [dispatch, location.search, location.pathname, select])
@@ -56,8 +56,8 @@ function Charcard() {
                       fill={
                         +select.filter((it) => it === char.id).join() ===
                         char.id
-                          ? "#F2994A"
-                          : "#828282"
+                          ? '#F2994A'
+                          : '#828282'
                       }
                     />
                   </svg>
@@ -75,9 +75,9 @@ function Charcard() {
                 <div className="charStatus">
                   <div
                     className={
-                      char.status === "Alive"
-                        ? "sphereStatus"
-                        : "sphereStatusred"
+                      char.status === 'Alive'
+                        ? 'sphereStatus'
+                        : 'sphereStatusred'
                     }
                   ></div>
                   <div className="textStatus">
