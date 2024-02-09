@@ -1,0 +1,34 @@
+.header {
+  font-size: 21px;
+  background: #081f32;
+}
+
+.header_background {
+  height: 455px;
+  background: url(../src/image/portal-morty-smith-rick.png) no-repeat top center;
+}
+
+.header_overlay {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.logo_rickmorty {
+  width: 347px;
+  height: 122px;
+
+  background: url(../src/image/rick-and-morty.png);
+  background-size: cover;
+}
+
+.search_block {
+  position: relative;
+  width: 500px;
+  height: 60px;
+}

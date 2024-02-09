@@ -1,0 +1,31 @@
+module.exports = {
+  extends: ['stylelint-config-standard-scss', 'stylelint-config-css-modules'],
+  plugins: ['stylelint-order'],
+  rules: {
+    'at-rule-no-unknown': null,
+    'no-empty-source': null,
+    'no-descending-specificity': null,
+    'property-no-vendor-prefix': null,
+    'alpha-value-notation': null,
+    'color-function-notation': 'legacy',
+    'selector-class-pattern': null,
+    'font-family-name-quotes': null,
+    'scss/no-global-function-names': null,
+    'scss/at-rule-conditional-no-parentheses': null,
+    'import-notation': null,
+    'rule-empty-line-before': 'always',
+    'scss/at-else-closing-brace-newline-after': 'always-last-in-chain',
+    'scss/at-else-closing-brace-space-after': 'always-intermediate',
+    'scss/at-else-empty-line-before': 'never',
+    'scss/at-if-closing-brace-newline-after': 'always-last-in-chain',
+    'scss/at-if-closing-brace-space-after': 'always-intermediate',
+    'scss/at-import-partial-extension': null,
+    'scss/at-extend-no-missing-placeholder': null,
+    'selector-pseudo-class-no-unknown': [
+      true,
+      {
+        ignorePseudoClasses: ['global'],
+      },
+    ],
+  },
+};

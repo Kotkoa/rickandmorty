@@ -1,33 +1,60 @@
+p {
+  margin: 20px 0px;
+}
+
+button {
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 35px;
+
+  background: #845ec2;
+  color: white;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+
+  background: var(--bg-primay);
+  color: var(--primay);
+}
+
+.App-link {
+  color: #61dafb;
+  color: var(--link);
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+button {
+  font-size: calc(10px + 2vmin);
+}
+
 a {
   text-decoration: none;
 }
 
-a:visited { 
+a:visited {
   color: inherit;
-}
-
-
-
-.background_layer {
-  background: #081f32;
-}
-
-.background {
-  width: 100vw;
-  height: 100vh;
-
-  background: url(../src/image/portal-morty-smith-rick.png) no-repeat top center;
-}
-
-.overlay_layer {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  background: rgba(0, 0, 0, 0.7);
 }
 
 .horizontal {
@@ -35,109 +62,6 @@ a:visited {
   height: 50px;
 
   background: url(../src/image/Horizontal.png);
-}
-
-.rickandmorty {
-  width: 664px;
-  height: 233px;
-
-  background: url(../src/image/rick-and-morty.png);
-  background-size: cover;
-}
-
-.bien {
-  width: 872px;
-  height: 53px;
-  margin: 20px 0px 0px 0px;
-
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 36px;
-  line-height: 44px;
-  text-align: center;
-
-  color: #ffffff;
-}
-
-.en {
-  width: 872px;
-  height: 62px;
-  margin: 10px 0px 40px 0px;
-
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 30px;
-  text-align: center;
-
-  color: #ffffff;
-}
-
-.btn {
-  width: 120px;
-  height: 44px;
-
-  background: #11555f;
-  border-radius: 60px;
-
-  font-style: normal;
-  font-weight: lighter;
-  font-size: 18px;
-  color: #ffffff;
-}
-
-.btn:hover {
-  background: #081f32;
-}
-
-.continuar {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-
-  color: #ffffff;
-}
-
-.header {
-  background: #081f32;
-}
-
-.header_background {
-  height: 455px;
-
-  background: url(../src/image/portal-morty-smith-rick.png) no-repeat top center;
-}
-
-.header_overlay {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  background: rgba(0, 0, 0, 0.7);
-}
-
-.logo_rickmorty {
-  width: 347px;
-  height: 122px;
-
-  background: url(../src/image/rick-and-morty.png);
-  background-size: cover;
-}
-
-.search_block {
-  position: relative;
-  width: 500px;
-  height: 60px;
 }
 
 .hideWindow {
@@ -218,14 +142,6 @@ a:visited {
   justify-content: center;
 
   background: rgba(0, 0, 0, 0.4);
-}
-
-.suazo {
-  width: 135px;
-  height: 50px;
-  /* margin: auto; */
-
-  background-image: url(../src/image/Horizontal.png);
 }
 
 .favoriteButtonback {
