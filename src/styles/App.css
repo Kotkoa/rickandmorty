@@ -68,36 +68,6 @@ a:visited {
   display: none;
 }
 
-.search_input {
-  width: 500px;
-  height: 60px;
-  background: #081f32;
-  border: 2px solid #f2f2f2;
-  box-sizing: border-box;
-  border-radius: 6px;
-  font-size: 18px;
-  padding-left: 64px;
-  color: #ffffff;
-}
-
-.search_icon {
-  position: absolute;
-  left: 0px;
-  margin-left: 15px;
-  margin-top: 16px;
-  background: transparent;
-}
-
-.navigate {
-  height: 80px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid #bdbdbd;
-  background: #f2f2f2;
-}
-
 .buttn {
   display: flex;
   align-items: center;
@@ -144,54 +114,12 @@ a:visited {
   background: rgba(0, 0, 0, 0.4);
 }
 
-.favoriteButtonback {
-  width: 100%;
-  height: 100%;
-  background-color: white;
-}
-
-.favoriteButton {
-  margin-left: 150px;
-  height: 80px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.favoritOff {
-  height: 40px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  border: 0px;
-  background-color: white;
-}
-
 .favoText {
   font-family: Montserrat;
   font-style: normal;
   font-weight: normal;
   margin-right: 12px;
   font-size: 14px;
-}
-
-.round {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: #e0e0e0;
-}
-
-.round:hover {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: #c7c4c4;
-  cursor: pointer;
-}
-
-.starFav {
-  margin-top: 5px;
 }
 
 .charcardContainer {

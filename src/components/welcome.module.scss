@@ -10,7 +10,8 @@
 
 .overlay_layer {
   width: 100vw;
-  height: 100vh;
+  height: 100%;
+  max-height: 1020px;
   display: flex;
   flex-direction: column;
   justify-content: center;

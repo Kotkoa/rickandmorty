@@ -15,15 +15,15 @@ export const router = createBrowserRouter([
     path: '/home',
     element: <App />,
   },
-  // {
-  //   path: '/model',
-  //   element: (
-  //     <>
-  //       <Details />
-  //       <Charcard />
-  //     </>
-  //   ),
-  // },
+  {
+    path: '/model',
+    element: (
+      <>
+        {/* <Details /> */}
+        <Charcard />
+      </>
+    ),
+  },
   {
     path: '/favorite',
     element: <Charcard />,
