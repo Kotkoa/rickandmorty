@@ -1,0 +1,144 @@
+.noDataContainer {
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  padding: 0 0 40px 0;
+}
+
+.charcardContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-items: space-between;
+  align-items: center;
+  padding: 150px;
+  background-color: #fff;
+}
+
+.cardBorder {
+  border: 1px solid #e0e0e0;
+  box-sizing: border-box;
+  border-radius: 10px;
+  width: 326px;
+  height: 140px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.charImage {
+  position: relative;
+  width: 140px;
+  height: 140px;
+}
+
+.charImg {
+  width: 140px;
+  height: 140px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.starButton {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  margin: 5px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  cursor: pointer;
+}
+
+.star {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  margin-right: 6px;
+  margin-bottom: 3px;
+  background: transparent;
+}
+
+.charDetails {
+  height: 140px;
+  padding-left: 15px;
+  padding-top: 17px;
+  overflow: hidden;
+}
+
+.charDetails:hover {
+  cursor: pointer;
+}
+
+.charStatus {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.status {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: #4f4f4f;
+}
+
+.textStatus {
+  padding-left: 6px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  color: #4f4f4f;
+}
+
+.species {
+  margin-top: 5px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: #4f4f4f;
+}
+
+.charName {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+}
+
+.textLocation {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  color: #828282;
+  overflow-wrap: break-word;
+}
+
+.lastLocation {
+  padding-top: 8px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+
+  color: #000000;
+}
+
+.charFirstseen {
+  padding-top: 8px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+
+  color: #000000;
+}

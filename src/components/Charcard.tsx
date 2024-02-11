@@ -1,12 +1,9 @@
-import // getChar,
-// getSele,
-// setDetails,
-// setSelected,
-'../store/reducers/rootReducer.js';
-
+import classNames from 'classnames';
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 
+import { StarFavorite } from '../icons/star-favorite';
+import styles from './charcard.module.scss';
 import { Pagination } from './Pagination.js';
 
 export const Charcard: FC = () => {
@@ -26,50 +23,51 @@ export const Charcard: FC = () => {
   // }, [dispatch, location.search, location.pathname, select])
   const list: Array<Record<string, any>> = [];
 
+  const ifSelected = true;
+
+  if (!list.length) {
+    return <div className={styles.noDataContainer}>No Data...</div>;
+  }
+
   return (
-    <div className="charcardContainer">
-      {list.map((char, iden) => {
+    <div className={styles.charcardContainer}>
+      {list.map((char) => {
         return (
-          <div className="cardBorder" key={`${iden}`}>
-            <div className="charImage">
-              <img className="charImg" alt={char.name} src={char.image} />
+          <div className={styles.cardBorder} key={char.name}>
+            <div className={styles.charImage}>
+              <img className={styles.charImg} alt={char.name} src={char.image} />
               <button
-                className="starButton"
+                className={styles.starButton}
                 key="setSelected"
                 type="button"
                 onClick={() => {
                   // dispatch(setSelected(char.id))
                 }}>
-                <div className="star">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-                    <path
-                      d="M8.10313 0.625785L6.06251 5.28047L1.49688 6.0293C0.678132 6.1629 0.350007 7.29844 0.943757 7.94883L4.24688 11.5699L3.46563 16.6852C3.32501 17.6098 4.19063 18.3024 4.91563 17.8699L9.00001 15.4547L13.0844 17.8699C13.8094 18.2988 14.675 17.6098 14.5344 16.6852L13.7531 11.5699L17.0563 7.94883C17.65 7.29844 17.3219 6.1629 16.5031 6.0293L11.9375 5.28047L9.89688 0.625785C9.53126 -0.203903 8.47188 -0.21445 8.10313 0.625785Z"
-                      // fill={+select.filter((it) => it === char.id).join() === char.id ? '#F2994A' : '#828282'}
-                    />
-                  </svg>
+                <div className={styles.star}>
+                  <StarFavorite className={classNames(styles.star, `${ifSelected ?? '#828282'}`)} />
                 </div>
               </button>
             </div>
-            <Link to="/model" className="Linkstyle">
+            <Link to="/model">
               <button
-                className="charDetails"
+                className={styles.charDetails}
                 type="button"
                 onClick={() => {
                   // dispatch(setDetails(char.id))
                 }}>
-                <div className="charStatus">
+                <div className={styles.charStatus}>
                   <div className={char.status === 'Alive' ? 'sphereStatus' : 'sphereStatusred'}></div>
-                  <div className="textStatus">
+                  <div className={styles.textStatus}>
                     {char.status} - {char.species}
                   </div>
                 </div>
-                <div className="charName">{char.name}</div>
-                <div className="lastLocation">
-                  <div className="textLocation">Last known location:</div>
+                <div className={styles.charName}>{char.name}</div>
+                <div className={styles.lastLocation}>
+                  <div className={styles.textLocation}>Last known location:</div>
                   {char.location.name}
                 </div>
-                <div className="charFirstseen">
-                  <div className="textLocation">First seen in:</div>
+                <div className={styles.charFirstseen}>
+                  <div className={styles.textLocation}>First seen in:</div>
                   {char.episode}
                 </div>
               </button>
