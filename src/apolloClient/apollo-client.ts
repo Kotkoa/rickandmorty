@@ -1,20 +1,11 @@
-// import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
-// import { setContext } from '@apollo/client/link/context';
+import { ApolloClient, InMemoryCache } from '@apollo/client';
 
-// const host = process.env.VITE_REACT_APP_GRAPHQL_API;
-// console.log('host', host);
+// const host = 'https://rickandmortyapi.com/graphql';
 
-// const token = '';
+const host = process.env.VITE_REACT_APP_GRAPHQL_API;
 
-// const authLink = setContext((_, { headers }) => {
-//   return { headers: { ...headers, authorization: token ? `Bearer ${token}` : '' } };
-// });
-
-// const httpLink = createHttpLink({ uri: host });
-
-// export const apolloClient = new ApolloClient({
-//   link: authLink.concat(httpLink),
-//   // uri: process.env.REACT_APP_GRAPHQL_API,
-//   cache: new InMemoryCache(),
-//   connectToDevTools: true,
-// });
+export const apolloClient = new ApolloClient({
+  uri: host,
+  cache: new InMemoryCache(),
+  connectToDevTools: true,
+});

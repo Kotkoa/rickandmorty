@@ -1,11 +1,7 @@
-.header {
-  font-size: 21px;
-  background: #081f32;
-}
-
 .header_background {
   height: 455px;
   background: url('../src/image/welcom-background.png') no-repeat center center;
+  background-size: cover;
 }
 
 .header_overlay {

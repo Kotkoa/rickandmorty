@@ -2,25 +2,25 @@ import classNames from 'classnames';
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-// import { useCharactersQuery } from '../generated/graphql';
+import { useCharactersQuery } from '../generated/graphql';
 import { StarFavorite } from '../icons/star-favorite';
 import styles from './charcard.module.scss';
 import { Pagination } from './Pagination.js';
 
 export const Charcard: FC = () => {
-  // const {
-  //   data: charactersData,
-  //   loading: charactersLoading,
-  //   error: charactersError,
-  // } = useCharactersQuery({
-  //   variables: {
-  //     page: 0,
-  //   },
-  // });
+  const {
+    data: charactersData,
+    loading: charactersLoading,
+    error: charactersError,
+  } = useCharactersQuery({
+    variables: {
+      page: 0,
+    },
+  });
 
-  // if (charactersError) {
-  //   console.warn('Error loading characters list', charactersError);
-  // }
+  if (charactersError) {
+    console.warn('Error loading characters list', charactersError);
+  }
 
   // const select = useSelector((state) => state.account.select)
   // const location = useLocation()
@@ -36,15 +36,15 @@ export const Charcard: FC = () => {
 
   const ifSelected = true;
 
-  const charactersList = []; //charactersData?.characters?.results;
+  const charactersList = charactersData?.characters?.results;
 
   if (!charactersList) {
     return <div className={styles.noDataContainer}>No Data...</div>;
   }
 
-  // if (charactersLoading) {
-  //   return <div className={styles.noDataContainer}>Loading...</div>;
-  // }
+  if (charactersLoading) {
+    return <div className={styles.noDataContainer}>Loading...</div>;
+  }
 
   return (
     <div className={styles.charcardContainer}>

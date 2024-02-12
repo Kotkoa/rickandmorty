@@ -33,7 +33,7 @@ export const Header: FC = () => {
   const ifSelect = true;
 
   return (
-    <div className={styles.header}>
+    <div>
       <div className={styles.header_background}>
         <div className={styles.header_overlay}>
           <Link to="/home">
