@@ -1,9 +1,13 @@
+import classNames from 'classnames';
+import { useAtom } from 'jotai';
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { Filtros } from '../icons/filtros';
 import { Search } from '../icons/search';
-import { FilterButtonsE } from '../types/common.types';
+import { genderFilterStore } from '../store/characters.store';
+import { FilterButtonsE, GenderFilterE } from '../types/common.types';
 import styles from './header.module.scss';
 import { ShowFavoriteList } from './show-favorite-list';
 
@@ -15,17 +19,23 @@ const listButton = [
   FilterButtonsE.Genderless,
 ];
 
-const listGetUrls = ['', '?gender=unknown', '?gender=female', '?gender=male', '?gender=genderless'];
+const mapFilterButtons = (filter: FilterButtonsE): GenderFilterE => {
+  const mapFilter: Record<FilterButtonsE, GenderFilterE> = {
+    [FilterButtonsE.All]: GenderFilterE.All,
+    [FilterButtonsE.Unknown]: GenderFilterE.Unknown,
+    [FilterButtonsE.Female]: GenderFilterE.Female,
+    [FilterButtonsE.Genderless]: GenderFilterE.Genderless,
+    [FilterButtonsE.Male]: GenderFilterE.Male,
+  };
+
+  return mapFilter[filter];
+};
 
 export const Header: FC = () => {
-  // const [selectedCharacters, setSelectedCharacters] = useAtom(favoriteCharacters);
+  const navigate = useNavigate();
+  const [genderFilter, setGenderFilter] = useAtom(genderFilterStore);
 
-  // const dispatch = useDispatch();
-  // const history = useHistory();
   // let { path } = useRouteMatch()
-
-  // const base = useSelector((store) => store.account.button);
-  // const select = useSelector((state) => state.account.select);
 
   // const doAfter = (vol) => {
   //   history.push(`/home?name=${vol}`);
@@ -51,19 +61,19 @@ export const Header: FC = () => {
         </div>
       </div>
       <div className={styles.navigate}>
-        {listButton.map((it, id) => {
-          const base = FilterButtonsE.All;
+        {listButton.map((button) => {
           return (
-            <Link to={`/home${listGetUrls[id]}`} key={it}>
-              <button
-                className={`${base === it ? styles.buttnHover : styles.buttn}`}
-                type="button"
-                onClick={() => {
-                  // dispatch(setBase(it));
-                }}>
-                {it}
-              </button>
-            </Link>
+            <button
+              key={button}
+              className={classNames(styles.buttn, { [styles.buttnHover]: genderFilter === button })}
+              type="button"
+              onClick={() => {
+                const gender = mapFilterButtons(button);
+                setGenderFilter(button);
+                navigate(`/home?gender=${gender}`);
+              }}>
+              {button}
+            </button>
           );
         })}
       </div>

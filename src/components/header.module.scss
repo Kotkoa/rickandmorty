@@ -16,7 +16,7 @@
 .logo_rickmorty {
   width: 347px;
   height: 122px;
-  background: url("../src/image/rick-and-morty.png");
+  background: url('../src/image/rick-and-morty.png');
   background-size: cover;
 }
 
@@ -70,6 +70,7 @@
   border: 0;
   width: 162px;
   height: 80px;
+  cursor: pointer;
 }
 
 .buttnHover {

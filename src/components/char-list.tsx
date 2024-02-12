@@ -1,5 +1,6 @@
 import { useAtom } from 'jotai';
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import { useCharactersQuery } from '../generated/graphql';
 import { paginationStore } from '../store/characters.store';
@@ -8,7 +9,7 @@ import styles from './char-list.module.scss';
 import { Pagination } from './pagination';
 
 export const CharList: FC = () => {
-  const [page] = useAtom(paginationStore);
+  const [pagePagination, setPagePagination] = useAtom(paginationStore);
 
   const {
     data: charactersData,
@@ -16,22 +17,19 @@ export const CharList: FC = () => {
     error: charactersError,
   } = useCharactersQuery({
     variables: {
-      page,
+      page: pagePagination,
     },
   });
 
-  // const navigate = useNavigate()
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const page = searchParams.get('page') || pagePagination;
 
-  // const location = useLocation()
-
-  // useEffect(() => {
-  //   if (location.pathname === '/home') {
-  //     dispatch(getChar(location.search))
-  //   }
-  //   if (location.pathname === '/favorite/' + select) {
-  //     dispatch(getSele(select))
-  //   }
-  // }, [dispatch, location.search, location.pathname, select])
+  useEffect(() => {
+    if (page && page !== pagePagination) {
+      setPagePagination(Number(page));
+    }
+  }, [page, setPagePagination]);
 
   const charactersList = charactersData?.characters?.results;
 

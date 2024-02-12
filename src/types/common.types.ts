@@ -5,3 +5,11 @@ export const enum FilterButtonsE {
   Male = 'Male',
   Genderless = 'Genderless',
 }
+
+export const enum GenderFilterE {
+  All = '',
+  Unknown = 'unknown',
+  Female = 'female',
+  Male = 'male',
+  Genderless = 'genderless',
+}
