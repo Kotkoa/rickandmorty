@@ -16,22 +16,20 @@ export const router = createBrowserRouter([
     path: '/home',
     element: <App />,
     children: [
-      { path: '/home/', element: <CharList /> },
-      // {
-      //   path: 'model',
-      //   element: (
-      //     <>
-      //       <Details />
-      //       <CharList />
-      //     </>
-      //   ),
-      // },
+      { path: '', element: <CharList /> },
       {
-        path: 'favorite',
-        element: <CharList />,
+        path: 'empty',
+        element: <Ohno />,
       },
+    ],
+  },
+  {
+    path: '/favorite',
+    element: <App />,
+    children: [
+      { path: '', element: <CharList /> },
       {
-        path: '/home/empty',
+        path: 'empty',
         element: <Ohno />,
       },
     ],
