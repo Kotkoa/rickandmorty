@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { useAtom } from 'jotai';
 import React, { FC } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 import { Filtros } from '../icons/filtros';
@@ -33,6 +33,9 @@ const mapFilterButtons = (filter: FilterButtonsE): GenderFilterE => {
 
 export const Header: FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+
   const [genderFilter, setGenderFilter] = useAtom(genderFilterStore);
 
   // let { path } = useRouteMatch()
@@ -70,7 +73,8 @@ export const Header: FC = () => {
               onClick={() => {
                 const gender = mapFilterButtons(button);
                 setGenderFilter(button);
-                navigate(`/home?gender=${gender}`);
+                searchParams.set('gender', gender);
+                navigate(`${location.pathname}?${searchParams.toString()}`);
               }}>
               {button}
             </button>

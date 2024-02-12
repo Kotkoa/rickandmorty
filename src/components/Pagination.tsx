@@ -1,5 +1,6 @@
 import { useAtom } from 'jotai';
 import React, { FC } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { Info } from '../generated/graphql';
 import { paginationStore } from '../store/characters.store';
@@ -11,6 +12,10 @@ interface PaginationI {
 
 export const Pagination: FC<PaginationI> = ({ pagination }) => {
   const [, setPage] = useAtom(paginationStore);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+
   if (!pagination) return null;
 
   let activePage: number;
@@ -31,8 +36,9 @@ export const Pagination: FC<PaginationI> = ({ pagination }) => {
         disabled={!pagination.prev}
         onClick={() => {
           if (pagination.prev) {
-            // navigate(`${path}${prevPage}`)
             setPage(pagination.prev);
+            searchParams.set('page', pagination.prev.toString());
+            navigate(`${location.pathname}?${searchParams.toString()}`);
           }
         }}>
         prev
@@ -46,8 +52,9 @@ export const Pagination: FC<PaginationI> = ({ pagination }) => {
         disabled={!pagination.next}
         onClick={() => {
           if (pagination.next) {
-            // navigate(`${url}${nextPage}`)
             setPage(pagination.next);
+            searchParams.set('page', pagination.next.toString());
+            navigate(`${location.pathname}?${searchParams.toString()}`);
           }
         }}>
         next
