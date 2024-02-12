@@ -1,0 +1,18 @@
+.noDataContainer {
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  padding: 0 0 40px 0;
+}
+
+.charcardContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 150px 50px;
+  background-color: #fff;
+  gap: 30px;
+}

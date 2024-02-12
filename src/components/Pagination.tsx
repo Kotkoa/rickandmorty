@@ -1,57 +1,57 @@
+import { useAtom } from 'jotai';
 import React, { FC } from 'react';
-// import { useLocation } from 'react-router-dom'
 
-// import { getChar } from '../store/reducers/rootReducer'
+import { Info } from '../generated/graphql';
+import { paginationStore } from '../store/characters.store';
+import styles from './pagination.module.scss';
 
-export const Pagination: FC = () => {
-  // const location = useLocation()
-  // const navigate = useNavigate()
+interface PaginationI {
+  pagination: Info;
+}
 
-  // const info = useSelector((store) => store.account.pages)
+export const Pagination: FC<PaginationI> = ({ pagination }) => {
+  const [, setPage] = useAtom(paginationStore);
+  if (!pagination) return null;
 
-  // const nextPage = info.next
-  //   ? info.next.split('https://rickandmortyapi.com/api/character')[1]
-  //   : ''
-  // const prevPage = info.prev
-  //   ? info.prev.split('https://rickandmortyapi.com/api/character')[1]
-  //   : ''
+  let activePage: number;
+
+  if (!pagination.prev) {
+    activePage = 1;
+  } else if (!pagination.next) {
+    activePage = pagination.pages;
+  } else {
+    activePage = pagination.next - 1;
+  }
 
   return (
-    <div className="pagination">
-      <div
-      //className={info.pages > 1 ? 'paginConteiner' : 'hideWindow'}
-      >
-        <button
-          className="btn"
-          key="prevPage"
-          type="button"
-          onClick={() => {
-            // if (info.prev !== null) {
-            //   navigate(`${path}${prevPage}`)
-            //   dispatch(getChar(prevPage))
-            // }
-          }}>
-          prev
-        </button>
-        <div className="pgNubr">
-          {/* {location.search.match(/\d+/) === null
-            ? '1'
-            : location.search.match(/\d+/).join('')}{' '}
-          of {info.pages} */}
-        </div>
-        <button
-          className="btn"
-          key="nextPage"
-          type="button"
-          onClick={() => {
-            // if (info.next !== null) {
-            //   navigate(`${url}${nextPage}`)
-            //   dispatch(getChar(nextPage))
-            // }
-          }}>
-          next
-        </button>
+    <div className={styles.pagination}>
+      <button
+        key="prevPage"
+        type="button"
+        disabled={!pagination.prev}
+        onClick={() => {
+          if (pagination.prev) {
+            // navigate(`${path}${prevPage}`)
+            setPage(pagination.prev);
+          }
+        }}>
+        prev
+      </button>
+      <div>
+        Page {activePage} of {pagination.pages}
       </div>
+      <button
+        key="nextPage"
+        type="button"
+        disabled={!pagination.next}
+        onClick={() => {
+          if (pagination.next) {
+            // navigate(`${url}${nextPage}`)
+            setPage(pagination.next);
+          }
+        }}>
+        next
+      </button>
     </div>
   );
 };

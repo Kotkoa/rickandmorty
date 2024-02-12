@@ -1,10 +1,12 @@
 import classNames from 'classnames';
+// import { useAtom } from 'jotai';
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Filtros } from '../icons/filtros';
-import { Search } from '../icons/search';
-import { StarFavorite } from '../icons/star-favorite';
+import { Filtros } from '../image/icons/filtros';
+import { Search } from '../image/icons/search';
+import { StarFavorite } from '../image/icons/star-favorite';
+// import { favoriteCharacters } from '../store/characters.store';
 import { FilterButtonsE } from '../types/common.types';
 import styles from './header.module.scss';
 
@@ -19,6 +21,8 @@ const listButton = [
 const listGetUrls = ['', '?gender=unknown', '?gender=female', '?gender=male', '?gender=genderless'];
 
 export const Header: FC = () => {
+  // const [selectedCharacters, setSelectedCharacters] = useAtom(favoriteCharacters);
+
   // const dispatch = useDispatch();
   // const history = useHistory();
   // let { path } = useRouteMatch()
@@ -29,8 +33,6 @@ export const Header: FC = () => {
   // const doAfter = (vol) => {
   //   history.push(`/home?name=${vol}`);
   // };
-
-  const ifSelect = true;
 
   return (
     <div>
@@ -84,7 +86,12 @@ export const Header: FC = () => {
                 // }
               }}>
               <div className={styles.round}>
-                <StarFavorite className={classNames(styles.starFav, `${ifSelect ?? '#828282'}`)} />
+                <StarFavorite
+                  className={classNames(
+                    styles.starFav,
+                    // { [styles.starSelected]: selectedCharacters.includes }
+                  )}
+                />
               </div>
             </button>
           </Link>

@@ -99,20 +99,6 @@ a:visited {
   font-size: 14px;
 }
 
-.sphereStatus {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: #27ae60;
-}
-
-.sphereStatusred {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: #eb5757;
-}
-
 .detailsLayer {
   position: absolute;
   top: 0px;
@@ -379,10 +365,6 @@ a:visited {
   font-size: 18px;
 
   color: #ffffff;
-}
-
-.pagination {
-  width: 100%;
 }
 
 .paginConteiner {

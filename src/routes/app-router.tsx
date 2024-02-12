@@ -2,7 +2,7 @@ import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
 import { App } from '../App';
-import { Charcard } from '../components/charcard';
+import { CharList } from '../components/char-list';
 import { Ohno } from '../components/oh-no';
 import { Welcome } from '../components/welcome';
 
@@ -15,14 +15,14 @@ export const router = createBrowserRouter([
     path: '/home',
     element: <App />,
     children: [
-      { path: '/home/', element: <Charcard /> },
+      { path: '/home/', element: <CharList /> },
       {
         path: 'model',
-        element: <Charcard />,
+        element: <CharList />,
       },
       {
         path: 'favorite',
-        element: <Charcard />,
+        element: <CharList />,
       },
       {
         path: '*',
