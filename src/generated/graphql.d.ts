@@ -4,6 +4,7 @@ declare module '*/queries.gql' {
   const defaultDocument: DocumentNode;
   export const Character: DocumentNode;
 export const Characters: DocumentNode;
+export const CharactersByIds: DocumentNode;
 
   export default defaultDocument;
 }

@@ -4,7 +4,7 @@ import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 
 import { CharactersQuery } from '../generated/graphql';
-import { StarFavorite } from '../image/icons/star-favorite';
+import { StarFavorite } from '../icons/star-favorite';
 import { favoriteCharacters, selectedCharacterStore } from '../store/characters.store';
 import { ArrayElementT } from '../types/array-element';
 import styles from './char-card.module.scss';

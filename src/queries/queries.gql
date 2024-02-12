@@ -7,7 +7,15 @@ query Character($id: ID!) {
     type
     gender
     image
-    created
+    origin {
+      name
+    }
+    episode {
+      id
+      name
+      air_date
+      episode
+    }
   }
 }
 
@@ -31,6 +39,27 @@ query Characters($page: Int, $filter: FilterCharacter) {
       location {
         name
       }
+    }
+  }
+}
+
+query CharactersByIds($ids: [ID!]!) {
+  charactersByIds(ids: $ids) {
+    id
+    name
+    status
+    species
+    type
+    gender
+    image
+    origin {
+      name
+    }
+    episode {
+      id
+      name
+      air_date
+      episode
     }
   }
 }

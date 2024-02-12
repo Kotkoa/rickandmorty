@@ -16,8 +16,7 @@
 .logo_rickmorty {
   width: 347px;
   height: 122px;
-
-  background: url(../src/image/rick-and-morty.png);
+  background: url("../src/image/rick-and-morty.png");
   background-size: cover;
 }
 
@@ -34,24 +33,22 @@
   border-radius: 6px;
   font-size: 18px;
   padding-left: 64px;
-  color: #ffffff;
+  color: #fff;
 }
 
 .search_icon {
   position: absolute;
-  left: 0px;
+  left: 0;
   margin-left: 15px;
   margin-top: 16px;
-
   color: #bdbdbd;
 }
 
 .filtros {
   position: absolute;
-  right: 0px;
+  right: 0;
   margin-right: 15px;
   margin-top: 16px;
-
   color: #bdbdbd;
 }
 
@@ -66,57 +63,11 @@
   }
 }
 
-.favoriteButtonback {
-  width: 100%;
-  background-color: #fff;
-}
-
-.favoriteButton {
-  margin-left: 150px;
-  height: 80px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.favoritOff {
-  height: 40px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  border: 0px;
-  background-color: white;
-}
-
-.round {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: #e0e0e0;
-}
-
-.round:hover {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: #c7c4c4;
-  cursor: pointer;
-}
-
-.starFav {
-  margin-top: 5px;
-  color: #828282;
-}
-
-.starSelected {
-  color: #f2994a;
-}
-
 .buttn {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 0px;
+  border: 0;
   width: 162px;
   height: 80px;
 }
@@ -124,7 +75,7 @@
 .buttnHover {
   display: flex;
   align-items: center;
-  border: 0px;
+  border: 0;
   justify-content: center;
   width: 162px;
   height: 80px;

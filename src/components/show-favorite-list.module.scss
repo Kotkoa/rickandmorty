@@ -1,0 +1,45 @@
+.favoriteButtonback {
+  width: 100%;
+  background-color: #fff;
+}
+
+.favoriteButton {
+  margin-left: 150px;
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.favoritOff {
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 0;
+  background-color: white;
+}
+
+.round {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+}
+
+.round:hover {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #c7c4c4;
+  cursor: pointer;
+}
+
+.starFav {
+  margin-top: 5px;
+  color: #828282;
+}
+
+.starSelected {
+  color: #f2994a;
+}

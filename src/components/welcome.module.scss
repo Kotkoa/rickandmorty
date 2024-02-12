@@ -28,15 +28,12 @@
     text-align: center;
   }
 
-  a {
-    text-decoration: none;
-  }
-
   a:visited {
     color: inherit;
   }
 
   a {
+    text-decoration: none;
     background: #11555f;
     padding: 12px 25px;
     border-radius: 60px;

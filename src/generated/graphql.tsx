@@ -10,18 +10,18 @@ export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' |
 const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string; output: string; }
-  String: { input: string; output: string; }
-  Boolean: { input: boolean; output: boolean; }
-  Int: { input: number; output: number; }
-  Float: { input: number; output: number; }
-  Upload: { input: any; output: any; }
+  ID: { input: string; output: string };
+  String: { input: string; output: string };
+  Boolean: { input: boolean; output: boolean };
+  Int: { input: number; output: number };
+  Float: { input: number; output: number };
+  Upload: { input: any; output: any };
 };
 
 export const enum CacheControlScope {
   Private = 'PRIVATE',
-  Public = 'PUBLIC'
-};
+  Public = 'PUBLIC',
+}
 
 export type Character = {
   __typename?: 'Character';
@@ -155,49 +155,40 @@ export type Query = {
   locationsByIds?: Maybe<Array<Maybe<Location>>>;
 };
 
-
 export type QueryCharacterArgs = {
   id: Scalars['ID']['input'];
 };
-
 
 export type QueryCharactersArgs = {
   filter?: InputMaybe<FilterCharacter>;
   page?: InputMaybe<Scalars['Int']['input']>;
 };
 
-
 export type QueryCharactersByIdsArgs = {
   ids: Array<Scalars['ID']['input']>;
 };
 
-
 export type QueryEpisodeArgs = {
   id: Scalars['ID']['input'];
 };
-
 
 export type QueryEpisodesArgs = {
   filter?: InputMaybe<FilterEpisode>;
   page?: InputMaybe<Scalars['Int']['input']>;
 };
 
-
 export type QueryEpisodesByIdsArgs = {
   ids: Array<Scalars['ID']['input']>;
 };
-
 
 export type QueryLocationArgs = {
   id: Scalars['ID']['input'];
 };
 
-
 export type QueryLocationsArgs = {
   filter?: InputMaybe<FilterLocation>;
   page?: InputMaybe<Scalars['Int']['input']>;
 };
-
 
 export type QueryLocationsByIdsArgs = {
   ids: Array<Scalars['ID']['input']>;
@@ -207,32 +198,102 @@ export type CharacterQueryVariables = Exact<{
   id: Scalars['ID']['input'];
 }>;
 
-
-export type CharacterQuery = { character?: { __typename?: 'Character', id?: string | null, name?: string | null, status?: string | null, species?: string | null, type?: string | null, gender?: string | null, image?: string | null, created?: string | null } | null };
+export type CharacterQuery = {
+  character?: {
+    __typename?: 'Character';
+    id?: string | null;
+    name?: string | null;
+    status?: string | null;
+    species?: string | null;
+    type?: string | null;
+    gender?: string | null;
+    image?: string | null;
+    origin?: { __typename?: 'Location'; name?: string | null } | null;
+    episode: Array<{
+      __typename?: 'Episode';
+      id?: string | null;
+      name?: string | null;
+      air_date?: string | null;
+      episode?: string | null;
+    } | null>;
+  } | null;
+};
 
 export type CharactersQueryVariables = Exact<{
   page?: InputMaybe<Scalars['Int']['input']>;
   filter?: InputMaybe<FilterCharacter>;
 }>;
 
+export type CharactersQuery = {
+  characters?: {
+    __typename?: 'Characters';
+    info?: {
+      __typename?: 'Info';
+      count?: number | null;
+      pages?: number | null;
+      next?: number | null;
+      prev?: number | null;
+    } | null;
+    results?: Array<{
+      __typename?: 'Character';
+      id?: string | null;
+      name?: string | null;
+      species?: string | null;
+      status?: string | null;
+      image?: string | null;
+      episode: Array<{ __typename?: 'Episode'; name?: string | null } | null>;
+      location?: { __typename?: 'Location'; name?: string | null } | null;
+    } | null> | null;
+  } | null;
+};
 
-export type CharactersQuery = { characters?: { __typename?: 'Characters', info?: { __typename?: 'Info', count?: number | null, pages?: number | null, next?: number | null, prev?: number | null } | null, results?: Array<{ __typename?: 'Character', id?: string | null, name?: string | null, species?: string | null, status?: string | null, image?: string | null, episode: Array<{ __typename?: 'Episode', name?: string | null } | null>, location?: { __typename?: 'Location', name?: string | null } | null } | null> | null } | null };
+export type CharactersByIdsQueryVariables = Exact<{
+  ids: Array<Scalars['ID']['input']> | Scalars['ID']['input'];
+}>;
 
+export type CharactersByIdsQuery = {
+  charactersByIds?: Array<{
+    __typename?: 'Character';
+    id?: string | null;
+    name?: string | null;
+    status?: string | null;
+    species?: string | null;
+    type?: string | null;
+    gender?: string | null;
+    image?: string | null;
+    origin?: { __typename?: 'Location'; name?: string | null } | null;
+    episode: Array<{
+      __typename?: 'Episode';
+      id?: string | null;
+      name?: string | null;
+      air_date?: string | null;
+      episode?: string | null;
+    } | null>;
+  } | null> | null;
+};
 
 export const CharacterDocument = gql`
-    query Character($id: ID!) {
-  character(id: $id) {
-    id
-    name
-    status
-    species
-    type
-    gender
-    image
-    created
+  query Character($id: ID!) {
+    character(id: $id) {
+      id
+      name
+      status
+      species
+      type
+      gender
+      image
+      origin {
+        name
+      }
+      episode {
+        id
+        name
+        air_date
+        episode
+      }
+    }
   }
-}
-    `;
+`;
 
 /**
  * __useCharacterQuery__
@@ -250,47 +311,54 @@ export const CharacterDocument = gql`
  *   },
  * });
  */
-export function useCharacterQuery(baseOptions: Apollo.QueryHookOptions<CharacterQuery, CharacterQueryVariables> & ({ variables: CharacterQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<CharacterQuery, CharacterQueryVariables>(CharacterDocument, options);
-      }
-export function useCharacterLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CharacterQuery, CharacterQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<CharacterQuery, CharacterQueryVariables>(CharacterDocument, options);
-        }
-export function useCharacterSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<CharacterQuery, CharacterQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<CharacterQuery, CharacterQueryVariables>(CharacterDocument, options);
-        }
+export function useCharacterQuery(
+  baseOptions: Apollo.QueryHookOptions<CharacterQuery, CharacterQueryVariables> &
+    ({ variables: CharacterQueryVariables; skip?: boolean } | { skip: boolean }),
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<CharacterQuery, CharacterQueryVariables>(CharacterDocument, options);
+}
+export function useCharacterLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<CharacterQuery, CharacterQueryVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<CharacterQuery, CharacterQueryVariables>(CharacterDocument, options);
+}
+export function useCharacterSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<CharacterQuery, CharacterQueryVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useSuspenseQuery<CharacterQuery, CharacterQueryVariables>(CharacterDocument, options);
+}
 export type CharacterQueryHookResult = ReturnType<typeof useCharacterQuery>;
 export type CharacterLazyQueryHookResult = ReturnType<typeof useCharacterLazyQuery>;
 export type CharacterSuspenseQueryHookResult = ReturnType<typeof useCharacterSuspenseQuery>;
 export type CharacterQueryResult = Apollo.QueryResult<CharacterQuery, CharacterQueryVariables>;
 export const CharactersDocument = gql`
-    query Characters($page: Int, $filter: FilterCharacter) {
-  characters(page: $page, filter: $filter) {
-    info {
-      count
-      pages
-      next
-      prev
-    }
-    results {
-      id
-      name
-      species
-      status
-      image
-      episode {
-        name
+  query Characters($page: Int, $filter: FilterCharacter) {
+    characters(page: $page, filter: $filter) {
+      info {
+        count
+        pages
+        next
+        prev
       }
-      location {
+      results {
+        id
         name
+        species
+        status
+        image
+        episode {
+          name
+        }
+        location {
+          name
+        }
       }
     }
   }
-}
-    `;
+`;
 
 /**
  * __useCharactersQuery__
@@ -310,18 +378,84 @@ export const CharactersDocument = gql`
  * });
  */
 export function useCharactersQuery(baseOptions?: Apollo.QueryHookOptions<CharactersQuery, CharactersQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<CharactersQuery, CharactersQueryVariables>(CharactersDocument, options);
-      }
-export function useCharactersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CharactersQuery, CharactersQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<CharactersQuery, CharactersQueryVariables>(CharactersDocument, options);
-        }
-export function useCharactersSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<CharactersQuery, CharactersQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<CharactersQuery, CharactersQueryVariables>(CharactersDocument, options);
-        }
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<CharactersQuery, CharactersQueryVariables>(CharactersDocument, options);
+}
+export function useCharactersLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<CharactersQuery, CharactersQueryVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<CharactersQuery, CharactersQueryVariables>(CharactersDocument, options);
+}
+export function useCharactersSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<CharactersQuery, CharactersQueryVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useSuspenseQuery<CharactersQuery, CharactersQueryVariables>(CharactersDocument, options);
+}
 export type CharactersQueryHookResult = ReturnType<typeof useCharactersQuery>;
 export type CharactersLazyQueryHookResult = ReturnType<typeof useCharactersLazyQuery>;
 export type CharactersSuspenseQueryHookResult = ReturnType<typeof useCharactersSuspenseQuery>;
 export type CharactersQueryResult = Apollo.QueryResult<CharactersQuery, CharactersQueryVariables>;
+export const CharactersByIdsDocument = gql`
+  query CharactersByIds($ids: [ID!]!) {
+    charactersByIds(ids: $ids) {
+      id
+      name
+      status
+      species
+      type
+      gender
+      image
+      origin {
+        name
+      }
+      episode {
+        id
+        name
+        air_date
+        episode
+      }
+    }
+  }
+`;
+
+/**
+ * __useCharactersByIdsQuery__
+ *
+ * To run a query within a React component, call `useCharactersByIdsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCharactersByIdsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCharactersByIdsQuery({
+ *   variables: {
+ *      ids: // value for 'ids'
+ *   },
+ * });
+ */
+export function useCharactersByIdsQuery(
+  baseOptions: Apollo.QueryHookOptions<CharactersByIdsQuery, CharactersByIdsQueryVariables> &
+    ({ variables: CharactersByIdsQueryVariables; skip?: boolean } | { skip: boolean }),
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<CharactersByIdsQuery, CharactersByIdsQueryVariables>(CharactersByIdsDocument, options);
+}
+export function useCharactersByIdsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<CharactersByIdsQuery, CharactersByIdsQueryVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<CharactersByIdsQuery, CharactersByIdsQueryVariables>(CharactersByIdsDocument, options);
+}
+export function useCharactersByIdsSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<CharactersByIdsQuery, CharactersByIdsQueryVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useSuspenseQuery<CharactersByIdsQuery, CharactersByIdsQueryVariables>(CharactersByIdsDocument, options);
+}
+export type CharactersByIdsQueryHookResult = ReturnType<typeof useCharactersByIdsQuery>;
+export type CharactersByIdsLazyQueryHookResult = ReturnType<typeof useCharactersByIdsLazyQuery>;
+export type CharactersByIdsSuspenseQueryHookResult = ReturnType<typeof useCharactersByIdsSuspenseQuery>;
+export type CharactersByIdsQueryResult = Apollo.QueryResult<CharactersByIdsQuery, CharactersByIdsQueryVariables>;

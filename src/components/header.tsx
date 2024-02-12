@@ -1,14 +1,11 @@
-import classNames from 'classnames';
-// import { useAtom } from 'jotai';
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Filtros } from '../image/icons/filtros';
-import { Search } from '../image/icons/search';
-import { StarFavorite } from '../image/icons/star-favorite';
-// import { favoriteCharacters } from '../store/characters.store';
+import { Filtros } from '../icons/filtros';
+import { Search } from '../icons/search';
 import { FilterButtonsE } from '../types/common.types';
 import styles from './header.module.scss';
+import { ShowFavoriteList } from './show-favorite-list';
 
 const listButton = [
   FilterButtonsE.All,
@@ -70,33 +67,7 @@ export const Header: FC = () => {
           );
         })}
       </div>
-      <div className={styles.favoriteButtonback}>
-        <div className={styles.favoriteButton}>
-          <div className={styles.favoText}>Mostrar favoritos:</div>
-          <Link to="/favorite">
-            <button
-              key="favorite"
-              className={styles.favoritOff}
-              type="button"
-              onClick={() => {
-                // if (select.length >= 1) {
-                //   history.push(`/favorite/${select}`);
-                //   // dispatch(getSele(select))
-                //   dispatch(setBase('Favorite'));
-                // }
-              }}>
-              <div className={styles.round}>
-                <StarFavorite
-                  className={classNames(
-                    styles.starFav,
-                    // { [styles.starSelected]: selectedCharacters.includes }
-                  )}
-                />
-              </div>
-            </button>
-          </Link>
-        </div>
-      </div>
+      <ShowFavoriteList />
     </div>
   );
 };

@@ -22,15 +22,6 @@ export const CharList: FC = () => {
 
   // const navigate = useNavigate()
 
-  // const info = useSelector((store) => store.account.pages)
-
-  // const nextPage = info.next
-  //   ? info.next.split('https://rickandmortyapi.com/api/character')[1]
-  //   : ''
-  // const prevPage = info.prev
-  //   ? info.prev.split('https://rickandmortyapi.com/api/character')[1]
-  //   : ''
-
   // const location = useLocation()
 
   // useEffect(() => {

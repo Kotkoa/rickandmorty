@@ -1,0 +1,124 @@
+.noDataContainer {
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  padding: 0 0 40px;
+}
+
+.detailsLayer {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: full;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.54);
+}
+
+.containerDetails {
+  margin-top: 295px;
+  width: 740px;
+  height: full;
+  background: #ffffff;
+  border-radius: 10px;
+}
+
+.infoPrimary {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 400px;
+  width: 100%;
+  background: #f2f2f2;
+}
+
+.bgImg {
+  background: url(../src/image/27345-rick-y-morty.jpg);
+  border-radius: 10px 10px 0px 0px;
+  height: 220px;
+}
+
+.closet {
+  margin-top: 13px;
+  margin-right: 13px;
+  align-self: flex-start;
+  margin-left: auto;
+}
+
+.closet:hover {
+  cursor: pointer;
+}
+
+.infoBasic {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  top: -75px;
+}
+
+.infoImg {
+  width: 155px;
+  height: 155px;
+  border: 4px solid #fffbfb;
+  border-radius: 50%;
+  overflow: hidden;
+  align-self: center;
+}
+
+.charIm {
+  width: 100%;
+  height: 100%;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.infoStar {
+  background: #f2f2f2;
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  position: relative;
+  top: -20px;
+  width: 30px;
+  height: 30px;
+  align-self: center;
+  display: flex;
+  justify-content: center;
+}
+
+.starFav {
+  margin-top: 5px;
+  color: #828282;
+}
+
+.starSelected {
+  color: #f2994a;
+}
+
+.compartir {
+  width: 100%;
+  padding: 50px 20px 37px 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+
+  button {
+    width: 204px;
+    height: 44px;
+    background: #11555f;
+    border-radius: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #ffffff;
+  }
+}
