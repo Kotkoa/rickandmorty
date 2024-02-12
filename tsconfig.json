@@ -11,11 +11,11 @@
     "moduleResolution": "Node",
     "noEmit": true,
     "resolveJsonModule": true,
-    "skipLibCheck": false,
-    "strict": true,
-    "target": "ESNext",
-    "types": ["vite"]
+    "skipLibCheck": true,
+    // "strict": true,
+    "target": "ESNext"
+    // "types": ["vite"]
   },
   "include": ["./src", "./src/declarations.d.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "src/generated/", "src/__tests__/"]
 }

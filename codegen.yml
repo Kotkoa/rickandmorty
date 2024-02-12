@@ -1,0 +1,30 @@
+overwrite: true
+schema: 'https://rickandmortyapi.com/graphql'
+documents:
+  - 'src/**/*.graphql.ts'
+  - 'src/**/*.gql'
+
+generates:
+  src/generated/graphql.d.ts:
+    plugins:
+      - 'typescript-graphql-files-modules'
+  src/generated/graphql.tsx:
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
+    config:
+      withHooks: true
+      constEnums: true
+
+      preResolveTypes: true # Simplifies the generated types
+
+      nonOptionalTypename: false # Forces `__typename` on all selection sets
+      skipTypeNameForRoot: true # Don't generate __typename for root types
+      maybeValue: 'T | null'
+
+hooks:
+  afterOneFileWrite:
+    - echo 'TEST'
+  afterAllFileWrite:
+    - echo 'TEST AFTER ALL'

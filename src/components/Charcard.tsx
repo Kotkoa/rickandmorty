@@ -2,14 +2,26 @@ import classNames from 'classnames';
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 
+// import { useCharactersQuery } from '../generated/graphql';
 import { StarFavorite } from '../icons/star-favorite';
 import styles from './charcard.module.scss';
 import { Pagination } from './Pagination.js';
 
 export const Charcard: FC = () => {
-  // const dispatch = useDispatch()
+  // const {
+  //   data: charactersData,
+  //   loading: charactersLoading,
+  //   error: charactersError,
+  // } = useCharactersQuery({
+  //   variables: {
+  //     page: 0,
+  //   },
+  // });
 
-  // const { list } = useSelector((state) => state.account)
+  // if (charactersError) {
+  //   console.warn('Error loading characters list', charactersError);
+  // }
+
   // const select = useSelector((state) => state.account.select)
   // const location = useLocation()
 
@@ -21,21 +33,28 @@ export const Charcard: FC = () => {
   //     dispatch(getSele(select))
   //   }
   // }, [dispatch, location.search, location.pathname, select])
-  const list: Array<Record<string, any>> = [];
 
   const ifSelected = true;
 
-  if (!list.length) {
+  const charactersList = []; //charactersData?.characters?.results;
+
+  if (!charactersList) {
     return <div className={styles.noDataContainer}>No Data...</div>;
   }
 
+  // if (charactersLoading) {
+  //   return <div className={styles.noDataContainer}>Loading...</div>;
+  // }
+
   return (
     <div className={styles.charcardContainer}>
-      {list.map((char) => {
+      {charactersList.map((char) => {
+        if (!char) return null;
+
         return (
           <div className={styles.cardBorder} key={char.name}>
             <div className={styles.charImage}>
-              <img className={styles.charImg} alt={char.name} src={char.image} />
+              <img className={styles.charImg} alt={char.id ?? ''} src={char.image ?? ''} />
               <button
                 className={styles.starButton}
                 key="setSelected"
@@ -64,11 +83,11 @@ export const Charcard: FC = () => {
                 <div className={styles.charName}>{char.name}</div>
                 <div className={styles.lastLocation}>
                   <div className={styles.textLocation}>Last known location:</div>
-                  {char.location.name}
+                  {char.location?.name}
                 </div>
                 <div className={styles.charFirstseen}>
                   <div className={styles.textLocation}>First seen in:</div>
-                  {char.episode}
+                  {char.episode[0]?.name}
                 </div>
               </button>
             </Link>

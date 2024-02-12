@@ -5,11 +5,16 @@ import { Link } from 'react-router-dom';
 import { Filtros } from '../icons/filtros';
 import { Search } from '../icons/search';
 import { StarFavorite } from '../icons/star-favorite';
+import { FilterButtonsE } from '../types/common.types';
 import styles from './header.module.scss';
 
-// import { setBase } from '../store/reducers/rootReducer';
-
-const listButtn = ['All', 'Unknown', 'Female', 'Male', 'Genderless'];
+const listButton = [
+  FilterButtonsE.All,
+  FilterButtonsE.Unknown,
+  FilterButtonsE.Female,
+  FilterButtonsE.Male,
+  FilterButtonsE.Genderless,
+];
 
 const listGetUrls = ['', '?gender=unknown', '?gender=female', '?gender=male', '?gender=genderless'];
 
@@ -47,8 +52,8 @@ export const Header: FC = () => {
         </div>
       </div>
       <div className={styles.navigate}>
-        {listButtn.map((it, id) => {
-          const base = 'All';
+        {listButton.map((it, id) => {
+          const base = FilterButtonsE.All;
           return (
             <Link to={`/home${listGetUrls[id]}`} key={it}>
               <button

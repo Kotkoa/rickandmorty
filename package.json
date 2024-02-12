@@ -4,9 +4,13 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "dev:vite": "vite --host",
+    "dev:watch-types": "tsc --noEmit --watch",
     "serve": "vite preview",
     "type-check": "tsc",
     "test": "vitest",
+    "check-types": "tsc --noEmit",
+    "codegen": "graphql-codegen --config codegen.yml src/generated/graphql.tsx",
     "eslint": "eslint src --ext \".js,.jsx,.ts,.tsx\"",
     "eslint-fix": "eslint src --ext \".js,.jsx,.ts,.tsx\" --fix",
     "stylelint": "npx stylelint \"src/**/*.scss\" --color",
@@ -19,7 +23,8 @@
     "jotai": "^2.6.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-router-dom": "^6.22.0"
+    "react-router-dom": "^6.22.0",
+    "vite-tsconfig-paths": "^4.3.1"
   },
   "devDependencies": {
     "@testing-library/react": "^12.1.4",

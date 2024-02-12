@@ -1,27 +1,27 @@
-import React, { FC, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { FC } from 'react';
+// import { useHistory } from 'react-router-dom';
 
-import { getRandom, setDetails, setSelected } from '../store/reducers/rootReducer';
+// import { getRandom, setDetails, setSelected } from '../store/reducers/rootReducer';
 
 export const Details: FC = () => {
-  const dispatch = useDispatch();
-  const history = useHistory();
+  // const dispatch = useDispatch();
+  // const history = useHistory();
 
-  const persDetail = useSelector((store) => store.account.details);
-  const select = useSelector((state) => state.account.select);
-  const episodeTabs = useSelector((store) => store.account.details.episode) || [];
-  const interest = useSelector((state) => state.account.interest);
+  // const persDetail = useSelector((store) => store.account.details);
+  // const select = useSelector((state) => state.account.select);
+  // const episodeTabs = useSelector((store) => store.account.details.episode) || [];
+  // const interest = useSelector((state) => state.account.interest);
 
-  const randomInt = () => {
-    const min = 1;
-    const max = 671;
-    return Math.floor(Math.random() * (max - min) + min);
-  };
+  // const randomInt = () => {
+  //   const min = 1;
+  //   const max = 671;
+  //   return Math.floor(Math.random() * (max - min) + min);
+  // };
 
-  useEffect(() => {
-    const randomCharacterArr = [randomInt(), randomInt(), randomInt()];
-    dispatch(getRandom(randomCharacterArr));
-  }, [dispatch]);
+  // useEffect(() => {
+  //   // const randomCharacterArr = [randomInt(), randomInt(), randomInt()];
+  //   // dispatch(getRandom(randomCharacterArr));
+  // }, [dispatch]);
 
   const pathinfo =
     'M6 0.6875C2.79007 0.6875 0.1875 3.29101 0.1875 6.5C0.1875 9.71087 2.79007 12.3125 6 12.3125C9.20993 12.3125 11.8125 9.71087 11.8125 6.5C11.8125 3.29101 9.20993 0.6875 6 0.6875ZM6 3.26562C6.54366 3.26562 6.98438 3.70634 6.98438 4.25C6.98438 4.79366 6.54366 5.23438 6 5.23438C5.45634 5.23438 5.01562 4.79366 5.01562 4.25C5.01562 3.70634 5.45634 3.26562 6 3.26562ZM7.3125 9.21875C7.3125 9.37407 7.18657 9.5 7.03125 9.5H4.96875C4.81343 9.5 4.6875 9.37407 4.6875 9.21875V8.65625C4.6875 8.50093 4.81343 8.375 4.96875 8.375H5.25V6.875H4.96875C4.81343 6.875 4.6875 6.74907 4.6875 6.59375V6.03125C4.6875 5.87593 4.81343 5.75 4.96875 5.75H6.46875C6.62407 5.75 6.75 5.87593 6.75 6.03125V8.375H7.03125C7.18657 8.375 7.3125 8.50093 7.3125 8.65625V9.21875Z';
@@ -38,7 +38,11 @@ export const Details: FC = () => {
         <div className="infoPrimary">
           <div className="bgImg">
             <div className="overlay">
-              <div className="closet" type="button" onClick={() => history.goBack()}>
+              <div
+                className="closet"
+                // type="button"
+                // onClick={() => history.goBack()}
+              >
                 <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d={pathclothet} fill="white" />
                 </svg>
@@ -46,7 +50,7 @@ export const Details: FC = () => {
             </div>
             <div className="infoBasic">
               <div className="infoImg">
-                <img className="charIm" alt="character" src={`${persDetail.image}`} />
+                {/* <img className="charIm" alt="character" src={`${persDetail.image}`} /> */}
                 <div className="starposition"></div>
               </div>
               <div className="infoStar">
@@ -59,14 +63,14 @@ export const Details: FC = () => {
                   fill="none">
                   <path
                     d={pathinfostar}
-                    fill={+select.filter((it) => it === persDetail.id).join() === persDetail.id ? '#F2994A' : '#828282'}
+                    // fill={+select.filter((it) => it === persDetail.id).join() === persDetail.id ? '#F2994A' : '#828282'}
                   />
                 </svg>
               </div>
               <div className="infoText">
-                <div className="status ">{(persDetail.status || '').toUpperCase()}</div>
+                {/* <div className="status ">{(persDetail.status || '').toUpperCase()}</div>
                 <div className="name">{persDetail.name}</div>
-                <div className="species">{(persDetail.species || '').toUpperCase()}</div>
+                <div className="species">{(persDetail.species || '').toUpperCase()}</div> */}
               </div>
             </div>
           </div>
@@ -83,7 +87,7 @@ export const Details: FC = () => {
                 </div>
                 <div className="infoTabText">Gender:</div>
               </div>
-              <div className="infoTabTextDetails">{persDetail.gender}</div>
+              {/* <div className="infoTabTextDetails">{persDetail.gender}</div> */}
             </div>
             <div className="infoTab" key="info-origin">
               <div className="titleInfo">
@@ -94,7 +98,7 @@ export const Details: FC = () => {
                 </div>
                 <div className="infoTabText">Origin:</div>
               </div>
-              <div className="infoTabTextDetails">{JSON.stringify(persDetail.origin?.name)}</div>
+              {/* <div className="infoTabTextDetails">{JSON.stringify(persDetail.origin?.name)}</div> */}
             </div>
             <div className="infoTab" key="info-type">
               <div className="titleInfo">
@@ -105,7 +109,7 @@ export const Details: FC = () => {
                 </div>
                 <div className="infoTabText">Type:</div>
               </div>
-              <div className="infoTabTextDetails">{persDetail.type}</div>
+              {/* <div className="infoTabTextDetails">{persDetail.type}</div> */}
             </div>
           </div>
           <div className="borderLine"></div>
@@ -113,7 +117,7 @@ export const Details: FC = () => {
         <div className="episodes">
           <div className="textStyle">Episodios</div>
           <div className="episodeTabs">
-            {episodeTabs.map((it, id) => {
+            {/* {episodeTabs.map((it, id) => {
               return (
                 <div className="infEpisoTab" key={`episode:${id}`}>
                   <div className="epiInfo">
@@ -123,14 +127,14 @@ export const Details: FC = () => {
                   </div>
                 </div>
               );
-            })}
+            })} */}
           </div>
           <div className="borderLine"></div>
         </div>
         <div className="personajes">
           <div className="textStyle">Personajes interesantes</div>
           <div className="personageTabs">
-            {interest.map((char, iden) => {
+            {/* {interest.map((char, iden) => {
               return (
                 <div className="cardBorder" key={`${iden}`}>
                   <div className="charImage">
@@ -171,7 +175,7 @@ export const Details: FC = () => {
                   </div>
                 </div>
               );
-            })}
+            })} */}
           </div>
         </div>
         <div className="compartir">
