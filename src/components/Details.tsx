@@ -38,35 +38,33 @@ export const Details: FC = () => {
   return (
     <div className={styles.detailsLayer}>
       <div className={styles.containerDetails}>
-        <div className={styles.infoPrimary}>
-          <div className={styles.bgImg}>
-            <button className={styles.closet} type="button" onClick={handleClose}>
-              <Close />
-            </button>
-            <div className={styles.infoBasic}>
-              <div className={styles.infoImg}>
-                <img className={styles.charIm} alt="character" src={`${persDetail.image}`} />
-                <div className={styles.starposition}></div>
-              </div>
-              <div className={styles.infoStar}>
-                <StarFavorite
-                  className={classNames(styles.starFav, {
-                    [styles.starSelected]: favortesList.includes(selectedCharacter),
-                  })}
-                />
-              </div>
-              <div className={styles.infoText}>
-                <div className={styles.status}>{(persDetail.status || '').toUpperCase()}</div>
-                <div className={styles.name}>{persDetail.name}</div>
-                <div className={styles.species}>{(persDetail.species || '').toUpperCase()}</div>
-              </div>
+        <div className={styles.bgImg}>
+          <button className={styles.closet} type="button" onClick={handleClose}>
+            <Close />
+          </button>
+          <div className={styles.infoBasic}>
+            <div className={styles.infoImg}>
+              <img className={styles.charIm} alt="character" src={`${persDetail.image}`} />
+            </div>
+            <div className={styles.infoStar}>
+              <StarFavorite
+                className={classNames(styles.starFav, {
+                  [styles.starSelected]: favortesList.includes(selectedCharacter),
+                })}
+              />
+            </div>
+            <div className={styles.infoText}>
+              <div className={styles.status}>{persDetail.status.toUpperCase()}</div>
+              <div className={styles.name}>{persDetail.name}</div>
+              <div className={styles.status}>{persDetail.species.toUpperCase()}</div>
             </div>
           </div>
         </div>
+
         <div className={styles.informacion}>
           <div className={styles.textStyle}>Información</div>
           <div className={styles.tabs}>
-            <div className={styles.infoTab} key="info-gender">
+            <div className={styles.infoTab}>
               <div className={styles.titleInfo}>
                 <div className={styles.ifoSvg}>
                   <Info />
@@ -94,12 +92,12 @@ export const Details: FC = () => {
               <div className={styles.infoTabTextDetails}>{persDetail.type}</div>
             </div>
           </div>
-          <div className={styles.borderLine}></div>
         </div>
+        <div className={styles.borderLine} />
         <div className={styles.episodes}>
           <div className={styles.textStyle}>Episodios</div>
           <div className={styles.episodeTabs}>
-            {persDetail.episode.map((episode) => {
+            {persDetail.episode.slice(0, 8).map((episode) => {
               return (
                 <div className={styles.infEpisoTab} key={episode.id}>
                   <div className={styles.epiInfo}>

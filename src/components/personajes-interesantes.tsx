@@ -16,7 +16,6 @@ export const PersonajesInteresantes: FC = () => {
     variables: {
       ids: interestList,
     },
-    skip: !interestList.length,
   });
 
   if (interestLoading) return <div className={styles.noDataContainer}>Loading...</div>;

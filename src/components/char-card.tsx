@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 import { useAtom } from 'jotai';
 import React, { FC } from 'react';
-import { Link } from 'react-router-dom';
 
 import { CharactersQuery } from '../generated/graphql';
 import { StarFavorite } from '../icons/star-favorite';
@@ -36,27 +35,25 @@ export const CharCard: FC<CharCardProps> = ({ character }) => {
         </button>
       </div>
       <button type="button" onClick={() => setSelectedCharacter(character.id)} className={styles.charDetails}>
-        <Link to="/model">
-          <div className={styles.rowLine}>
-            <div
-              className={classNames(styles.sphereStatus, {
-                [styles.sphereStatusred]: character.status !== 'Alive',
-              })}
-            />
-            <div className={styles.textStatus}>
-              {character.status} - {character.species}
-            </div>
+        <div className={styles.rowLine}>
+          <div
+            className={classNames(styles.sphereStatus, {
+              [styles.sphereStatusred]: character.status !== 'Alive',
+            })}
+          />
+          <div className={styles.textStatus}>
+            {character.status} - {character.species}
           </div>
-          <div className={classNames(styles.rowLine, styles.charName)}>{character.name}</div>
-          <div className={styles.rowLine}>
-            <p className={styles.textLocation}>Last known location:</p>
-            {character.location?.name}
-          </div>
-          <div className={styles.rowLine}>
-            <p className={styles.textLocation}>First seen in:</p>
-            {character.episode[0]?.name}
-          </div>
-        </Link>
+        </div>
+        <div className={classNames(styles.rowLine, styles.charName)}>{character.name}</div>
+        <div className={styles.rowLine}>
+          <p className={styles.textLocation}>Last known location:</p>
+          {character.location?.name}
+        </div>
+        <div className={styles.rowLine}>
+          <p className={styles.textLocation}>First seen in:</p>
+          {character.episode[0]?.name}
+        </div>
       </button>
     </div>
   );

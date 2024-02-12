@@ -7,21 +7,27 @@
 
 .detailsLayer {
   position: absolute;
-  top: 0px;
-  width: 100%;
-  height: full;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: max-content;
+  padding-bottom: 200px;
+
   z-index: 1;
   display: flex;
   justify-content: center;
   background: rgba(0, 0, 0, 0.54);
+  overflow: scroll;
 }
 
 .containerDetails {
+  position: relative;
   margin-top: 295px;
   width: 740px;
-  height: full;
+  height: fit-content;
   background: #ffffff;
   border-radius: 10px;
+  overflow: hidden;
 }
 
 .infoPrimary {
@@ -33,33 +39,33 @@
 }
 
 .bgImg {
-  background: url(../src/image/27345-rick-y-morty.jpg);
-  border-radius: 10px 10px 0px 0px;
-  height: 220px;
+  background: url(../src/image/27345-rick-y-morty.jpg) no-repeat top center, #f2f2f2;
+
+  display: flex;
+  flex-direction: column;
 }
 
 .closet {
-  margin-top: 13px;
-  margin-right: 13px;
-  align-self: flex-start;
-  margin-left: auto;
-}
-
-.closet:hover {
+  align-self: flex-end;
+  z-index: 2;
+  background: transparent;
   cursor: pointer;
+  border: none;
+
+  color: #ffffff;
 }
 
 .infoBasic {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  position: relative;
-  top: -75px;
+  margin-top: 75px;
+  width: 100%;
+  height: 300px;
 }
 
 .infoImg {
   width: 155px;
-  height: 155px;
   border: 4px solid #fffbfb;
   border-radius: 50%;
   overflow: hidden;
@@ -69,6 +75,10 @@
 .charIm {
   width: 100%;
   height: 100%;
+}
+
+.status {
+  font-size: 12px;
 }
 
 .overlay {
@@ -91,11 +101,12 @@
   height: 30px;
   align-self: center;
   display: flex;
+  align-items: center;
   justify-content: center;
 }
 
 .starFav {
-  margin-top: 5px;
+  margin-top: 2px;
   color: #828282;
 }
 
@@ -121,4 +132,164 @@
     font-size: 18px;
     color: #ffffff;
   }
+}
+
+.infoText {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: -15px;
+}
+
+.name {
+  margin-bottom: 5px;
+  font-weight: 600;
+  font-size: 20px;
+  color: #081f32;
+}
+
+.ifoSvg {
+  margin-left: 12px;
+  margin-top: 8px;
+}
+
+.tabs {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 18px;
+}
+
+.infoTab {
+  background: #ffffff;
+  border-radius: 8px;
+  width: 163px;
+  height: 58px;
+  border: 1px solid #bdbdbd;
+  overflow: hidden;
+}
+
+.titleInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-left: 4px;
+}
+
+.infoTabText {
+  margin-left: 4px;
+  margin-top: 10px;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: inherit;
+  font-size: 11px;
+  letter-spacing: 0.07px;
+  color: #828282;
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.favoText {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  margin-right: 12px;
+  font-size: 14px;
+}
+
+.informacion {
+  margin-top: 20px;
+  height: 100%;
+  width: 100%;
+}
+
+.episodes {
+  height: 100%;
+  width: 100%;
+}
+
+.personajes {
+  height: 100%;
+}
+
+.textStyle {
+  margin-left: 25px;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+
+  color: #4f4f4f;
+}
+
+.infoTabTextDetails {
+  font-weight: 600;
+  font-size: 14px;
+  margin-left: 14px;
+  color: #081f32;
+}
+
+.borderLine {
+  border-bottom: 1px solid #e0e0e0;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 670px;
+}
+
+.episodeTabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.infEpisoTab {
+  background: #ffffff;
+  border-radius: 8px;
+  width: 163px;
+  height: 72px;
+  border: 1px solid #bdbdbd;
+  overflow: hidden;
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+.epiInfo {
+  margin-left: 12px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.epiName {
+  color: #828282;
+  font-size: 11px;
+}
+
+.episode {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.41px;
+  font-family: Montserrat;
+  color: #081f32;
+}
+
+.epiDate {
+  color: #828282;
+  font-size: 11px;
+}
+
+.personageTabs {
+  margin-top: 18px;
+  margin-left: 22px;
+  display: flex;
+  flex-wrap: wrap;
 }
