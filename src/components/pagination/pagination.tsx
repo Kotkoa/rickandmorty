@@ -2,8 +2,8 @@ import { useAtom } from 'jotai';
 import type { FC } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { Info } from '../generated/graphql';
-import { paginationStore } from '../store/characters.store';
+import { Info } from '../../generated/graphql';
+import { paginationStore } from '../../store/characters.store';
 import styles from './pagination.module.scss';
 
 interface PaginationI {

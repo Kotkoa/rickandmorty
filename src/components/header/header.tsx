@@ -5,12 +5,12 @@ import { FC, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-import { Filtros } from '../icons/filtros';
-import { Search } from '../icons/search';
-import { genderFilterStore, searchNameStore } from '../store/characters.store';
-import { FilterButtonsE, GenderFilterE } from '../types/common.types';
+import { Filtros } from '../../icons/filtros';
+import { Search } from '../../icons/search';
+import { genderFilterStore, searchNameStore } from '../../store/characters.store';
+import { FilterButtonsE, GenderFilterE } from '../../types/common.types';
+import { ShowFavoriteList } from '../show-favorite-list/show-favorite-list';
 import styles from './header.module.scss';
-import { ShowFavoriteList } from './show-favorite-list';
 
 const listButton = [
   FilterButtonsE.All,

@@ -5,7 +5,7 @@ import { CharactersQuery } from 'src/generated/graphql';
 import { StarFavorite } from 'src/icons/star-favorite';
 import { ArrayElementT } from 'src/types/array-element';
 
-import { favoriteCharacters, selectedCharacterStore } from '../store/characters.store';
+import { favoriteCharacters, selectedCharacterStore } from '../../store/characters.store';
 import styles from './char-card.module.scss';
 
 interface CharCardProps {

@@ -3,8 +3,8 @@ import { useAtom } from 'jotai';
 import type { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { StarFavorite } from '../icons/star-favorite';
-import { favoriteCharacters, genderFilterStore, searchNameStore } from '../store/characters.store';
+import { StarFavorite } from '../../icons/star-favorite';
+import { favoriteCharacters, genderFilterStore, searchNameStore } from '../../store/characters.store';
 import styles from './show-favorite-list.module.scss';
 
 export const ShowFavoriteList: FC = () => {

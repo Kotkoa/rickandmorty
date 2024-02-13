@@ -2,13 +2,13 @@ import classNames from 'classnames';
 import { useAtom } from 'jotai';
 import type { FC } from 'react';
 
-import { useCharacterQuery } from '../generated/graphql';
-import { Close } from '../icons/closet';
-import { Info } from '../icons/info';
-import { StarFavorite } from '../icons/star-favorite';
-import { favoriteCharacters, selectedCharacterStore } from '../store/characters.store';
+import { useCharacterQuery } from '../../generated/graphql';
+import { Close } from '../../icons/closet';
+import { Info } from '../../icons/info';
+import { StarFavorite } from '../../icons/star-favorite';
+import { favoriteCharacters, selectedCharacterStore } from '../../store/characters.store';
+import { PersonajesInteresantes } from '../personajes-interesantes/personajes-interesantes';
 import styles from './details.module.scss';
-import { PersonajesInteresantes } from './personajes-interesantes';
 
 export const Details: FC = () => {
   const [selectedCharacter, setSelectedCharacter] = useAtom(selectedCharacterStore);

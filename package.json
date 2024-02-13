@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "tsc && vite build",
     "dev:vite": "vite --host",
     "dev:watch-types": "tsc --noEmit --watch",
     "serve": "vite preview",

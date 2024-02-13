@@ -3,11 +3,11 @@ import { FC, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { favoriteCharacters, paginationStore } from 'src/store/characters.store';
 
-import { useCharactersByIdsQuery, useCharactersQuery } from '../generated/graphql';
-import { CharCard } from './char-card';
+import { useCharactersByIdsQuery, useCharactersQuery } from '../../generated/graphql';
+import { CharCard } from '../char-card';
+import { Ohno } from '../oh-no/oh-no';
+import { Pagination } from '../pagination/pagination';
 import styles from './char-list.module.scss';
-import { Ohno } from './oh-no';
-import { Pagination } from './pagination';
 
 export const CharList: FC = () => {
   const [pagePagination, setPagePagination] = useAtom(paginationStore);
