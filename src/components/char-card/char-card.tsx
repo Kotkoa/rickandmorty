@@ -25,7 +25,7 @@ export const CharCard: FC<CharCardProps> = ({ character }) => {
   return (
     <div className={styles.cardBorder}>
       <div className={styles.charImage}>
-        <img alt={character.id ?? ''} src={character.image ?? ''} width={140} />
+        <img alt={character.id ?? ''} src={character?.image ?? ''} width={140} />
         <button
           className={styles.starButton}
           key="setSelected"

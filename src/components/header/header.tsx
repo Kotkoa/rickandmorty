@@ -68,7 +68,7 @@ export const Header: FC = () => {
       <div className={styles.header_background}>
         <div className={styles.header_overlay}>
           <Link to="/home">
-            <img src="/src/image/rick-and-morty.png" alt="rick and morty" width={347} height={122} />
+            <img src="../../src/image/rick-and-morty.png" alt="rick and morty" width={347} height={122} />
           </Link>
           <div className={styles.search_block}>
             <input
