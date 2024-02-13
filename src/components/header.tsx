@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { useAtom } from 'jotai';
-import React, { FC } from 'react';
+import { debounce } from 'lodash';
+import React, { FC, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
@@ -35,14 +36,32 @@ export const Header: FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
+  const name = searchParams.get('name');
+
+  const [inputValue, setInputValue] = useState(name || '');
 
   const [genderFilter, setGenderFilter] = useAtom(genderFilterStore);
 
-  // let { path } = useRouteMatch()
+  const debouncedNavigate = debounce((searchValue: string) => {
+    searchParams.set('name', searchValue.toString());
+    navigate(`${location.pathname}?${searchParams.toString()}`);
+  }, 500);
 
-  // const doAfter = (vol) => {
-  //   history.push(`/home?name=${vol}`);
-  // };
+  useEffect(() => {
+    if (inputValue) {
+      debouncedNavigate(inputValue);
+    }
+
+    return () => debouncedNavigate.cancel();
+  }, [inputValue, debouncedNavigate]);
+
+  useEffect(() => {
+    if (!inputValue && name !== inputValue) {
+      searchParams.delete('name');
+      navigate(`${location.pathname}?${searchParams.toString()}`);
+    }
+    return;
+  }, [inputValue]);
 
   return (
     <div>
@@ -56,7 +75,8 @@ export const Header: FC = () => {
               type="text"
               className={styles.search_input}
               placeholder="Buscar personaje..."
-              // onChange={(e) => (e.key === 'Enter' ? doAfter(e.target.value) : null)}
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
             />
             <Search className={styles.search_icon} />
             <Filtros className={styles.filtros} />

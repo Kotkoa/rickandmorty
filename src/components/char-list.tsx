@@ -16,6 +16,8 @@ export const CharList: FC = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
 
+  const name = searchParams.get('name');
+
   const {
     data: charactersData,
     loading: charactersLoading,
@@ -23,6 +25,9 @@ export const CharList: FC = () => {
   } = useCharactersQuery({
     variables: {
       page: pagePagination,
+      filter: {
+        name: name,
+      },
     },
   });
 

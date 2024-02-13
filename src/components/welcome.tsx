@@ -15,7 +15,7 @@ export const Welcome: FC = () => {
             En esta prueba, evaluaremos su capacidad para construir la aplicación mediante el análisis de código y la
             reproducción del siguiente diseño.
           </p>
-          <Link to="/home">Continuar</Link>
+          <Link to="/home?page=1">Continuar</Link>
         </div>
       </div>
     </div>
