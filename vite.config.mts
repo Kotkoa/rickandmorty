@@ -18,11 +18,6 @@ export default ({ mode }) => {
     },
     build: {
       outDir: './build',
-      rollupOptions: {
-        input: {
-          app: './main.tsx',
-        },
-      },
     },
   });
 };
