@@ -14,7 +14,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "ES2021"
+    "target": "ESNext"
   },
   "include": ["src/**/*", "src/declarations.d.ts", "src/generated/graphql.d.ts"],
   "exclude": ["node_modules", "src/generated/", "src/__tests__/"]
