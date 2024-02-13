@@ -16,6 +16,6 @@
     "target": "ESNext"
     // "types": ["vite"]
   },
-  "include": ["./src", "./src/declarations.d.ts"],
+  "include": ["./src", "src/**/*", "./src/declarations.d.ts"],
   "exclude": ["node_modules", "src/generated/", "src/__tests__/"]
 }
