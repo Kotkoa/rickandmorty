@@ -1,13 +1,13 @@
 import classNames from 'classnames';
 import { useAtom } from 'jotai';
 import { debounce } from 'lodash';
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 import { Filtros } from '../icons/filtros';
 import { Search } from '../icons/search';
-import { genderFilterStore } from '../store/characters.store';
+import { genderFilterStore, searchNameStore } from '../store/characters.store';
 import { FilterButtonsE, GenderFilterE } from '../types/common.types';
 import styles from './header.module.scss';
 import { ShowFavoriteList } from './show-favorite-list';
@@ -38,13 +38,13 @@ export const Header: FC = () => {
   const searchParams = new URLSearchParams(location.search);
   const name = searchParams.get('name');
 
-  const [inputValue, setInputValue] = useState(name || '');
+  const [inputValue, setInputValue] = useAtom(searchNameStore);
 
   const [genderFilter, setGenderFilter] = useAtom(genderFilterStore);
 
   const debouncedNavigate = debounce((searchValue: string) => {
     searchParams.set('name', searchValue.toString());
-    navigate(`${location.pathname}?${searchParams.toString()}`);
+    navigate(`/home?${searchParams.toString()}`);
   }, 500);
 
   useEffect(() => {
@@ -94,7 +94,7 @@ export const Header: FC = () => {
                 const gender = mapFilterButtons(button);
                 setGenderFilter(button);
                 searchParams.set('gender', gender);
-                navigate(`${location.pathname}?${searchParams.toString()}`);
+                navigate(`/home?${searchParams.toString()}`);
               }}>
               {button}
             </button>

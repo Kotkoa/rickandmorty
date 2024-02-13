@@ -4,11 +4,14 @@ import React, { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { StarFavorite } from '../icons/star-favorite';
-import { favoriteCharacters } from '../store/characters.store';
+import { favoriteCharacters, genderFilterStore, searchNameStore } from '../store/characters.store';
 import styles from './show-favorite-list.module.scss';
 
 export const ShowFavoriteList: FC = () => {
   const [favortesList] = useAtom(favoriteCharacters);
+  const [, setInputValue] = useAtom(searchNameStore);
+  const [, setGenderFilter] = useAtom(genderFilterStore);
+
   const navigate = useNavigate();
 
   return (
@@ -23,6 +26,8 @@ export const ShowFavoriteList: FC = () => {
             if (!favortesList.length) {
               return null;
             }
+            setGenderFilter(null);
+            setInputValue('');
             navigate('/favorite');
           }}>
           <div className={styles.round}>
