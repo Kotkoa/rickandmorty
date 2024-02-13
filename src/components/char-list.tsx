@@ -1,9 +1,9 @@
 import { useAtom } from 'jotai';
 import React, { FC, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { favoriteCharacters, paginationStore } from 'src/store/characters.store';
 
 import { useCharactersByIdsQuery, useCharactersQuery } from '../generated/graphql';
-import { favoriteCharacters, paginationStore } from '../store/characters.store';
 import { CharCard } from './char-card';
 import styles from './char-list.module.scss';
 import { Ohno } from './oh-no';
@@ -31,7 +31,7 @@ export const CharList: FC = () => {
     },
   });
 
-  const isPageFavorite = location.pathname === '/favorite';
+  const isPageHome = location.pathname === '/home';
 
   const {
     data: interestData,
@@ -41,7 +41,7 @@ export const CharList: FC = () => {
     variables: {
       ids: favoritIds,
     },
-    skip: !isPageFavorite || !favoritIds.length,
+    skip: !isPageHome || !favoritIds.length,
   });
 
   const page = searchParams.get('page') || pagePagination;
@@ -52,7 +52,7 @@ export const CharList: FC = () => {
     }
   }, [page, setPagePagination]);
 
-  const charactersList = isPageFavorite ? interestData?.charactersByIds : charactersData?.characters?.results;
+  const charactersList = isPageHome ? interestData?.charactersByIds : charactersData?.characters?.results;
 
   if (charactersLoading || interestLoading) {
     return <div className={styles.noDataContainer}>Loading...</div>;
@@ -81,7 +81,7 @@ export const CharList: FC = () => {
 
         return <CharCard character={character} key={character.id} />;
       })}
-      {!isPageFavorite && <Pagination pagination={charactersData.characters.info} />}
+      {!isPageHome && charactersData?.characters?.info && <Pagination pagination={charactersData?.characters?.info} />}
     </div>
   );
 };
