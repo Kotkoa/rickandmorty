@@ -14,8 +14,22 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "ESNext"
+    "target": "ESNext",
+    "paths": {
+      "@/Assets/*": ["assets/*"],
+      "@/Assets": ["assets"],
+      "@/Components/*": ["components/*"],
+      "@/Components": ["components"],
+      "@/Store/*": ["store/*"],
+      "@/Store": ["store"],
+      "@/Styles/*": ["styles/*"],
+      "@/Styles": ["styles"],
+      "@/Types/*": ["types/*"],
+      "@/Types": ["types"],
+      "@/Utils/*": ["utils/*"],
+      "@/Utils": ["utils"]
+    }
   },
-  "exclude": ["node_modules", "src/generated/", "src/__tests__/"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "*.js", "./src/declarations.d.ts"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "*.js", "./src/declarations.d.ts"],
+  "exclude": ["node_modules", "src/generated/", "src/__tests__/"]
 }

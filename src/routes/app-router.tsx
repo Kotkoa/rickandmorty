@@ -1,10 +1,9 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
-
-import { App } from '../App';
-import { CharList } from '../components/char-list';
-import { Ohno } from '../components/oh-no';
-import { Welcome } from '../components/welcome';
+import { App } from 'src/App';
+import { CharList } from 'src/components/char-list';
+import { Ohno } from 'src/components/oh-no';
+import { Welcome } from 'src/components/welcome';
 
 export const router = createBrowserRouter([
   {
