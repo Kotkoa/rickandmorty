@@ -30,6 +30,6 @@
       "@/Utils": ["utils"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "*.js", "./src/declarations.d.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "*.js", "src/declarations.d.ts"],
   "exclude": ["node_modules", "src/generated/", "src/__tests__/"]
 }

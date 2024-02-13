@@ -9,11 +9,6 @@ export default ({ mode }) => {
 
   return defineConfig({
     plugins: [react(), viteTsconfigPaths(), svgrPlugin()],
-    resolve: {
-      alias: {
-        src: '/src',
-      },
-    },
     server: {
       port: 3000,
       open: true,
