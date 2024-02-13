@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { useAtom } from 'jotai';
 import { debounce } from 'lodash';
-import type { FC, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 

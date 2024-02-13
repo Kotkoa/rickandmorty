@@ -13,6 +13,13 @@ export default ({ mode }) => {
       port: 3000,
       open: true,
     },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          includePaths: ['node_modules', 'src'],
+        },
+      },
+    },
     define: {
       'process.env': process.env,
     },

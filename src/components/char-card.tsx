@@ -1,11 +1,11 @@
 import classNames from 'classnames';
 import { useAtom } from 'jotai';
 import type { FC } from 'react';
+import { CharactersQuery } from 'src/generated/graphql';
+import { StarFavorite } from 'src/icons/star-favorite';
+import { ArrayElementT } from 'src/types/array-element';
 
-import { CharactersQuery } from '../generated/graphql';
-import { StarFavorite } from '../icons/star-favorite';
 import { favoriteCharacters, selectedCharacterStore } from '../store/characters.store';
-import { ArrayElementT } from '../types/array-element';
 import styles from './char-card.module.scss';
 
 interface CharCardProps {
@@ -20,6 +20,8 @@ export const CharCard: FC<CharCardProps> = ({ character }) => {
     setFavoriteList((prev) => (prev.includes(charId) ? prev.filter((item) => item !== charId) : [...prev, charId]));
   };
 
+  if (!character) return null;
+
   return (
     <div className={styles.cardBorder}>
       <div className={styles.charImage}>
@@ -28,13 +30,13 @@ export const CharCard: FC<CharCardProps> = ({ character }) => {
           className={styles.starButton}
           key="setSelected"
           type="button"
-          onClick={() => handleFavorites(character.id)}>
+          onClick={() => handleFavorites(character.id ?? '')}>
           <StarFavorite
-            className={classNames(styles.star, { [styles.starSelected]: favoriteList.includes(character.id) })}
+            className={classNames(styles.star, { [styles.starSelected]: favoriteList.includes(character.id ?? '') })}
           />
         </button>
       </div>
-      <button type="button" onClick={() => setSelectedCharacter(character.id)} className={styles.charDetails}>
+      <button type="button" onClick={() => setSelectedCharacter(character.id ?? '')} className={styles.charDetails}>
         <div className={styles.rowLine}>
           <div
             className={classNames(styles.sphereStatus, {
@@ -42,17 +44,17 @@ export const CharCard: FC<CharCardProps> = ({ character }) => {
             })}
           />
           <div className={styles.textStatus}>
-            {character.status} - {character.species}
+            {character.status} - {character?.species}
           </div>
         </div>
-        <div className={classNames(styles.rowLine, styles.charName)}>{character.name}</div>
+        <div className={classNames(styles.rowLine, styles.charName)}>{character?.name}</div>
         <div className={styles.rowLine}>
           <p className={styles.textLocation}>Last known location:</p>
-          {character.location?.name}
+          {character?.location?.name}
         </div>
         <div className={styles.rowLine}>
           <p className={styles.textLocation}>First seen in:</p>
-          {character.episode[0]?.name}
+          {character?.episode[0]?.name}
         </div>
       </button>
     </div>

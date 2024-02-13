@@ -12,7 +12,6 @@
   right: 0;
   height: max-content;
   padding-bottom: 200px;
-
   z-index: 1;
   display: flex;
   justify-content: center;
@@ -25,7 +24,7 @@
   margin-top: 295px;
   width: 740px;
   height: fit-content;
-  background: #ffffff;
+  background: #fff;
   border-radius: 10px;
   overflow: hidden;
 }
@@ -39,8 +38,7 @@
 }
 
 .bgImg {
-  background: url(../src/image/27345-rick-y-morty.jpg) no-repeat top center, #f2f2f2;
-
+  background: url('src/image/27345-rick-y-morty.jpg') no-repeat top center, #f2f2f2;
   display: flex;
   flex-direction: column;
 }
@@ -51,8 +49,7 @@
   background: transparent;
   cursor: pointer;
   border: none;
-
-  color: #ffffff;
+  color: #fff;
 }
 
 .infoBasic {
@@ -87,13 +84,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   background: rgba(0, 0, 0, 0.4);
 }
 
 .infoStar {
   background: #f2f2f2;
-  border: 3px solid #ffffff;
+  border: 3px solid #fff;
   border-radius: 50%;
   position: relative;
   top: -20px;
@@ -116,7 +112,7 @@
 
 .compartir {
   width: 100%;
-  padding: 50px 20px 37px 20px;
+  padding: 50px 20px 37px;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -130,7 +126,7 @@
     align-items: center;
     justify-content: center;
     font-size: 18px;
-    color: #ffffff;
+    color: #fff;
   }
 }
 
@@ -159,10 +155,11 @@
   display: flex;
   justify-content: space-between;
   margin-top: 18px;
+  padding: 0 20px;
 }
 
 .infoTab {
-  background: #ffffff;
+  background: #fff;
   border-radius: 8px;
   width: 163px;
   height: 58px;
@@ -180,25 +177,12 @@
 .infoTabText {
   margin-left: 4px;
   margin-top: 10px;
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: inherit;
   font-size: 11px;
   letter-spacing: 0.07px;
   color: #828282;
 }
 
-.tabs {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 0 20px;
-}
-
 .favoText {
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: normal;
   margin-right: 12px;
   font-size: 14px;
 }
@@ -219,7 +203,6 @@
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
-
   color: #4f4f4f;
 }
 
@@ -232,10 +215,7 @@
 
 .borderLine {
   border-bottom: 1px solid #e0e0e0;
-  margin-top: 25px;
-  margin-bottom: 15px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 25px auto 15px;
   width: 670px;
 }
 
@@ -248,7 +228,7 @@
 }
 
 .infEpisoTab {
-  background: #ffffff;
+  background: #fff;
   border-radius: 8px;
   width: 163px;
   height: 72px;

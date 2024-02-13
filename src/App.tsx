@@ -1,10 +1,9 @@
 import { useAtom } from 'jotai';
 import type { FC } from 'react';
 import { Outlet } from 'react-router-dom';
-
-import { Details } from '@/Components/details';
-import { Footer } from '@/Components/footer';
-import { Header } from '@/Components/header';
+import { Details } from 'src/components/details';
+import { Footer } from 'src/components/footer';
+import { Header } from 'src/components/header';
 
 import { selectedCharacterStore } from './store/characters.store';
 

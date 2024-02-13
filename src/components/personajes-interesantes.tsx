@@ -1,10 +1,9 @@
 import type { FC } from 'react';
 
-import { CharCard } from '@/Components/char-card';
-import styles from '@/Components/personajes-interesantes.module.scss';
-
 import { useCharactersByIdsQuery } from '../generated/graphql';
 import { generateUniqueRandomIds } from '../utils/get-random-collection';
+import { CharCard } from './char-card';
+import styles from './personajes-interesantes.module.scss';
 
 const interestList = generateUniqueRandomIds(3);
 

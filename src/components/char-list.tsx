@@ -1,14 +1,13 @@
 import { useAtom } from 'jotai';
 import { FC, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-
-import { CharCard } from '@/Components/char-card';
-import styles from '@/Components/char-list.module.scss';
-import { Ohno } from '@/Components/oh-no';
-import { Pagination } from '@/Components/pagination';
-import { favoriteCharacters, paginationStore } from '@/Store/characters.store';
+import { favoriteCharacters, paginationStore } from 'src/store/characters.store';
 
 import { useCharactersByIdsQuery, useCharactersQuery } from '../generated/graphql';
+import { CharCard } from './char-card';
+import styles from './char-list.module.scss';
+import { Ohno } from './oh-no';
+import { Pagination } from './pagination';
 
 export const CharList: FC = () => {
   const [pagePagination, setPagePagination] = useAtom(paginationStore);
