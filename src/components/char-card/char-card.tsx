@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { useAtom } from 'jotai';
 import type { FC } from 'react';
-import { CharactersQuery } from 'src/generated/graphql';
+import { Characters, CharactersByIdsQuery } from 'src/generated/graphql';
 import { StarFavorite } from 'src/icons/star-favorite';
 import { ArrayElementT } from 'src/types/array-element';
 
@@ -9,7 +9,7 @@ import { favoriteCharacters, selectedCharacterStore } from '../../store/characte
 import styles from './char-card.module.scss';
 
 interface CharCardProps {
-  character: ArrayElementT<CharactersQuery['characters']['results']>;
+  character: ArrayElementT<Characters['results']> | ArrayElementT<CharactersByIdsQuery['charactersByIds']>;
 }
 
 export const CharCard: FC<CharCardProps> = ({ character }) => {

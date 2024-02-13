@@ -47,19 +47,14 @@ query CharactersByIds($ids: [ID!]!) {
   charactersByIds(ids: $ids) {
     id
     name
-    status
     species
-    type
-    gender
+    status
     image
-    origin {
+    episode {
       name
     }
-    episode {
-      id
+    location {
       name
-      air_date
-      episode
     }
   }
 }
