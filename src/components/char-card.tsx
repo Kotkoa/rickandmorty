@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { useAtom } from 'jotai';
-import React, { FC } from 'react';
+import type { FC } from 'react';
 
 import { CharactersQuery } from '../generated/graphql';
 import { StarFavorite } from '../icons/star-favorite';

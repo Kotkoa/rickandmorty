@@ -2,11 +2,11 @@
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "baseUrl": ".",
+    "baseUrl": "src",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "module": "ESNext",
     "moduleResolution": "Node",
@@ -30,6 +30,6 @@
       "@/Utils": ["utils"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "*.js", "src/declarations.d.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "*.js", "./src/declarations.d.ts", "./src"],
   "exclude": ["node_modules", "src/generated/", "src/__tests__/"]
 }

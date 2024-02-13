@@ -1,9 +1,10 @@
-import React, { FC } from 'react';
+import type { FC } from 'react';
+
+import { CharCard } from '@/Components/char-card';
+import styles from '@/Components/personajes-interesantes.module.scss';
 
 import { useCharactersByIdsQuery } from '../generated/graphql';
 import { generateUniqueRandomIds } from '../utils/get-random-collection';
-import { CharCard } from './char-card';
-import styles from './personajes-interesantes.module.scss';
 
 const interestList = generateUniqueRandomIds(3);
 
@@ -28,8 +29,8 @@ export const PersonajesInteresantes: FC = () => {
     <div className={styles.personajes}>
       <div className={styles.textStyle}>Personajes interesantes</div>
       <div className={styles.personageTabs}>
-        {interestData?.charactersByIds.map((character) => {
-          return <CharCard character={character} key={character.id} />;
+        {interestData?.charactersByIds?.map((character) => {
+          return <CharCard character={character} key={character?.id} />;
         })}
       </div>
     </div>

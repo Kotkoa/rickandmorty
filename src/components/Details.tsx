@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { useAtom } from 'jotai';
-import React, { FC } from 'react';
+import type { FC } from 'react';
 
 import { useCharacterQuery } from '../generated/graphql';
 import { Close } from '../icons/closet';
@@ -33,7 +33,7 @@ export const Details: FC = () => {
 
   if (characterError) return <div className={styles.noDataContainer}>Error loading characters list</div>;
 
-  if (!characterData.character) return <div className={styles.noDataContainer}>No Data...</div>;
+  if (!characterData?.character) return <div className={styles.noDataContainer}>No Data...</div>;
 
   return (
     <div className={styles.detailsLayer}>
@@ -44,7 +44,7 @@ export const Details: FC = () => {
           </button>
           <div className={styles.infoBasic}>
             <div className={styles.infoImg}>
-              <img className={styles.charIm} alt="character" src={`${persDetail.image}`} />
+              <img className={styles.charIm} alt="character" src={`${persDetail?.image}`} />
             </div>
             <div className={styles.infoStar}>
               <StarFavorite
@@ -54,9 +54,9 @@ export const Details: FC = () => {
               />
             </div>
             <div className={styles.infoText}>
-              <div className={styles.status}>{persDetail.status.toUpperCase()}</div>
-              <div className={styles.name}>{persDetail.name}</div>
-              <div className={styles.status}>{persDetail.species.toUpperCase()}</div>
+              <div className={styles.status}>{persDetail?.status?.toUpperCase()}</div>
+              <div className={styles.name}>{persDetail?.name}</div>
+              <div className={styles.status}>{persDetail?.species?.toUpperCase()}</div>
             </div>
           </div>
         </div>
@@ -71,7 +71,7 @@ export const Details: FC = () => {
                 </div>
                 <div className={styles.infoTabText}>Gender:</div>
               </div>
-              <div className={styles.infoTabTextDetails}>{persDetail.gender}</div>
+              <div className={styles.infoTabTextDetails}>{persDetail?.gender}</div>
             </div>
             <div className={styles.infoTab} key="info-origin">
               <div className={styles.titleInfo}>
@@ -80,7 +80,7 @@ export const Details: FC = () => {
                 </div>
                 <div className={styles.infoTabText}>Origin:</div>
               </div>
-              <div className={styles.infoTabTextDetails}>{JSON.stringify(persDetail.origin?.name)}</div>
+              <div className={styles.infoTabTextDetails}>{JSON.stringify(persDetail?.origin?.name)}</div>
             </div>
             <div className={styles.infoTab} key="info-type">
               <div className={styles.titleInfo}>
@@ -89,7 +89,7 @@ export const Details: FC = () => {
                 </div>
                 <div className={styles.infoTabText}>Type:</div>
               </div>
-              <div className={styles.infoTabTextDetails}>{persDetail.type}</div>
+              <div className={styles.infoTabTextDetails}>{persDetail?.type}</div>
             </div>
           </div>
         </div>
@@ -97,13 +97,13 @@ export const Details: FC = () => {
         <div className={styles.episodes}>
           <div className={styles.textStyle}>Episodios</div>
           <div className={styles.episodeTabs}>
-            {persDetail.episode.slice(0, 8).map((episode) => {
+            {persDetail?.episode.slice(0, 8).map((episode) => {
               return (
-                <div className={styles.infEpisoTab} key={episode.id}>
+                <div className={styles.infEpisoTab} key={episode?.id}>
                   <div className={styles.epiInfo}>
-                    <div className={styles.epiName}>{episode.name}</div>
-                    <div className={styles.episode}>{episode.episode}</div>
-                    <div className={styles.epiDate}>{episode.air_date}</div>
+                    <div className={styles.epiName}>{episode?.name}</div>
+                    <div className={styles.episode}>{episode?.episode}</div>
+                    <div className={styles.epiDate}>{episode?.air_date}</div>
                   </div>
                 </div>
               );

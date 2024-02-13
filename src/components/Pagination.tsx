@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai';
-import React, { FC } from 'react';
+import type { FC } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { Info } from '../generated/graphql';
@@ -18,15 +18,15 @@ export const Pagination: FC<PaginationI> = ({ pagination }) => {
 
   if (!pagination) return null;
 
-  let activePage: number;
-
-  if (!pagination.prev) {
-    activePage = 1;
-  } else if (!pagination.next) {
-    activePage = pagination.pages;
-  } else {
-    activePage = pagination.next - 1;
-  }
+  const activePage = () => {
+    if (!pagination.prev) {
+      return 1;
+    } else if (!pagination.next && pagination.pages) {
+      return pagination.pages;
+    } else if (pagination.next) {
+      return pagination.next - 1;
+    }
+  };
 
   return (
     <div className={styles.pagination}>

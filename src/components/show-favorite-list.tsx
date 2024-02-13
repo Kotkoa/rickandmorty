@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { useAtom } from 'jotai';
-import React, { FC } from 'react';
+import type { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { StarFavorite } from '../icons/star-favorite';

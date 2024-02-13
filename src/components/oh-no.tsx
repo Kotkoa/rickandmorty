@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import type { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import styles from './oh-no.module.scss';

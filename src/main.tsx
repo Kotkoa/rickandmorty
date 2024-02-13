@@ -2,7 +2,7 @@ import './styles/index.css';
 
 import { ApolloProvider } from '@apollo/client';
 import { Provider as JotaiProvider } from 'jotai';
-import React, { StrictMode } from 'react';
+import { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import { RouterProvider } from 'react-router-dom';
 
