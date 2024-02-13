@@ -16,5 +16,13 @@ export default ({ mode }) => {
     define: {
       'process.env': process.env,
     },
+    build: {
+      outDir: './build',
+      rollupOptions: {
+        input: {
+          app: './main.tsx',
+        },
+      },
+    },
   });
 };
