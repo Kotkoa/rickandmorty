@@ -1,9 +1,9 @@
-import React from 'react'
-import './App.css'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import React from 'react';
+import './App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import Welcome from './components/Welcome.js'
-import Home from './components/Home.js'
+import Welcome from 'src/components/Welcome.js';
+import Home from 'src/components/Home.js';
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
         <Route path="/home" component={() => <Home />} />
       </Switch>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;

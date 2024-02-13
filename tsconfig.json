@@ -2,6 +2,7 @@
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
@@ -12,10 +13,9 @@
     "noEmit": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    // "strict": true,
+    "strict": true,
     "target": "ESNext"
-    // "types": ["vite"]
   },
-  "include": ["./src", "./src/declarations.d.ts"],
-  "exclude": ["node_modules", "src/generated/", "src/__tests__/"]
+  "exclude": ["node_modules", "src/generated/", "src/__tests__/"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "*.js", "./src/declarations.d.ts"]
 }
