@@ -7,7 +7,7 @@ import { Footer } from './components/footer';
 import { Header } from './components/header';
 import { selectedCharacterStore } from './store/characters.store';
 
-export const App: FC = () => {
+const App: FC = () => {
   const [selectedCharacter] = useAtom(selectedCharacterStore);
 
   return (
@@ -19,3 +19,5 @@ export const App: FC = () => {
     </>
   );
 };
+
+export default App;
