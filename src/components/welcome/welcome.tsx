@@ -8,7 +8,7 @@ export const Welcome: FC = () => {
     <div className={styles.background_layer}>
       <div className={styles.background}>
         <div className={styles.overlay_layer}>
-          <img src="src/image/Horizontal.png" alt="suazo" />
+          <img src="src/image/horizontal.png" alt="suazo" />
           <img src="src/image/rick-and-morty.png" alt="rick and morty" width={664} height={233} />
           <h1>Bienvenido a Rick and Morty</h1>
           <p>
