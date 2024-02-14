@@ -1,8 +1,8 @@
 import type { FC } from 'react';
 import { Link } from 'react-router-dom';
+import horizontal from 'src/image/horizontal.png';
+import rickAndMorty from 'src/image/rick-and-morty.png';
 
-import horizontal from '../../image/horizontal.png';
-import rickAndMorty from '../../image/rick-and-morty.png';
 import styles from './welcome.module.scss';
 
 export const Welcome: FC = () => {
