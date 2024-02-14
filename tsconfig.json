@@ -15,7 +15,7 @@
     "resolveJsonModule": true,
     "noEmit": true,
     "strict": true,
-    "types": ["node"]
+    "types": ["vite/client", "node"]
   },
   "include": ["src/**/*", "src/declarations.d.ts", "src/generated/graphql.d.ts"],
   "exclude": ["node_modules", "src/generated/", "src/__tests__/"]

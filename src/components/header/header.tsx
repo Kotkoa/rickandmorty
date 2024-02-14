@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Filtros } from '../../icons/filtros';
 import { Search } from '../../icons/search';
+import rickAndMorty from '../../image/rick-and-morty.png';
 import { genderFilterStore, searchNameStore } from '../../store/characters.store';
 import { FilterButtonsE, GenderFilterE } from '../../types/common.types';
 import { ShowFavoriteList } from '../show-favorite-list/show-favorite-list';
@@ -68,7 +69,7 @@ export const Header: FC = () => {
       <div className={styles.header_background}>
         <div className={styles.header_overlay}>
           <Link to="/home">
-            <img src="../../src/image/rick-and-morty.png" alt="rick and morty" width={347} height={122} />
+            <img src={rickAndMorty} alt="rick and morty" width={347} height={122} />
           </Link>
           <div className={styles.search_block}>
             <input
