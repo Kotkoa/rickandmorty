@@ -52,7 +52,7 @@ export const CharList: FC = () => {
     }
   }, [page, setPagePagination]);
 
-  const charactersList = isPageHome ? interestData?.charactersByIds : charactersData?.characters?.results;
+  const charactersList = isPageHome ? charactersData?.characters?.results : interestData?.charactersByIds;
 
   if (charactersLoading || interestLoading) {
     return <div className={styles.noDataContainer}>Loading...</div>;
@@ -81,7 +81,7 @@ export const CharList: FC = () => {
 
         return <CharCard character={character} key={character.id} />;
       })}
-      {!isPageHome && charactersData?.characters?.info && <Pagination pagination={charactersData?.characters?.info} />}
+      {isPageHome && charactersData?.characters?.info && <Pagination pagination={charactersData?.characters?.info} />}
     </div>
   );
 };

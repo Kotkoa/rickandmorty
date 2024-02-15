@@ -4,13 +4,13 @@ import { debounce } from 'lodash';
 import { FC, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { Filtros } from 'src/icons/filtros';
+import { Search } from 'src/icons/search';
+import rickAndMorty from 'src/image/rick-and-morty.png';
+import { genderFilterStore, searchNameStore } from 'src/store/characters.store';
+import { FilterButtonsE, GenderFilterE } from 'src/types/common.types';
 
-import { Filtros } from '../../icons/filtros';
-import { Search } from '../../icons/search';
-import rickAndMorty from '../../image/rick-and-morty.png';
-import { genderFilterStore, searchNameStore } from '../../store/characters.store';
-import { FilterButtonsE, GenderFilterE } from '../../types/common.types';
-import { ShowFavoriteList } from '../show-favorite-list/show-favorite-list';
+import { ShowFavoriteList } from '../show-favorite-list';
 import styles from './header.module.scss';
 
 const listButton = [

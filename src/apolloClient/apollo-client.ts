@@ -1,6 +1,6 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 
-const host = process.env.VITE_REACT_APP_GRAPHQL_API;
+const host = import.meta.env.VITE_REACT_APP_GRAPHQL_API;
 
 export const apolloClient = new ApolloClient({
   uri: host,
