@@ -6,10 +6,10 @@ import { Link, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { Filtros } from 'src/icons/filtros';
 import { Search } from 'src/icons/search';
-import rickAndMorty from 'src/image/rick-and-morty.png';
 import { genderFilterStore, searchNameStore } from 'src/store/characters.store';
 import { FilterButtonsE, GenderFilterE } from 'src/types/common.types';
 
+import rickAndMorty from '../../assets/rick-and-morty.png';
 import { ShowFavoriteList } from '../show-favorite-list';
 import styles from './header.module.scss';
 
