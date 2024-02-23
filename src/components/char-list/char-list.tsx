@@ -19,6 +19,8 @@ export const CharList: FC = () => {
   const name = searchParams.get('name');
   const gender = searchParams.get('gender');
 
+  const isPageHome = location.pathname === '/home';
+
   const {
     data: charactersData,
     loading: charactersLoading,
@@ -31,9 +33,8 @@ export const CharList: FC = () => {
         gender: gender,
       },
     },
+    skip: !isPageHome,
   });
-
-  const isPageHome = location.pathname === '/home';
 
   const {
     data: interestData,
@@ -43,7 +44,7 @@ export const CharList: FC = () => {
     variables: {
       ids: favoritIds,
     },
-    skip: !isPageHome || !favoritIds.length,
+    skip: isPageHome || !favoritIds.length,
   });
 
   const page = searchParams.get('page') || pagePagination;

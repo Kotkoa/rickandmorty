@@ -20,19 +20,19 @@ export const router = createBrowserRouter([
       },
     ],
   },
-  // {
-  //   path: '/favorite',
-  //   element: <Root />,
-  //   children: [
-  //     { path: '', element: <CharList /> },
-  //     {
-  //       path: 'empty',
-  //       element: <Ohno />,
-  //     },
-  //   ],
-  // },
-  // {
-  //   path: '*',
-  //   element: <Ohno />,
-  // },
+  {
+    path: '/favorite',
+    element: <Root />,
+    children: [
+      { path: '', element: <CharList /> },
+      {
+        path: 'empty',
+        element: <Ohno />,
+      },
+    ],
+  },
+  {
+    path: '*',
+    element: <Ohno />,
+  },
 ]);
