@@ -17,6 +17,7 @@ export const CharList: FC = () => {
   const searchParams = new URLSearchParams(location.search);
 
   const name = searchParams.get('name');
+  const gender = searchParams.get('gender');
 
   const {
     data: charactersData,
@@ -27,6 +28,7 @@ export const CharList: FC = () => {
       page: pagePagination,
       filter: {
         name: name,
+        gender: gender,
       },
     },
   });
