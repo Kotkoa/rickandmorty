@@ -7,7 +7,7 @@ import { Header } from 'src/components/header';
 
 import { selectedCharacterStore } from './store/characters.store';
 
-export const App: FC = () => {
+export const Root: FC = () => {
   const [selectedCharacter] = useAtom(selectedCharacterStore);
 
   return (

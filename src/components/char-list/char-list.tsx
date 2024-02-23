@@ -66,7 +66,7 @@ export const CharList: FC = () => {
     );
   }
 
-  if (!charactersList) {
+  if (!charactersList?.length) {
     return (
       <div className={styles.noDataContainer}>
         <Ohno />

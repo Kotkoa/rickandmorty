@@ -1,9 +1,8 @@
-import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
-import { App } from 'src/App';
 import { CharList } from 'src/components/char-list';
 import { Ohno } from 'src/components/oh-no';
 import { Welcome } from 'src/components/welcome';
+import { Root } from 'src/root';
 
 export const router = createBrowserRouter([
   {
@@ -12,7 +11,7 @@ export const router = createBrowserRouter([
   },
   {
     path: '/home',
-    element: <App />,
+    element: <Root />,
     children: [
       { path: '', element: <CharList /> },
       {
@@ -21,19 +20,19 @@ export const router = createBrowserRouter([
       },
     ],
   },
-  {
-    path: '/favorite',
-    element: <App />,
-    children: [
-      { path: '', element: <CharList /> },
-      {
-        path: 'empty',
-        element: <Ohno />,
-      },
-    ],
-  },
-  {
-    path: '*',
-    element: <Ohno />,
-  },
+  // {
+  //   path: '/favorite',
+  //   element: <Root />,
+  //   children: [
+  //     { path: '', element: <CharList /> },
+  //     {
+  //       path: 'empty',
+  //       element: <Ohno />,
+  //     },
+  //   ],
+  // },
+  // {
+  //   path: '*',
+  //   element: <Ohno />,
+  // },
 ]);
