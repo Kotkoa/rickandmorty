@@ -19,7 +19,6 @@
   },
   "dependencies": {
     "@apollo/client": "^3.9.4",
-    "@million/lint": "^0.0.52",
     "axios": "^1.6.7",
     "classnames": "^2.5.1",
     "graphql": "^16.8.1",
@@ -35,6 +34,7 @@
     "@graphql-codegen/typescript-graphql-files-modules": "^3.0.0",
     "@graphql-codegen/typescript-operations": "^4.1.2",
     "@graphql-codegen/typescript-react-apollo": "^4.3.0",
+    "@million/lint": "^0.0.52",
     "@testing-library/react": "^12.1.4",
     "@types/lodash": "^4.14.202",
     "@typescript-eslint/eslint-plugin": "^5.16.0",
