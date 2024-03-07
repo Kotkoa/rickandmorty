@@ -1,7 +1,7 @@
 ## Additional Resources
 
 - **GitHub Repository**: [Kotkoa/rickandmorty](https://github.com/Kotkoa/rickandmorty)
-- **Live Deployment**: [rickandmorty-2024.vercel.app](https://rickandmorty-2024.vercel.app)
+- **Live Deployment**: [rickandmorty-2024.vercel.app]([https://rickandmorty-2024.vercel.app](https://vercel.com/kotkoa/rickandmorty-2024/AA74v3RUAWsQbiweZhWpJrkUjXaB))
 
 # Vite + React + Typescript + Eslint + Prettier + React Testing Library + Apollo GraphQL + Jotai
 
