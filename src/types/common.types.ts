@@ -13,3 +13,7 @@ export const enum GenderFilterE {
   Male = 'male',
   Genderless = 'genderless',
 }
+
+export type PropsI = {
+  className?: string;
+};

@@ -8,9 +8,9 @@ import { ArrayElementT } from 'src/types/array-element';
 import { favoriteCharacters, selectedCharacterStore } from '../../store/characters.store';
 import styles from './char-card.module.scss';
 
-interface CharCardProps {
+type CharCardProps = {
   character: ArrayElementT<Characters['results']> | ArrayElementT<CharactersByIdsQuery['charactersByIds']>;
-}
+};
 
 export const CharCard: FC<CharCardProps> = ({ character }) => {
   const [favoriteList, setFavoriteList] = useAtom(favoriteCharacters);

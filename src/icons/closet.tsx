@@ -1,8 +1,5 @@
 import type { FC } from 'react';
-
-interface PropsI {
-  className?: string;
-}
+import { PropsI } from 'src/types/common.types';
 
 export const Close: FC<PropsI> = ({ className }) => {
   return (

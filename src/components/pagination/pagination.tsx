@@ -6,9 +6,9 @@ import { Info } from '../../generated/graphql';
 import { paginationStore } from '../../store/characters.store';
 import styles from './pagination.module.scss';
 
-interface PaginationI {
+type PaginationI = {
   pagination: Info;
-}
+};
 
 export const Pagination: FC<PaginationI> = ({ pagination }) => {
   const [, setPage] = useAtom(paginationStore);
