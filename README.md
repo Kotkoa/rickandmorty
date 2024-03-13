@@ -2,8 +2,9 @@ Welcome to the interactive Rick and Morty Universe Explorer! This Vite-powered w
 
 ## Links and Recources
 
+- **Figma Design**: [Rickandmorty design](https://www.figma.com/file/6GN6h4XsZuC6z1zDv5Yhxa/Inicio?type=design&node-id=1-12&mode=design&t=PRPPpTFgfl5v0Jcq-0)
 - **GitHub Repository**: [Kotkoa/rickandmorty](https://github.com/Kotkoa/rickandmorty)
-- **Live Deployment**: [rickandmorty-2024.vercel.app](https://vercel.com/kotkoa/rickandmorty-2024/AA74v3RUAWsQbiweZhWpJrkUjXaB)
+- **Live Deployment**: [rickandmorty-2024.vercel.app](https://rickandmorty-2024.vercel.app/)
 
 ## What Can You Do Here?
 
