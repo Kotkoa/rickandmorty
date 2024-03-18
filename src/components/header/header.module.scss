@@ -45,11 +45,50 @@
 }
 
 .filtros {
+  color: #bdbdbd;
+}
+
+.toggleFilter {
+  border: 0;
+  background: none;
+  outline: none;
+  cursor: pointer;
+
   position: absolute;
   right: 0;
   margin-right: 15px;
   margin-top: 16px;
-  color: #bdbdbd;
+}
+
+.dropDown {
+  position: absolute;
+  top: 0px;
+  right: -140px;
+  background: #f2f2f2;
+  border: 1px solid #bdbdbd;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.enabledFiltros {
+  position: absolute;
+  bottom: -50px;
+  left: 0px;
+  width: 100%;
+  background: #f2f2f2;
+  border: 1px solid #bdbdbd;
+  border-radius: 6px;
+  padding: 10px;
+  display: flex;
+  align-items: baseline;
+
+  color: rgba(52, 199, 89, 1);
+  font-weight: 600;
+
+  p {
+    font-weight: 400;
+    color: black;
+  }
 }
 
 .navigate {

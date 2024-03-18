@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { useAtom } from 'jotai';
 import { debounce } from 'lodash';
-import { FC, useEffect } from 'react';
+import { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { Filtros } from 'src/icons/filtros';
@@ -43,6 +43,39 @@ export const Header: FC = () => {
 
   const [genderFilter, setGenderFilter] = useAtom(genderFilterStore);
 
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  const [status, setStatus] = useState(false);
+  const [origin, setOrigin] = useState(false);
+
+  const isFilterActive = status || origin;
+
+  const toggleDropdown = () => {
+    setIsDropdownVisible((prev) => !prev);
+  };
+
+  const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, checked } = event.target;
+    if (name === 'status') {
+      setStatus(checked);
+    } else if (name === 'origin') {
+      setOrigin(checked);
+    }
+  };
+
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownVisible(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [dropdownRef]);
+
   const debouncedNavigate = debounce((searchValue: string) => {
     searchParams.set('name', searchValue.toString());
     navigate(`/home?${searchParams.toString()}`);
@@ -80,7 +113,28 @@ export const Header: FC = () => {
               onChange={(e) => setInputValue(e.target.value)}
             />
             <Search className={styles.search_icon} />
-            <Filtros className={styles.filtros} />
+            <button className={styles.toggleFilter} onClick={toggleDropdown}>
+              <Filtros className={styles.filtros} />
+            </button>
+            {isDropdownVisible && (
+              <div className={styles.dropDown} ref={dropdownRef}>
+                <div>
+                  <input type="checkbox" id="status" name="status" checked={status} onChange={handleCheckboxChange} />
+                  <label htmlFor="status">Filter status</label>
+                </div>
+                <div>
+                  <input type="checkbox" id="origin" name="origin" checked={origin} onChange={handleCheckboxChange} />
+                  <label htmlFor="origin">Filter origin</label>
+                </div>
+              </div>
+            )}
+            {isFilterActive && (
+              <div className={styles.enabledFiltros}>
+                Filtro aplicados: {status && <p>Status</p>}
+                {status && origin && <p>, </p>}
+                {origin && <p>Origin</p>}
+              </div>
+            )}
           </div>
         </div>
       </div>
