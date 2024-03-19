@@ -2,6 +2,7 @@ import { useAtom } from 'jotai';
 import { FC, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { favoriteCharacters, paginationStore } from 'src/store/characters.store';
+import { CharacterFiltersE } from 'src/types/common.types';
 
 import { useCharactersByIdsQuery, useCharactersQuery } from '../../generated/graphql';
 import { CharCard } from '../char-card';
@@ -16,8 +17,9 @@ export const CharList: FC = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
 
-  const name = searchParams.get('name');
-  const gender = searchParams.get('gender');
+  const name = searchParams.get(CharacterFiltersE.Name);
+  const gender = searchParams.get(CharacterFiltersE.Gender);
+  const status = searchParams.get(CharacterFiltersE.Status);
 
   const isPageHome = location.pathname === '/home';
 
@@ -29,8 +31,9 @@ export const CharList: FC = () => {
     variables: {
       page: pagePagination,
       filter: {
-        name: name,
-        gender: gender,
+        name,
+        gender,
+        status,
       },
     },
     skip: !isPageHome,
@@ -47,7 +50,7 @@ export const CharList: FC = () => {
     skip: isPageHome || !favoritIds.length,
   });
 
-  const page = searchParams.get('page') || pagePagination;
+  const page = searchParams.get(CharacterFiltersE.Page) || pagePagination;
 
   useEffect(() => {
     if (page && page !== pagePagination) {

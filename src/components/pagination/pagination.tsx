@@ -1,6 +1,7 @@
 import { useAtom } from 'jotai';
 import type { FC } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { CharacterFiltersE } from 'src/types/common.types';
 
 import { Info } from '../../generated/graphql';
 import { paginationStore } from '../../store/characters.store';
@@ -32,7 +33,7 @@ export const Pagination: FC<PaginationI> = ({ pagination }) => {
 
   const handlePageChange = (page: number) => {
     setPage(page);
-    searchParams.set('page', page.toString());
+    searchParams.set(CharacterFiltersE.Page, page.toString());
     navigate(`${location.pathname}?${searchParams.toString()}`);
   };
 

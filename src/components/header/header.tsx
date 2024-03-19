@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { Filtros } from 'src/icons/filtros';
 import { Search } from 'src/icons/search';
 import { genderFilterStore, searchNameStore } from 'src/store/characters.store';
-import { FilterButtonsE, GenderFilterE } from 'src/types/common.types';
+import { CharacterFiltersE, FilterButtonsE, GenderFilterE, StatusFilterE } from 'src/types/common.types';
 
 import rickAndMorty from '../../assets/rick-and-morty.png';
 import { ShowFavoriteList } from '../show-favorite-list';
@@ -33,19 +33,23 @@ const mapFilterButtons = (filter: FilterButtonsE): GenderFilterE => {
   return mapFilter[filter];
 };
 
+const listStatusFilters = [StatusFilterE.All, StatusFilterE.Alive, StatusFilterE.Dead, StatusFilterE.Unknown];
+
 export const Header: FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const name = searchParams.get('name');
+  const name = searchParams.get(CharacterFiltersE.Name);
 
   const [inputValue, setInputValue] = useAtom(searchNameStore);
 
   const [genderFilter, setGenderFilter] = useAtom(genderFilterStore);
 
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-  const [status, setStatus] = useState(false);
+
   const [origin, setOrigin] = useState(false);
+
+  const status = searchParams.get(CharacterFiltersE.Status);
 
   const isFilterActive = status || origin;
 
@@ -55,10 +59,16 @@ export const Header: FC = () => {
 
   const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = event.target;
-    if (name === 'status') {
-      setStatus(checked);
-    } else if (name === 'origin') {
+    if (name === 'origin') {
       setOrigin(checked);
+    }
+  };
+
+  const handleRadioChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    if (Object.values(listStatusFilters).includes(value as StatusFilterE)) {
+      searchParams.set(CharacterFiltersE.Status, value);
+      navigate(`/home?${searchParams.toString()}`);
     }
   };
 
@@ -77,7 +87,7 @@ export const Header: FC = () => {
   }, [dropdownRef]);
 
   const debouncedNavigate = debounce((searchValue: string) => {
-    searchParams.set('name', searchValue.toString());
+    searchParams.set(CharacterFiltersE.Name, searchValue.toString());
     navigate(`/home?${searchParams.toString()}`);
   }, 500);
 
@@ -91,7 +101,7 @@ export const Header: FC = () => {
 
   useEffect(() => {
     if (!inputValue && name !== inputValue) {
-      searchParams.delete('name');
+      searchParams.delete(CharacterFiltersE.Name);
       navigate(`${location.pathname}?${searchParams.toString()}`);
     }
     return;
@@ -118,10 +128,29 @@ export const Header: FC = () => {
             </button>
             {isDropdownVisible && (
               <div className={styles.dropDown} ref={dropdownRef}>
-                <div>
-                  <input type="checkbox" id="status" name="status" checked={status} onChange={handleCheckboxChange} />
-                  <label htmlFor="status">Filter status</label>
-                </div>
+                {/* <div>
+                  <input
+                    type="checkbox"
+                    id={CharacterFiltersE.Status}
+                    name={CharacterFiltersE.Status}
+                    checked={Boolean(status)}
+                    onChange={handleCheckboxChange}
+                  />
+                  <label htmlFor={CharacterFiltersE.Status}>Filter status</label>
+                </div> */}
+                {Object.values(listStatusFilters).map((status) => (
+                  <div key={status}>
+                    <input
+                      type="radio"
+                      id={`status-${status}`}
+                      name={CharacterFiltersE.Status}
+                      value={status}
+                      checked={searchParams.get(CharacterFiltersE.Status) === status}
+                      onChange={handleRadioChange}
+                    />
+                    <label htmlFor={`status-${status}`}>{status || 'All'}</label>
+                  </div>
+                ))}
                 <div>
                   <input type="checkbox" id="origin" name="origin" checked={origin} onChange={handleCheckboxChange} />
                   <label htmlFor="origin">Filter origin</label>
@@ -148,7 +177,7 @@ export const Header: FC = () => {
               onClick={() => {
                 const gender = mapFilterButtons(button);
                 setGenderFilter(button);
-                searchParams.set('gender', gender);
+                searchParams.set(CharacterFiltersE.Gender, gender);
                 navigate(`/home?${searchParams.toString()}`);
               }}>
               {button}

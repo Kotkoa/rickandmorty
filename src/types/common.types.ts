@@ -17,3 +17,19 @@ export const enum GenderFilterE {
 export type PropsI = {
   className?: string;
 };
+
+export const enum StatusFilterE {
+  All = '',
+  Dead = 'Dead',
+  Alive = 'Alive',
+  Unknown = 'unknown',
+}
+
+export const enum CharacterFiltersE {
+  Name = 'name',
+  Type = 'type',
+  Species = 'species',
+  Status = 'status',
+  Gender = 'gender',
+  Page = 'page',
+}
