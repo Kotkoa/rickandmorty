@@ -8,7 +8,7 @@ import { favoriteCharacters, genderFilterStore, searchNameStore } from '../../st
 import styles from './show-favorite-list.module.scss';
 
 export const ShowFavoriteList: FC = () => {
-  const [favortesList] = useAtom(favoriteCharacters);
+  const [favoritesList] = useAtom(favoriteCharacters);
   const [, setInputValue] = useAtom(searchNameStore);
   const [, setGenderFilter] = useAtom(genderFilterStore);
 
@@ -23,7 +23,7 @@ export const ShowFavoriteList: FC = () => {
           className={styles.favoritOff}
           type="button"
           onClick={() => {
-            if (!favortesList.length) {
+            if (!favoritesList.length) {
               return null;
             }
             setGenderFilter(null);
@@ -31,7 +31,7 @@ export const ShowFavoriteList: FC = () => {
             navigate('/favorite');
           }}>
           <div className={styles.round}>
-            <StarFavorite className={classNames(styles.starFav, { [styles.starSelected]: favortesList.length })} />
+            <StarFavorite className={classNames(styles.starFav, { [styles.starSelected]: favoritesList.length })} />
           </div>
         </button>
       </div>

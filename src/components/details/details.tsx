@@ -15,7 +15,7 @@ export const Details: FC = () => {
 
   const handleClose = () => setSelectedCharacter('');
 
-  const [favortesList] = useAtom(favoriteCharacters);
+  const [favoritesList] = useAtom(favoriteCharacters);
 
   const {
     data: characterData,
@@ -25,9 +25,10 @@ export const Details: FC = () => {
     variables: {
       id: selectedCharacter,
     },
+    skip: !selectedCharacter,
   });
 
-  const persDetail = characterData?.character;
+  const character = characterData?.character;
 
   if (characterLoading) return <div className={styles.noDataContainer}>Loading...</div>;
 
@@ -44,19 +45,19 @@ export const Details: FC = () => {
           </button>
           <div className={styles.infoBasic}>
             <div className={styles.infoImg}>
-              <img className={styles.charIm} alt="character" src={`${persDetail?.image}`} />
+              <img className={styles.charIm} alt="character" src={`${character?.image}`} />
             </div>
             <div className={styles.infoStar}>
               <StarFavorite
                 className={classNames(styles.starFav, {
-                  [styles.starSelected]: favortesList.includes(selectedCharacter),
+                  [styles.starSelected]: favoritesList.includes(selectedCharacter),
                 })}
               />
             </div>
             <div className={styles.infoText}>
-              <div className={styles.status}>{persDetail?.status?.toUpperCase()}</div>
-              <div className={styles.name}>{persDetail?.name}</div>
-              <div className={styles.status}>{persDetail?.species?.toUpperCase()}</div>
+              <div className={styles.status}>{character?.status?.toUpperCase()}</div>
+              <div className={styles.name}>{character?.name}</div>
+              <div className={styles.status}>{character?.species?.toUpperCase()}</div>
             </div>
           </div>
         </div>
@@ -71,7 +72,7 @@ export const Details: FC = () => {
                 </div>
                 <div className={styles.infoTabText}>Gender:</div>
               </div>
-              <div className={styles.infoTabTextDetails}>{persDetail?.gender}</div>
+              <div className={styles.infoTabTextDetails}>{character?.gender}</div>
             </div>
             <div className={styles.infoTab} key="info-origin">
               <div className={styles.titleInfo}>
@@ -80,7 +81,7 @@ export const Details: FC = () => {
                 </div>
                 <div className={styles.infoTabText}>Origin:</div>
               </div>
-              <div className={styles.infoTabTextDetails}>{JSON.stringify(persDetail?.origin?.name)}</div>
+              <div className={styles.infoTabTextDetails}>{character?.origin?.name}</div>
             </div>
             <div className={styles.infoTab} key="info-type">
               <div className={styles.titleInfo}>
@@ -89,7 +90,7 @@ export const Details: FC = () => {
                 </div>
                 <div className={styles.infoTabText}>Type:</div>
               </div>
-              <div className={styles.infoTabTextDetails}>{persDetail?.type}</div>
+              <div className={styles.infoTabTextDetails}>{character?.type}</div>
             </div>
           </div>
         </div>
@@ -97,7 +98,7 @@ export const Details: FC = () => {
         <div className={styles.episodes}>
           <div className={styles.textStyle}>Episodios</div>
           <div className={styles.episodeTabs}>
-            {persDetail?.episode.slice(0, 8).map((episode) => {
+            {character?.episode.slice(0, 8).map((episode) => {
               return (
                 <div className={styles.infEpisoTab} key={episode?.id}>
                   <div className={styles.epiInfo}>

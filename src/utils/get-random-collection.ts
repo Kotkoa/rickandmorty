@@ -1,7 +1,7 @@
+const TOTAL_CHARACTERS = 671;
+
 const randomInt = (): number => {
-  const min = 1;
-  const max = 671;
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+  return Math.floor(Math.random() * TOTAL_CHARACTERS) + 1;
 };
 
 export const generateUniqueRandomIds = (count: number): string[] => {

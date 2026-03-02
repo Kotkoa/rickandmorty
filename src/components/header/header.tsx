@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { useAtom } from 'jotai';
-import { debounce } from 'lodash';
+import debounce from 'lodash/debounce';
 import { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -128,16 +128,6 @@ export const Header: FC = () => {
             </button>
             {isDropdownVisible && (
               <div className={styles.dropDown} ref={dropdownRef}>
-                {/* <div>
-                  <input
-                    type="checkbox"
-                    id={CharacterFiltersE.Status}
-                    name={CharacterFiltersE.Status}
-                    checked={Boolean(status)}
-                    onChange={handleCheckboxChange}
-                  />
-                  <label htmlFor={CharacterFiltersE.Status}>Filter status</label>
-                </div> */}
                 {Object.values(listStatusFilters).map((status) => (
                   <div key={status}>
                     <input
