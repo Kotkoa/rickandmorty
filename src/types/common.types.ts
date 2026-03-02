@@ -1,4 +1,4 @@
-export const enum FilterButtonsE {
+export enum FilterButtonsE {
   All = 'All',
   Unknown = 'Unknown',
   Female = 'Female',
@@ -6,7 +6,7 @@ export const enum FilterButtonsE {
   Genderless = 'Genderless',
 }
 
-export const enum GenderFilterE {
+export enum GenderFilterE {
   All = '',
   Unknown = 'unknown',
   Female = 'female',
@@ -18,14 +18,14 @@ export type PropsI = {
   className?: string;
 };
 
-export const enum StatusFilterE {
+export enum StatusFilterE {
   All = '',
   Dead = 'Dead',
   Alive = 'Alive',
   Unknown = 'unknown',
 }
 
-export const enum CharacterFiltersE {
+export enum CharacterFiltersE {
   Name = 'name',
   Type = 'type',
   Species = 'species',

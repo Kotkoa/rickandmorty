@@ -52,9 +52,7 @@ export const Details: FC = () => {
             </div>
             <div className={styles.infoStar}>
               <StarFavorite
-                className={classNames(styles.starFav, {
-                  [styles.starSelected]: favoritesList.includes(selectedCharacter),
-                })}
+                className={classNames(styles.starFav, favoritesList.includes(selectedCharacter) && styles.starSelected)}
               />
             </div>
             <div className={styles.infoText}>

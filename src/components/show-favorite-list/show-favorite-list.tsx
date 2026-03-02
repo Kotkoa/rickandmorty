@@ -31,7 +31,7 @@ export const ShowFavoriteList: FC = () => {
             navigate('/favorite');
           }}>
           <div className={styles.round}>
-            <StarFavorite className={classNames(styles.starFav, { [styles.starSelected]: favoritesList.length })} />
+            <StarFavorite className={classNames(styles.starFav, favoritesList.length && styles.starSelected)} />
           </div>
         </button>
       </div>

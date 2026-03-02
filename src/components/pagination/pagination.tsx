@@ -27,6 +27,7 @@ export const Pagination: FC<PaginationI> = ({ pagination }) => {
     } else if (pagination.next) {
       return pagination.next - 1;
     }
+    return 1;
   };
 
   const handlePageChange = (page: number) => {

@@ -34,16 +34,12 @@ export const CharCard: FC<CharCardProps> = ({ character }) => {
       <div className={styles.charImage}>
         <img alt={charId} src={character?.image ?? ''} width={140} />
         <button className={styles.starButton} key="setSelected" type="button" onClick={handleFavorites}>
-          <StarFavorite className={classNames(styles.star, { [styles.starSelected]: isFavorite })} />
+          <StarFavorite className={classNames(styles.star, isFavorite && styles.starSelected)} />
         </button>
       </div>
       <button type="button" onClick={() => setSelectedCharacter(character.id ?? '')} className={styles.charDetails}>
         <div className={styles.rowLine}>
-          <div
-            className={classNames(styles.sphereStatus, {
-              [styles.sphereStatusred]: character.status !== 'Alive',
-            })}
-          />
+          <div className={classNames(styles.sphereStatus, character.status !== 'Alive' && styles.sphereStatusred)} />
           <div className={styles.textStatus}>
             {character.status} - {character?.species}
           </div>

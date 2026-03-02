@@ -1,4 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
+import { CharacterFiltersE } from 'src/types/common.types';
 
 export const useFilterSearchParams = () => {
   const location = useLocation();
@@ -6,15 +7,15 @@ export const useFilterSearchParams = () => {
 
   const getParams = () => new URLSearchParams(location.search);
 
-  const getParam = (key: string) => getParams().get(key);
+  const getParam = (key: CharacterFiltersE) => getParams().get(key);
 
-  const setParam = (key: string, value: string) => {
+  const setParam = (key: CharacterFiltersE, value: string) => {
     const params = getParams();
     params.set(key, value);
     navigate(`${location.pathname}?${params.toString()}`);
   };
 
-  const deleteParam = (key: string) => {
+  const deleteParam = (key: CharacterFiltersE) => {
     const params = getParams();
     params.delete(key);
     navigate(`${location.pathname}?${params.toString()}`);

@@ -11,12 +11,14 @@
     "skipLibCheck": true,
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "moduleResolution": "Node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "noEmit": true,
     "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noFallthroughCasesInSwitch": true,
     "types": ["vite/client", "react", "react-dom"]
   },
   "include": ["src/**/*", "src/declarations.d.ts", "src/generated/graphql.d.ts"],
-  "exclude": ["node_modules", "src/generated/", "src/__tests__/"]
+  "exclude": ["node_modules", "src/__tests__/"]
 }

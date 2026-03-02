@@ -32,7 +32,7 @@ export const GenderFilterBar: FC = () => {
       {listButton.map((button) => (
         <button
           key={button}
-          className={classNames(styles.buttn, { [styles.buttnHover]: genderFilter === button })}
+          className={classNames(styles.buttn, genderFilter === button && styles.buttnHover)}
           type="button"
           onClick={() => {
             setGenderFilter(button);

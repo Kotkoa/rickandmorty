@@ -22,7 +22,7 @@ export const FilterDropdown: FC = () => {
 
   const handleRadioChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
-    if (Object.values(listStatusFilters).includes(value as StatusFilterE)) {
+    if (listStatusFilters.some((filter) => filter === value)) {
       setParam(CharacterFiltersE.Status, value);
     }
   };

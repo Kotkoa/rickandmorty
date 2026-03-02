@@ -6,6 +6,7 @@ import { CharactersByIdsDocument, CharactersDocument } from 'src/generated/graph
 import { useFilterSearchParams } from 'src/hooks/use-filter-search-params';
 import { favoriteCharacters, paginationStore } from 'src/store/characters.store';
 import { CharacterFiltersE } from 'src/types/common.types';
+
 import { CharCard } from '../char-card';
 import { Ohno } from '../oh-no/oh-no';
 import { Pagination } from '../pagination/pagination';
@@ -41,11 +42,12 @@ export const CharList: FC = () => {
     !isPageHome && favoritIds.length ? { variables: { ids: favoritIds } } : skipToken,
   );
 
-  const page = getParam(CharacterFiltersE.Page) || pagePagination;
+  const pageParam = getParam(CharacterFiltersE.Page);
+  const page = pageParam ? Number(pageParam) : pagePagination;
 
   useEffect(() => {
     if (page && page !== pagePagination) {
-      setPagePagination(Number(page));
+      setPagePagination(page);
     }
   }, [page, setPagePagination]);
 
