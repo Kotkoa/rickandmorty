@@ -1,6 +1,7 @@
 import { useAtom } from 'jotai';
 import { FC, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useFilterSearchParams } from 'src/hooks/use-filter-search-params';
 import { favoriteCharacters, paginationStore } from 'src/store/characters.store';
 import { CharacterFiltersE } from 'src/types/common.types';
 
@@ -14,12 +15,12 @@ export const CharList: FC = () => {
   const [pagePagination, setPagePagination] = useAtom(paginationStore);
   const [favoritIds] = useAtom(favoriteCharacters);
 
+  const { getParam } = useFilterSearchParams();
   const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
 
-  const name = searchParams.get(CharacterFiltersE.Name);
-  const gender = searchParams.get(CharacterFiltersE.Gender);
-  const status = searchParams.get(CharacterFiltersE.Status);
+  const name = getParam(CharacterFiltersE.Name);
+  const gender = getParam(CharacterFiltersE.Gender);
+  const status = getParam(CharacterFiltersE.Status);
 
   const isPageHome = location.pathname === '/home';
 
@@ -50,7 +51,7 @@ export const CharList: FC = () => {
     skip: isPageHome || !favoritIds.length,
   });
 
-  const page = searchParams.get(CharacterFiltersE.Page) || pagePagination;
+  const page = getParam(CharacterFiltersE.Page) || pagePagination;
 
   useEffect(() => {
     if (page && page !== pagePagination) {

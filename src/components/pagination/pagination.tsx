@@ -1,9 +1,9 @@
 import { useAtom } from 'jotai';
 import type { FC } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { CharacterFiltersE } from 'src/types/common.types';
 
 import { Info } from '../../generated/graphql';
+import { useFilterSearchParams } from '../../hooks/use-filter-search-params';
 import { paginationStore } from '../../store/characters.store';
 import styles from './pagination.module.scss';
 
@@ -13,9 +13,7 @@ type PaginationI = {
 
 export const Pagination: FC<PaginationI> = ({ pagination }) => {
   const [, setPage] = useAtom(paginationStore);
-  const navigate = useNavigate();
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
+  const { setParam } = useFilterSearchParams();
 
   if (!pagination) return null;
 
@@ -33,8 +31,7 @@ export const Pagination: FC<PaginationI> = ({ pagination }) => {
 
   const handlePageChange = (page: number) => {
     setPage(page);
-    searchParams.set(CharacterFiltersE.Page, page.toString());
-    navigate(`${location.pathname}?${searchParams.toString()}`);
+    setParam(CharacterFiltersE.Page, page.toString());
   };
 
   return (
