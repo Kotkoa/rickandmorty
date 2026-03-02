@@ -1,11 +1,13 @@
 import { useAtom } from 'jotai';
-import { type FC, Suspense } from 'react';
+import { type FC, lazy, Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Details } from 'src/components/details';
-import { ErrorBoundary } from 'src/components/error-boundary/error-boundary';
 import { Header } from 'src/components/header';
 
 import { selectedCharacterStore } from './store/characters.store';
+
+const Details = lazy(() =>
+  import('src/components/details/details').then((m) => ({ default: m.Details })),
+);
 
 export const Root: FC = () => {
   const [selectedCharacter] = useAtom(selectedCharacterStore);
@@ -13,11 +15,9 @@ export const Root: FC = () => {
   return (
     <>
       <Header />
-      <ErrorBoundary fallback={<div>Error loading data</div>}>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Outlet />
-        </Suspense>
-      </ErrorBoundary>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
       {selectedCharacter && (
         <Suspense fallback={<div>Loading details...</div>}>
           <Details />

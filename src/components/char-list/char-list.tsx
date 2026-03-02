@@ -1,22 +1,21 @@
 import { skipToken, useSuspenseQuery } from '@apollo/client/react';
 import { useAtom } from 'jotai';
-import type { FC } from 'react';
-import { useLocation } from 'react-router-dom';
+import { type FC, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { CharactersByIdsDocument, CharactersDocument } from 'src/generated/graphql';
 import { useFilterSearchParams } from 'src/hooks/use-filter-search-params';
 import { favoriteCharacters } from 'src/store/characters.store';
 import { CharacterFiltersE } from 'src/types/common.types';
 
 import { CharCard } from '../char-card';
-import { Ohno } from '../oh-no/oh-no';
 import { Pagination } from '../pagination/pagination';
 import styles from './char-list.module.scss';
 
 export const CharList: FC = () => {
   const [favoritIds] = useAtom(favoriteCharacters);
-
   const { getParam } = useFilterSearchParams();
   const location = useLocation();
+  const navigate = useNavigate();
 
   const name = getParam(CharacterFiltersE.Name);
   const gender = getParam(CharacterFiltersE.Gender);
@@ -43,13 +42,17 @@ export const CharList: FC = () => {
   );
 
   const charactersList = isPageHome ? charactersData?.characters?.results : interestData?.charactersByIds;
+  const isEmpty = !charactersList?.length;
 
-  if (!charactersList?.length) {
-    return (
-      <div className={styles.noDataContainer}>
-        <Ohno />
-      </div>
-    );
+  useEffect(() => {
+    if (isEmpty) {
+      const basePath = isPageHome ? '/home' : '/favorite';
+      navigate(`${basePath}/empty${location.search}`, { replace: true });
+    }
+  }, [isEmpty, isPageHome, navigate, location.search]);
+
+  if (isEmpty) {
+    return null;
   }
 
   return (
