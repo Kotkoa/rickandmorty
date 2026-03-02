@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai';
-import debounce from 'lodash/debounce';
+import { debounce } from 'src/utils/debounce';
 import type { FC } from 'react';
 import { useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
