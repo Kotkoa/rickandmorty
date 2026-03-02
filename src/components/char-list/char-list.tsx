@@ -1,3 +1,4 @@
+import { skipToken } from '@apollo/client/react';
 import { useAtom } from 'jotai';
 import { FC, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
@@ -5,7 +6,7 @@ import { useFilterSearchParams } from 'src/hooks/use-filter-search-params';
 import { favoriteCharacters, paginationStore } from 'src/store/characters.store';
 import { CharacterFiltersE } from 'src/types/common.types';
 
-import { useCharactersByIdsQuery, useCharactersQuery } from '../../generated/graphql';
+import { useCharactersByIdsSuspenseQuery, useCharactersSuspenseQuery } from '../../generated/graphql';
 import { CharCard } from '../char-card';
 import { Ohno } from '../oh-no/oh-no';
 import { Pagination } from '../pagination/pagination';
@@ -24,32 +25,22 @@ export const CharList: FC = () => {
 
   const isPageHome = location.pathname === '/home';
 
-  const {
-    data: charactersData,
-    loading: charactersLoading,
-    error: charactersError,
-  } = useCharactersQuery({
-    variables: {
-      page: pagePagination,
-      filter: {
-        name,
-        gender,
-        status,
-      },
-    },
-    skip: !isPageHome,
-  });
+  const { data: charactersData } = useCharactersSuspenseQuery(
+    isPageHome
+      ? {
+          variables: {
+            page: pagePagination,
+            filter: { name, gender, status },
+          },
+        }
+      : skipToken,
+  );
 
-  const {
-    data: interestData,
-    loading: interestLoading,
-    error: interestError,
-  } = useCharactersByIdsQuery({
-    variables: {
-      ids: favoritIds,
-    },
-    skip: isPageHome || !favoritIds.length,
-  });
+  const { data: interestData } = useCharactersByIdsSuspenseQuery(
+    !isPageHome && favoritIds.length
+      ? { variables: { ids: favoritIds } }
+      : skipToken,
+  );
 
   const page = getParam(CharacterFiltersE.Page) || pagePagination;
 
@@ -60,18 +51,6 @@ export const CharList: FC = () => {
   }, [page, setPagePagination]);
 
   const charactersList = isPageHome ? charactersData?.characters?.results : interestData?.charactersByIds;
-
-  if (charactersLoading || interestLoading) {
-    return <div className={styles.noDataContainer}>Loading...</div>;
-  }
-
-  if (charactersError || interestError) {
-    return (
-      <div className={styles.noDataContainer}>
-        Error loading characters list, {JSON.stringify(charactersError || interestError)}
-      </div>
-    );
-  }
 
   if (!charactersList?.length) {
     return (
