@@ -10,6 +10,18 @@ import { favoriteCharacters, selectedCharacterStore } from '../../store/characte
 import { PersonajesInteresantes } from '../personajes-interesantes/personajes-interesantes';
 import styles from './details.module.scss';
 
+const InfoTab: FC<{ label: string; value?: string | null }> = ({ label, value }) => (
+  <div className={styles.infoTab}>
+    <div className={styles.titleInfo}>
+      <div className={styles.ifoSvg}>
+        <Info />
+      </div>
+      <div className={styles.infoTabText}>{label}</div>
+    </div>
+    <div className={styles.infoTabTextDetails}>{value}</div>
+  </div>
+);
+
 export const Details: FC = () => {
   const [selectedCharacter, setSelectedCharacter] = useAtom(selectedCharacterStore);
 
@@ -65,33 +77,9 @@ export const Details: FC = () => {
         <div className={styles.informacion}>
           <div className={styles.textStyle}>Información</div>
           <div className={styles.tabs}>
-            <div className={styles.infoTab}>
-              <div className={styles.titleInfo}>
-                <div className={styles.ifoSvg}>
-                  <Info />
-                </div>
-                <div className={styles.infoTabText}>Gender:</div>
-              </div>
-              <div className={styles.infoTabTextDetails}>{character?.gender}</div>
-            </div>
-            <div className={styles.infoTab} key="info-origin">
-              <div className={styles.titleInfo}>
-                <div className={styles.ifoSvg}>
-                  <Info />
-                </div>
-                <div className={styles.infoTabText}>Origin:</div>
-              </div>
-              <div className={styles.infoTabTextDetails}>{character?.origin?.name}</div>
-            </div>
-            <div className={styles.infoTab} key="info-type">
-              <div className={styles.titleInfo}>
-                <div className={styles.ifoSvg}>
-                  <Info />
-                </div>
-                <div className={styles.infoTabText}>Type:</div>
-              </div>
-              <div className={styles.infoTabTextDetails}>{character?.type}</div>
-            </div>
+            <InfoTab label="Gender:" value={character?.gender} />
+            <InfoTab label="Origin:" value={character?.origin?.name} />
+            <InfoTab label="Type:" value={character?.type} />
           </div>
         </div>
         <div className={styles.borderLine} />
