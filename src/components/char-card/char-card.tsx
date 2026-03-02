@@ -1,6 +1,7 @@
 import classNames from 'classnames';
-import { useAtom } from 'jotai';
-import type { FC } from 'react';
+import { useAtomValue, useSetAtom } from 'jotai';
+import { selectAtom } from 'jotai/utils';
+import { FC, useMemo } from 'react';
 import { Characters, CharactersByIdsQuery } from 'src/generated/graphql';
 import { StarFavorite } from 'src/icons/star-favorite';
 import { ArrayElementT } from 'src/types/array-element';
@@ -13,10 +14,16 @@ type CharCardProps = {
 };
 
 export const CharCard: FC<CharCardProps> = ({ character }) => {
-  const [favoriteList, setFavoriteList] = useAtom(favoriteCharacters);
-  const [, setSelectedCharacter] = useAtom(selectedCharacterStore);
+  const charId = character?.id ?? '';
+  const isFavoriteAtom = useMemo(
+    () => selectAtom(favoriteCharacters, (favorites) => favorites.includes(charId)),
+    [charId],
+  );
+  const isFavorite = useAtomValue(isFavoriteAtom);
+  const setFavoriteList = useSetAtom(favoriteCharacters);
+  const setSelectedCharacter = useSetAtom(selectedCharacterStore);
 
-  const handleFavorites = (charId: string) => {
+  const handleFavorites = () => {
     setFavoriteList((prev) => (prev.includes(charId) ? prev.filter((item) => item !== charId) : [...prev, charId]));
   };
 
@@ -25,15 +32,9 @@ export const CharCard: FC<CharCardProps> = ({ character }) => {
   return (
     <div className={styles.cardBorder}>
       <div className={styles.charImage}>
-        <img alt={character.id ?? ''} src={character?.image ?? ''} width={140} />
-        <button
-          className={styles.starButton}
-          key="setSelected"
-          type="button"
-          onClick={() => handleFavorites(character.id ?? '')}>
-          <StarFavorite
-            className={classNames(styles.star, { [styles.starSelected]: favoriteList.includes(character.id ?? '') })}
-          />
+        <img alt={charId} src={character?.image ?? ''} width={140} />
+        <button className={styles.starButton} key="setSelected" type="button" onClick={handleFavorites}>
+          <StarFavorite className={classNames(styles.star, { [styles.starSelected]: isFavorite })} />
         </button>
       </div>
       <button type="button" onClick={() => setSelectedCharacter(character.id ?? '')} className={styles.charDetails}>
