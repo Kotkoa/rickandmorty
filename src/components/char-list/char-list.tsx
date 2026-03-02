@@ -1,12 +1,11 @@
-import { skipToken } from '@apollo/client/react';
+import { skipToken, useSuspenseQuery } from '@apollo/client/react';
 import { useAtom } from 'jotai';
 import { FC, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { CharactersByIdsDocument, CharactersDocument } from 'src/generated/graphql';
 import { useFilterSearchParams } from 'src/hooks/use-filter-search-params';
 import { favoriteCharacters, paginationStore } from 'src/store/characters.store';
 import { CharacterFiltersE } from 'src/types/common.types';
-
-import { useCharactersByIdsSuspenseQuery, useCharactersSuspenseQuery } from '../../generated/graphql';
 import { CharCard } from '../char-card';
 import { Ohno } from '../oh-no/oh-no';
 import { Pagination } from '../pagination/pagination';
@@ -25,7 +24,8 @@ export const CharList: FC = () => {
 
   const isPageHome = location.pathname === '/home';
 
-  const { data: charactersData } = useCharactersSuspenseQuery(
+  const { data: charactersData } = useSuspenseQuery(
+    CharactersDocument,
     isPageHome
       ? {
           variables: {
@@ -36,7 +36,8 @@ export const CharList: FC = () => {
       : skipToken,
   );
 
-  const { data: interestData } = useCharactersByIdsSuspenseQuery(
+  const { data: interestData } = useSuspenseQuery(
+    CharactersByIdsDocument,
     !isPageHome && favoritIds.length ? { variables: { ids: favoritIds } } : skipToken,
   );
 

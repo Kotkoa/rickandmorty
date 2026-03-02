@@ -1,9 +1,9 @@
-import { skipToken } from '@apollo/client/react';
+import { skipToken, useSuspenseQuery } from '@apollo/client/react';
 import classNames from 'classnames';
 import { useAtom } from 'jotai';
 import type { FC } from 'react';
 
-import { useCharacterSuspenseQuery } from '../../generated/graphql';
+import { CharacterDocument } from '../../generated/graphql';
 import { Close } from '../../icons/closet';
 import { Info } from '../../icons/info';
 import { StarFavorite } from '../../icons/star-favorite';
@@ -30,7 +30,8 @@ export const Details: FC = () => {
 
   const [favoritesList] = useAtom(favoriteCharacters);
 
-  const { data: characterData } = useCharacterSuspenseQuery(
+  const { data: characterData } = useSuspenseQuery(
+    CharacterDocument,
     selectedCharacter ? { variables: { id: selectedCharacter } } : skipToken,
   );
 

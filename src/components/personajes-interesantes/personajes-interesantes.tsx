@@ -1,6 +1,7 @@
+import { useQuery } from '@apollo/client/react';
 import type { FC } from 'react';
 
-import { useCharactersByIdsQuery } from '../../generated/graphql';
+import { CharactersByIdsDocument } from '../../generated/graphql';
 import { generateUniqueRandomIds } from '../../utils/get-random-collection';
 import { CharCard } from '../char-card/char-card';
 import styles from './personajes-interesantes.module.scss';
@@ -12,7 +13,7 @@ export const PersonajesInteresantes: FC = () => {
     data: interestData,
     loading: interestLoading,
     error: interestError,
-  } = useCharactersByIdsQuery({
+  } = useQuery(CharactersByIdsDocument, {
     variables: {
       ids: interestList,
     },

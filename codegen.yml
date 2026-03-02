@@ -5,6 +5,12 @@ documents:
   - 'src/**/*.gql'
 
 generates:
+  src/generated/schema.graphql:
+    plugins:
+      - schema-ast
+    config:
+      includeDirectives: true
+      includeIntrospectionTypes: false
   src/generated/graphql.d.ts:
     plugins:
       - 'typescript-graphql-files-modules'
@@ -12,16 +18,19 @@ generates:
     plugins:
       - 'typescript'
       - 'typescript-operations'
-      - 'typescript-react-apollo'
+      - 'typed-document-node'
     config:
-      withHooks: true
-
+      useTypeImports: true
+      avoidOptionals:
+        field: true
+        inputValue: false
+        object: true
       preResolveTypes: true
       nonOptionalTypename: false
       skipTypeNameForRoot: true
       maybeValue: 'T | null'
-      apolloClientPackage: '@apollo/client/react'
-      apolloReactHooksImportFrom: '@apollo/client/react'
+      scalars:
+        Upload: File
 
 hooks:
   afterOneFileWrite:
