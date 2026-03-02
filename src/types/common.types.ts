@@ -6,14 +6,6 @@ export enum FilterButtonsE {
   Genderless = 'Genderless',
 }
 
-export enum GenderFilterE {
-  All = '',
-  Unknown = 'unknown',
-  Female = 'female',
-  Male = 'male',
-  Genderless = 'genderless',
-}
-
 export type PropsI = {
   className?: string;
 };
@@ -27,8 +19,6 @@ export enum StatusFilterE {
 
 export enum CharacterFiltersE {
   Name = 'name',
-  Type = 'type',
-  Species = 'species',
   Status = 'status',
   Gender = 'gender',
   Page = 'page',
