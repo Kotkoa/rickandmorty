@@ -1,8 +1,8 @@
 import { useSuspenseQuery } from '@apollo/client/react';
 import type { FC } from 'react';
 
-import { CharactersByIdsDocument } from '../../generated/graphql';
-import { generateUniqueRandomIds } from '../../utils/get-random-collection';
+import { CharactersByIdsDocument } from '@/generated/graphql';
+import { generateUniqueRandomIds } from '@/utils/get-random-collection';
 import { CharCard } from '../char-card/char-card';
 import styles from './personajes-interesantes.module.scss';
 

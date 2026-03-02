@@ -2,10 +2,11 @@ import { skipToken, useSuspenseQuery } from '@apollo/client/react';
 import { useAtom } from 'jotai';
 import { type FC, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { CharactersByIdsDocument, CharactersDocument } from 'src/generated/graphql';
-import { useFilterSearchParams } from 'src/hooks/use-filter-search-params';
-import { favoriteCharacters } from 'src/store/characters.store';
-import { CharacterFiltersE } from 'src/types/common.types';
+
+import { CharactersByIdsDocument, CharactersDocument } from '@/generated/graphql';
+import { useFilterSearchParams } from '@/hooks/use-filter-search-params';
+import { favoriteCharacters } from '@/store/characters.store';
+import { CharacterFiltersE } from '@/types/common.types';
 
 import { CharCard } from '../char-card';
 import { Pagination } from '../pagination/pagination';

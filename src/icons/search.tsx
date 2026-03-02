@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { PropsI } from 'src/types/common.types';
+import { PropsI } from '@/types/common.types';
 
 export const Search: FC<PropsI> = ({ className }) => {
   return (

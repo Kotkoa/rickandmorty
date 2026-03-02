@@ -2,9 +2,9 @@ import classNames from 'classnames';
 import { useAtomValue } from 'jotai';
 import type { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { favoriteCharacters } from 'src/store/characters.store';
+import { favoriteCharacters } from '@/store/characters.store';
 
-import { StarFavorite } from '../../icons/star-favorite';
+import { StarFavorite } from '@/icons/star-favorite';
 import styles from './show-favorite-list.module.scss';
 
 export const ShowFavoriteList: FC = () => {

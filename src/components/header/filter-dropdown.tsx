@@ -1,9 +1,9 @@
 import { ChangeEvent, FC, useCallback, useRef, useState } from 'react';
-import { Filtros } from 'src/icons/filtros';
-import { CharacterFiltersE, StatusFilterE } from 'src/types/common.types';
+import { Filtros } from '@/icons/filtros';
+import { CharacterFiltersE, StatusFilterE } from '@/types/common.types';
 
-import { useClickOutside } from '../../hooks/use-click-outside';
-import { useFilterSearchParams } from '../../hooks/use-filter-search-params';
+import { useClickOutside } from '@/hooks/use-click-outside';
+import { useFilterSearchParams } from '@/hooks/use-filter-search-params';
 import styles from './header.module.scss';
 
 const listStatusFilters = [StatusFilterE.All, StatusFilterE.Alive, StatusFilterE.Dead, StatusFilterE.Unknown];

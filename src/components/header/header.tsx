@@ -1,7 +1,8 @@
 import type { FC } from 'react';
 import { Link } from 'react-router-dom';
 
-import rickAndMorty from '../../assets/rick-and-morty.png';
+import rickAndMorty from '@/assets/rick-and-morty.png';
+
 import { ShowFavoriteList } from '../show-favorite-list';
 import { FilterDropdown } from './filter-dropdown';
 import { GenderFilterBar } from './gender-filter-bar';

@@ -1,8 +1,8 @@
 import type { FC } from 'react';
-import { CharacterFiltersE } from 'src/types/common.types';
+import { CharacterFiltersE } from '@/types/common.types';
 
-import type { CharactersQuery } from '../../generated/graphql';
-import { useFilterSearchParams } from '../../hooks/use-filter-search-params';
+import type { CharactersQuery } from '@/generated/graphql';
+import { useFilterSearchParams } from '@/hooks/use-filter-search-params';
 import styles from './pagination.module.scss';
 
 type PaginationI = {

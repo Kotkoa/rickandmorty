@@ -1,10 +1,11 @@
 import type { ChangeEvent, FC } from 'react';
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useFilterSearchParams } from 'src/hooks/use-filter-search-params';
-import { Search } from 'src/icons/search';
-import { CharacterFiltersE } from 'src/types/common.types';
-import { debounce } from 'src/utils/debounce';
+
+import { useFilterSearchParams } from '@/hooks/use-filter-search-params';
+import { Search } from '@/icons/search';
+import { CharacterFiltersE } from '@/types/common.types';
+import { debounce } from '@/utils/debounce';
 
 import styles from './header.module.scss';
 

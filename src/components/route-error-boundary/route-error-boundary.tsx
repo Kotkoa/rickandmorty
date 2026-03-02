@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import { isRouteErrorResponse, useNavigate, useRouteError } from 'react-router-dom';
-import { Header } from 'src/components/header';
+
+import { Header } from '@/components/header';
 
 import styles from './route-error-boundary.module.scss';
 

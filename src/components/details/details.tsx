@@ -2,12 +2,14 @@ import { skipToken, useSuspenseQuery } from '@apollo/client/react';
 import classNames from 'classnames';
 import { useAtom } from 'jotai';
 import type { FC } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
-import { CharacterDocument } from '../../generated/graphql';
-import { Close } from '../../icons/closet';
-import { Info } from '../../icons/info';
-import { StarFavorite } from '../../icons/star-favorite';
-import { favoriteCharacters, selectedCharacterStore } from '../../store/characters.store';
+import { CharacterDocument } from '@/generated/graphql';
+import { Close } from '@/icons/closet';
+import { Info } from '@/icons/info';
+import { StarFavorite } from '@/icons/star-favorite';
+import { favoriteCharacters } from '@/store/characters.store';
+
 import { PersonajesInteresantes } from '../personajes-interesantes/personajes-interesantes';
 import styles from './details.module.scss';
 
@@ -23,16 +25,23 @@ const InfoTab: FC<{ label: string; value?: string | null }> = ({ label, value })
   </div>
 );
 
-export const Details: FC = () => {
-  const [selectedCharacter, setSelectedCharacter] = useAtom(selectedCharacterStore);
+type DetailsProps = {
+  characterId: string;
+};
 
-  const handleClose = () => setSelectedCharacter('');
+export const Details: FC<DetailsProps> = ({ characterId }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const handleClose = () => {
+    searchParams.delete('character');
+    setSearchParams(searchParams);
+  };
 
   const [favoritesList] = useAtom(favoriteCharacters);
 
   const { data: characterData } = useSuspenseQuery(
     CharacterDocument,
-    selectedCharacter ? { variables: { id: selectedCharacter } } : skipToken,
+    characterId ? { variables: { id: characterId } } : skipToken,
   );
 
   const character = characterData?.character;
@@ -52,7 +61,7 @@ export const Details: FC = () => {
             </div>
             <div className={styles.infoStar}>
               <StarFavorite
-                className={classNames(styles.starFav, favoritesList.includes(selectedCharacter) && styles.starSelected)}
+                className={classNames(styles.starFav, favoritesList.includes(characterId) && styles.starSelected)}
               />
             </div>
             <div className={styles.infoText}>

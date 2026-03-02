@@ -1,8 +1,9 @@
 import classNames from 'classnames';
 import type { FC } from 'react';
-import { CharacterFiltersE, FilterButtonsE } from 'src/types/common.types';
 
-import { useFilterSearchParams } from '../../hooks/use-filter-search-params';
+import { useFilterSearchParams } from '@/hooks/use-filter-search-params';
+import { CharacterFiltersE, FilterButtonsE } from '@/types/common.types';
+
 import styles from './header.module.scss';
 
 const genderButtons = [
