@@ -10,8 +10,6 @@ generates:
       - 'typescript-graphql-files-modules'
   src/generated/graphql.tsx:
     plugins:
-      - add:
-          content: '// @ts-nocheck'
       - 'typescript'
       - 'typescript-operations'
       - 'typescript-react-apollo'
