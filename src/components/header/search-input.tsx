@@ -1,11 +1,11 @@
 import { useAtom } from 'jotai';
-import { debounce } from 'src/utils/debounce';
 import type { FC } from 'react';
 import { useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search } from 'src/icons/search';
 import { searchNameStore } from 'src/store/characters.store';
 import { CharacterFiltersE } from 'src/types/common.types';
+import { debounce } from 'src/utils/debounce';
 
 import styles from './header.module.scss';
 

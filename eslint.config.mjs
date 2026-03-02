@@ -1,12 +1,13 @@
 import eslint from '@eslint/js';
+import { defineConfig } from 'eslint/config';
 import eslintConfigPrettier from 'eslint-config-prettier';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import tseslint from 'typescript-eslint';
 
-export default tseslint.config(
+export default defineConfig([
   { ignores: ['dist/', 'src/generated/'] },
   eslint.configs.recommended,
-  ...tseslint.configs.recommended,
+  tseslint.configs.recommended,
   {
     plugins: { 'simple-import-sort': simpleImportSort },
     rules: {
@@ -21,4 +22,4 @@ export default tseslint.config(
     },
   },
   eslintConfigPrettier,
-);
+]);
