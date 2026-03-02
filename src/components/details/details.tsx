@@ -1,8 +1,9 @@
+import { skipToken } from '@apollo/client/react';
 import classNames from 'classnames';
 import { useAtom } from 'jotai';
 import type { FC } from 'react';
 
-import { useCharacterQuery } from '../../generated/graphql';
+import { useCharacterSuspenseQuery } from '../../generated/graphql';
 import { Close } from '../../icons/closet';
 import { Info } from '../../icons/info';
 import { StarFavorite } from '../../icons/star-favorite';
@@ -29,24 +30,13 @@ export const Details: FC = () => {
 
   const [favoritesList] = useAtom(favoriteCharacters);
 
-  const {
-    data: characterData,
-    loading: characterLoading,
-    error: characterError,
-  } = useCharacterQuery({
-    variables: {
-      id: selectedCharacter,
-    },
-    skip: !selectedCharacter,
-  });
+  const { data: characterData } = useCharacterSuspenseQuery(
+    selectedCharacter ? { variables: { id: selectedCharacter } } : skipToken,
+  );
 
   const character = characterData?.character;
 
-  if (characterLoading) return <div className={styles.noDataContainer}>Loading...</div>;
-
-  if (characterError) return <div className={styles.noDataContainer}>Error loading characters list</div>;
-
-  if (!characterData?.character) return <div className={styles.noDataContainer}>No Data...</div>;
+  if (!character) return <div className={styles.noDataContainer}>No Data...</div>;
 
   return (
     <div className={styles.detailsLayer}>
@@ -86,7 +76,7 @@ export const Details: FC = () => {
         <div className={styles.episodes}>
           <div className={styles.textStyle}>Episodios</div>
           <div className={styles.episodeTabs}>
-            {character?.episode.slice(0, 8).map((episode) => {
+            {character?.episode?.slice(0, 8).map((episode) => {
               return (
                 <div className={styles.infEpisoTab} key={episode?.id}>
                   <div className={styles.epiInfo}>

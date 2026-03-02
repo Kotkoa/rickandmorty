@@ -6,4 +6,5 @@ export const apolloClient = new ApolloClient({
   link: new HttpLink({ uri: host }),
   cache: new InMemoryCache(),
   devtools: { enabled: import.meta.env.DEV },
+  dataMasking: false,
 });
