@@ -30,7 +30,6 @@
     "rxjs": "^7.8.2"
   },
   "devDependencies": {
-    "@graphql-codegen/add": "^6.0.0",
     "@graphql-codegen/cli": "^6.1.2",
     "@graphql-codegen/typescript": "^5.0.8",
     "@graphql-codegen/typescript-graphql-files-modules": "^3.0.0",
