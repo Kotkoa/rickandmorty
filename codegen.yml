@@ -15,13 +15,13 @@ generates:
       - 'typescript-react-apollo'
     config:
       withHooks: true
-      constEnums: true
 
-      preResolveTypes: true # Simplifies the generated types
-
-      nonOptionalTypename: false # Forces `__typename` on all selection sets
-      skipTypeNameForRoot: true # Don't generate __typename for root types
+      preResolveTypes: true
+      nonOptionalTypename: false
+      skipTypeNameForRoot: true
       maybeValue: 'T | null'
+      apolloClientPackage: '@apollo/client/react'
+      apolloReactHooksImportFrom: '@apollo/client/react'
 
 hooks:
   afterOneFileWrite:

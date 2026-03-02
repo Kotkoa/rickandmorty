@@ -1,6 +1,6 @@
 import './styles/index.css';
 
-import { ApolloProvider } from '@apollo/client';
+import { ApolloProvider } from '@apollo/client/react';
 import { Provider as JotaiProvider } from 'jotai';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
