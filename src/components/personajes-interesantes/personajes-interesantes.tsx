@@ -29,7 +29,8 @@ export const PersonajesInteresantes: FC = () => {
       <div className={styles.textStyle}>Personajes interesantes</div>
       <div className={styles.personageTabs}>
         {interestData?.charactersByIds?.map((character) => {
-          return <CharCard character={character} key={character?.id} />;
+          if (!character) return null;
+          return <CharCard character={character} key={character.id} />;
         })}
       </div>
     </div>

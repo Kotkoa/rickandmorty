@@ -1,16 +1,16 @@
+import type { DeepPartial } from '@apollo/client/utilities';
 import classNames from 'classnames';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { selectAtom } from 'jotai/utils';
 import { FC, useMemo } from 'react';
-import { Characters, CharactersByIdsQuery } from 'src/generated/graphql';
+import type { Character } from 'src/generated/graphql';
 import { StarFavorite } from 'src/icons/star-favorite';
-import { ArrayElementT } from 'src/types/array-element';
 
 import { favoriteCharacters, selectedCharacterStore } from '../../store/characters.store';
 import styles from './char-card.module.scss';
 
 type CharCardProps = {
-  character: ArrayElementT<Characters['results']> | ArrayElementT<CharactersByIdsQuery['charactersByIds']>;
+  character: DeepPartial<Character>;
 };
 
 export const CharCard: FC<CharCardProps> = ({ character }) => {
@@ -55,7 +55,7 @@ export const CharCard: FC<CharCardProps> = ({ character }) => {
         </div>
         <div className={styles.rowLine}>
           <p className={styles.textLocation}>First seen in:</p>
-          {character?.episode[0]?.name}
+          {character?.episode?.[0]?.name}
         </div>
       </button>
     </div>

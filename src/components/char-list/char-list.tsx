@@ -37,9 +37,7 @@ export const CharList: FC = () => {
   );
 
   const { data: interestData } = useCharactersByIdsSuspenseQuery(
-    !isPageHome && favoritIds.length
-      ? { variables: { ids: favoritIds } }
-      : skipToken,
+    !isPageHome && favoritIds.length ? { variables: { ids: favoritIds } } : skipToken,
   );
 
   const page = getParam(CharacterFiltersE.Page) || pagePagination;
