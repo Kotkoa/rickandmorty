@@ -1,16 +1,15 @@
-import type { DeepPartial } from '@apollo/client/utilities';
 import classNames from 'classnames';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { selectAtom } from 'jotai/utils';
 import { FC, useMemo } from 'react';
-import type { Character } from 'src/generated/graphql';
+import type { CharCardFieldsFragment } from 'src/generated/graphql';
 import { StarFavorite } from 'src/icons/star-favorite';
 
 import { favoriteCharacters, selectedCharacterStore } from '../../store/characters.store';
 import styles from './char-card.module.scss';
 
 type CharCardProps = {
-  character: DeepPartial<Character>;
+  character: CharCardFieldsFragment;
 };
 
 export const CharCard: FC<CharCardProps> = ({ character }) => {

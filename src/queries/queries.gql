@@ -1,18 +1,27 @@
+fragment CharCardFields on Character {
+  id
+  name
+  species
+  status
+  image
+  episode {
+    name
+  }
+  location {
+    name
+  }
+}
+
 query Character($id: ID!) {
   character(id: $id) {
-    id
-    name
-    status
-    species
+    ...CharCardFields
     type
     gender
-    image
     origin {
       name
     }
     episode {
       id
-      name
       air_date
       episode
     }
@@ -22,39 +31,18 @@ query Character($id: ID!) {
 query Characters($page: Int, $filter: FilterCharacter) {
   characters(page: $page, filter: $filter) {
     info {
-      count
       pages
       next
       prev
     }
     results {
-      id
-      name
-      species
-      status
-      image
-      episode {
-        name
-      }
-      location {
-        name
-      }
+      ...CharCardFields
     }
   }
 }
 
 query CharactersByIds($ids: [ID!]!) {
   charactersByIds(ids: $ids) {
-    id
-    name
-    species
-    status
-    image
-    episode {
-      name
-    }
-    location {
-      name
-    }
+    ...CharCardFields
   }
 }

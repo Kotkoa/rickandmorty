@@ -1,4 +1,4 @@
-import { useQuery } from '@apollo/client/react';
+import { useSuspenseQuery } from '@apollo/client/react';
 import type { FC } from 'react';
 
 import { CharactersByIdsDocument } from '../../generated/graphql';
@@ -9,21 +9,11 @@ import styles from './personajes-interesantes.module.scss';
 const interestList = generateUniqueRandomIds(3);
 
 export const PersonajesInteresantes: FC = () => {
-  const {
-    data: interestData,
-    loading: interestLoading,
-    error: interestError,
-  } = useQuery(CharactersByIdsDocument, {
+  const { data: interestData } = useSuspenseQuery(CharactersByIdsDocument, {
     variables: {
       ids: interestList,
     },
   });
-
-  if (interestLoading) return <div className={styles.noDataContainer}>Loading...</div>;
-
-  if (interestError) return <div className={styles.noDataContainer}>Error loading characters list</div>;
-
-  if (!interestData) return <div className={styles.noDataContainer}>No Data...</div>;
 
   return (
     <div className={styles.personajes}>
