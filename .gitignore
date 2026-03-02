@@ -24,6 +24,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# local schema
-/generated
-.graphql.tsx
+# generated code
+src/generated/
