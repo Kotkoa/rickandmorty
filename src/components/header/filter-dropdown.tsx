@@ -33,30 +33,32 @@ export const FilterDropdown: FC = () => {
 
   return (
     <>
-      <button className={styles.toggleFilter} onClick={() => setIsDropdownVisible((prev) => !prev)}>
-        <Filtros className={styles.filtros} />
-      </button>
-      {isDropdownVisible && (
-        <div className={styles.dropDown} ref={dropdownRef}>
-          {listStatusFilters.map((statusValue) => (
-            <div key={statusValue}>
-              <input
-                type="radio"
-                id={`status-${statusValue}`}
-                name={CharacterFiltersE.Status}
-                value={statusValue}
-                checked={status === statusValue}
-                onChange={handleRadioChange}
-              />
-              <label htmlFor={`status-${statusValue}`}>{statusValue || 'All'}</label>
+      <div ref={dropdownRef} style={{ display: 'contents' }}>
+        <button className={styles.toggleFilter} onClick={() => setIsDropdownVisible((prev) => !prev)}>
+          <Filtros className={styles.filtros} />
+        </button>
+        {isDropdownVisible && (
+          <div className={styles.dropDown}>
+            {listStatusFilters.map((statusValue) => (
+              <div key={statusValue}>
+                <input
+                  type="radio"
+                  id={`status-${statusValue}`}
+                  name={CharacterFiltersE.Status}
+                  value={statusValue}
+                  checked={status === statusValue}
+                  onChange={handleRadioChange}
+                />
+                <label htmlFor={`status-${statusValue}`}>{statusValue || 'All'}</label>
+              </div>
+            ))}
+            <div>
+              <input type="checkbox" id="origin" name="origin" checked={origin} onChange={handleCheckboxChange} />
+              <label htmlFor="origin">Filter origin</label>
             </div>
-          ))}
-          <div>
-            <input type="checkbox" id="origin" name="origin" checked={origin} onChange={handleCheckboxChange} />
-            <label htmlFor="origin">Filter origin</label>
           </div>
-        </div>
-      )}
+        )}
+      </div>
       {isFilterActive && (
         <div className={styles.enabledFiltros}>
           Filtro aplicados: {status && <p>Status</p>}

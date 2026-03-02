@@ -1,10 +1,8 @@
-import { useAtom } from 'jotai';
 import type { FC } from 'react';
 import { CharacterFiltersE } from 'src/types/common.types';
 
 import type { CharactersQuery } from '../../generated/graphql';
 import { useFilterSearchParams } from '../../hooks/use-filter-search-params';
-import { paginationStore } from '../../store/characters.store';
 import styles from './pagination.module.scss';
 
 type PaginationI = {
@@ -12,7 +10,6 @@ type PaginationI = {
 };
 
 export const Pagination: FC<PaginationI> = ({ pagination }) => {
-  const [, setPage] = useAtom(paginationStore);
   const { setParam } = useFilterSearchParams();
 
   if (!pagination) return null;
@@ -31,7 +28,6 @@ export const Pagination: FC<PaginationI> = ({ pagination }) => {
   };
 
   const handlePageChange = (page: number) => {
-    setPage(page);
     setParam(CharacterFiltersE.Page, page.toString());
   };
 

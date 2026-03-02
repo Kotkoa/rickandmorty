@@ -1,10 +1,10 @@
 import { skipToken, useSuspenseQuery } from '@apollo/client/react';
 import { useAtom } from 'jotai';
-import { FC, useEffect } from 'react';
+import type { FC } from 'react';
 import { useLocation } from 'react-router-dom';
 import { CharactersByIdsDocument, CharactersDocument } from 'src/generated/graphql';
 import { useFilterSearchParams } from 'src/hooks/use-filter-search-params';
-import { favoriteCharacters, paginationStore } from 'src/store/characters.store';
+import { favoriteCharacters } from 'src/store/characters.store';
 import { CharacterFiltersE } from 'src/types/common.types';
 
 import { CharCard } from '../char-card';
@@ -13,7 +13,6 @@ import { Pagination } from '../pagination/pagination';
 import styles from './char-list.module.scss';
 
 export const CharList: FC = () => {
-  const [pagePagination, setPagePagination] = useAtom(paginationStore);
   const [favoritIds] = useAtom(favoriteCharacters);
 
   const { getParam } = useFilterSearchParams();
@@ -22,6 +21,7 @@ export const CharList: FC = () => {
   const name = getParam(CharacterFiltersE.Name);
   const gender = getParam(CharacterFiltersE.Gender);
   const status = getParam(CharacterFiltersE.Status);
+  const page = Number(getParam(CharacterFiltersE.Page)) || 1;
 
   const isPageHome = location.pathname === '/home';
 
@@ -30,7 +30,7 @@ export const CharList: FC = () => {
     isPageHome
       ? {
           variables: {
-            page: pagePagination,
+            page,
             filter: { name, gender, status },
           },
         }
@@ -41,15 +41,6 @@ export const CharList: FC = () => {
     CharactersByIdsDocument,
     !isPageHome && favoritIds.length ? { variables: { ids: favoritIds } } : skipToken,
   );
-
-  const pageParam = getParam(CharacterFiltersE.Page);
-  const page = pageParam ? Number(pageParam) : pagePagination;
-
-  useEffect(() => {
-    if (page && page !== pagePagination) {
-      setPagePagination(page);
-    }
-  }, [page, setPagePagination]);
 
   const charactersList = isPageHome ? charactersData?.characters?.results : interestData?.charactersByIds;
 

@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai';
-import type { FC } from 'react';
+import type { ChangeEvent, FC } from 'react';
 import { useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search } from 'src/icons/search';
@@ -24,22 +24,22 @@ export const SearchInput: FC = () => {
   );
 
   useEffect(() => {
-    if (inputValue) {
-      debouncedNavigate(inputValue);
-    }
     return () => debouncedNavigate.cancel();
-  }, [inputValue, debouncedNavigate]);
+  }, [debouncedNavigate]);
 
-  useEffect(() => {
-    if (!inputValue) {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setInputValue(value);
+
+    if (value) {
+      debouncedNavigate(value);
+    } else {
+      debouncedNavigate.cancel();
       const params = new URLSearchParams(window.location.search);
-      const name = params.get(CharacterFiltersE.Name);
-      if (name) {
-        params.delete(CharacterFiltersE.Name);
-        navigate(`${window.location.pathname}?${params.toString()}`);
-      }
+      params.delete(CharacterFiltersE.Name);
+      navigate(`${window.location.pathname}?${params.toString()}`);
     }
-  }, [inputValue, navigate]);
+  };
 
   return (
     <>
@@ -48,7 +48,7 @@ export const SearchInput: FC = () => {
         className={styles.search_input}
         placeholder="Buscar personaje..."
         value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
+        onChange={handleChange}
       />
       <Search className={styles.search_icon} />
     </>
