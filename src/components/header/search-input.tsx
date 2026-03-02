@@ -1,9 +1,8 @@
-import { useAtom } from 'jotai';
 import type { ChangeEvent, FC } from 'react';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useFilterSearchParams } from 'src/hooks/use-filter-search-params';
 import { Search } from 'src/icons/search';
-import { searchNameStore } from 'src/store/characters.store';
 import { CharacterFiltersE } from 'src/types/common.types';
 import { debounce } from 'src/utils/debounce';
 
@@ -11,7 +10,16 @@ import styles from './header.module.scss';
 
 export const SearchInput: FC = () => {
   const navigate = useNavigate();
-  const [inputValue, setInputValue] = useAtom(searchNameStore);
+  const { getParam } = useFilterSearchParams();
+  const nameFromUrl = getParam(CharacterFiltersE.Name) ?? '';
+
+  const [inputValue, setInputValue] = useState(nameFromUrl);
+  const [prevName, setPrevName] = useState(nameFromUrl);
+
+  if (nameFromUrl !== prevName) {
+    setPrevName(nameFromUrl);
+    setInputValue(nameFromUrl);
+  }
 
   const debouncedNavigate = useMemo(
     () =>

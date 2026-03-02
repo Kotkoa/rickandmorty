@@ -1,17 +1,14 @@
 import classNames from 'classnames';
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import type { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { favoriteCharacters } from 'src/store/characters.store';
 
 import { StarFavorite } from '../../icons/star-favorite';
-import { favoriteCharacters, genderFilterStore, searchNameStore } from '../../store/characters.store';
 import styles from './show-favorite-list.module.scss';
 
 export const ShowFavoriteList: FC = () => {
-  const [favoritesList] = useAtom(favoriteCharacters);
-  const [, setInputValue] = useAtom(searchNameStore);
-  const [, setGenderFilter] = useAtom(genderFilterStore);
-
+  const favoritesList = useAtomValue(favoriteCharacters);
   const navigate = useNavigate();
 
   return (
@@ -23,11 +20,7 @@ export const ShowFavoriteList: FC = () => {
           className={styles.favoritOff}
           type="button"
           onClick={() => {
-            if (!favoritesList.length) {
-              return null;
-            }
-            setGenderFilter(null);
-            setInputValue('');
+            if (!favoritesList.length) return;
             navigate('/favorite');
           }}>
           <div className={styles.round}>

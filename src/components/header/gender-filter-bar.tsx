@@ -1,7 +1,5 @@
 import classNames from 'classnames';
-import { useAtom } from 'jotai';
 import type { FC } from 'react';
-import { genderFilterStore } from 'src/store/characters.store';
 import { CharacterFiltersE, FilterButtonsE } from 'src/types/common.types';
 
 import { useFilterSearchParams } from '../../hooks/use-filter-search-params';
@@ -16,18 +14,20 @@ const genderButtons = [
 ];
 
 export const GenderFilterBar: FC = () => {
-  const [genderFilter, setGenderFilter] = useAtom(genderFilterStore);
-  const { setParam } = useFilterSearchParams();
+  const { getParam, setParam } = useFilterSearchParams();
+  const gender = getParam(CharacterFiltersE.Gender);
+  const activeButton = gender
+    ? (genderButtons.find((b) => b.toLowerCase() === gender) ?? FilterButtonsE.All)
+    : FilterButtonsE.All;
 
   return (
     <div className={styles.navigate}>
       {genderButtons.map((button) => (
         <button
           key={button}
-          className={classNames(styles.buttn, genderFilter === button && styles.buttnHover)}
+          className={classNames(styles.buttn, activeButton === button && styles.buttnHover)}
           type="button"
           onClick={() => {
-            setGenderFilter(button);
             setParam(CharacterFiltersE.Gender, button === FilterButtonsE.All ? '' : button.toLowerCase());
           }}>
           {button}
