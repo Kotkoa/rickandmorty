@@ -10,11 +10,11 @@ const CharList = lazy<ComponentType<{ mode: 'home' | 'favorite' }>>(() =>
   import('@/components/char-list/char-list').then((m) => ({ default: m.CharList })),
 );
 
-const Ohno = lazy(() => import('@/components/oh-no/oh-no').then((m) => ({ default: m.Ohno })));
+const OhNo = lazy(() => import('@/components/oh-no/oh-no').then((m) => ({ default: m.OhNo })));
 
 const createRouteChildren = (mode: 'home' | 'favorite') => [
   { index: true, element: <CharList mode={mode} />, errorElement: <RouteErrorFallback /> },
-  { path: 'empty', element: <Ohno /> },
+  { path: 'empty', element: <OhNo /> },
 ];
 
 export const router = createBrowserRouter([
@@ -41,6 +41,6 @@ export const router = createBrowserRouter([
   {
     path: '*',
     element: <Root />,
-    children: [{ path: '*', element: <Ohno /> }],
+    children: [{ path: '*', element: <OhNo /> }],
   },
 ]);

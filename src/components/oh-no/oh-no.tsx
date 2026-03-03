@@ -3,29 +3,30 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import styles from './oh-no.module.scss';
 
-export const Ohno: FC = () => {
+export const OhNo: FC = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
   const isFavoritePage = pathname.startsWith('/favorite');
   const isEmptyRoute = pathname.endsWith('/empty');
 
-  let subtitle = '¡No se encontraron resultados!';
-  if (!isEmptyRoute) {
-    subtitle = '¡Pareces perdido en tu viaje!';
-  } else if (isFavoritePage) {
-    subtitle = '¡No tienes personajes favoritos!';
-  }
+  const getSubtitle = () => {
+    if (!isEmptyRoute) return '¡Pareces perdido en tu viaje!';
+    if (isFavoritePage) return '¡No tienes personajes favoritos!';
+    return '¡No se encontraron resultados!';
+  };
+
+  const subtitle = getSubtitle();
 
   const buttonText = isEmptyRoute && !isFavoritePage ? 'Eliminar filtros' : 'Ir al inicio';
 
   return (
-    <div className={styles.containerOhno}>
-      <div className={styles.textUhoh}>Uh-oh!</div>
-      <div className={styles.textLost}>{subtitle}</div>
-      <button className={styles.removeFilter} onClick={() => navigate('/home?page=1')}>
+    <section className={styles.container}>
+      <h1 className={styles.title}>Uh-oh!</h1>
+      <p className={styles.subtitle}>{subtitle}</p>
+      <button className={styles.button} type="button" onClick={() => navigate('/home?page=1')}>
         {buttonText}
       </button>
-    </div>
+    </section>
   );
 };

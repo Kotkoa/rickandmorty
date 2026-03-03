@@ -1,1 +1,1 @@
-export { Ohno } from './oh-no';
+export { OhNo } from './oh-no';
