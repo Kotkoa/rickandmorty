@@ -1,21 +1,19 @@
 import { useSuspenseQuery } from '@apollo/client/react';
-import { useAtomValue } from 'jotai';
-import { type FC, useState } from 'react';
+import type { FC } from 'react';
 
 import { CharactersByIdsDocument } from '@/generated/graphql';
-import { totalCharactersCount } from '@/store/characters.store';
-import { generateUniqueRandomIds } from '@/utils/get-random-collection';
 
 import { CharCard } from '../char-card/char-card';
 import styles from './personajes-interesantes.module.scss';
 
-export const PersonajesInteresantes: FC = () => {
-  const total = useAtomValue(totalCharactersCount);
-  const [interestList] = useState(() => generateUniqueRandomIds(3, total));
+type PersonajesInteresantesProps = {
+  ids: string[];
+};
 
+export const PersonajesInteresantes: FC<PersonajesInteresantesProps> = ({ ids }) => {
   const { data: interestData } = useSuspenseQuery(CharactersByIdsDocument, {
     variables: {
-      ids: interestList,
+      ids,
     },
   });
 
