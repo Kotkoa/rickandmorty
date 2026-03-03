@@ -10,11 +10,12 @@ export const Ohno: FC = () => {
   const isFavoritePage = pathname.startsWith('/favorite');
   const isEmptyRoute = pathname.endsWith('/empty');
 
-  const subtitle = !isEmptyRoute
-    ? '¡Pareces perdido en tu viaje!'
-    : isFavoritePage
-      ? '¡No tienes personajes favoritos!'
-      : '¡No se encontraron resultados!';
+  let subtitle = '¡No se encontraron resultados!';
+  if (!isEmptyRoute) {
+    subtitle = '¡Pareces perdido en tu viaje!';
+  } else if (isFavoritePage) {
+    subtitle = '¡No tienes personajes favoritos!';
+  }
 
   const buttonText = isEmptyRoute && !isFavoritePage ? 'Eliminar filtros' : 'Ir al inicio';
 

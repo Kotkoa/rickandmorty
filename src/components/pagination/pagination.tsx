@@ -17,13 +17,16 @@ export const Pagination: FC<PaginationI> = ({ pagination }) => {
 
   const totalPages = pagination.pages;
 
-  const activePageNumber = !pagination.prev
-    ? 1
-    : !pagination.next && pagination.pages
-      ? totalPages
-      : pagination.next
-        ? pagination.next - 1
-        : 1;
+  const getActivePageNumber = () => {
+    if (!pagination.prev) {
+      return 1;
+    }
+    if (!pagination.next && pagination.pages) {
+      return totalPages;
+    }
+    return pagination.next ? pagination.next - 1 : 1;
+  };
+  const activePageNumber = getActivePageNumber();
 
   const handlePageChange = (page: number) => {
     setParam(CharacterFiltersE.Page, page.toString());

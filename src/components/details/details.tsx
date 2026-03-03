@@ -6,25 +6,13 @@ import { useNavigate } from 'react-router-dom';
 
 import { CharacterDocument } from '@/generated/graphql';
 import { Close } from '@/icons/close';
-import { Info } from '@/icons/info';
 import { StarFavorite } from '@/icons/star-favorite';
 import { favoriteCharacters, totalCharactersCount } from '@/store/characters.store';
 import { generateUniqueRandomIds } from '@/utils/get-random-collection';
 
 import { PersonajesInteresantes } from '../personajes-interesantes/personajes-interesantes';
 import styles from './details.module.scss';
-
-const InfoTab: FC<{ label: string; value?: string | null }> = ({ label, value }) => (
-  <div className={styles.infoTab}>
-    <div className={styles.titleInfo}>
-      <div className={styles.ifoSvg}>
-        <Info />
-      </div>
-      <div className={styles.infoTabText}>{label}</div>
-    </div>
-    <div className={styles.infoTabTextDetails}>{value}</div>
-  </div>
-);
+import { InfoTab } from './info-tab';
 
 type DetailsProps = {
   characterId: string;
