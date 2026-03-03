@@ -27,7 +27,8 @@ export const CharCard: FC<CharCardProps> = ({ character }) => {
 
   if (!character) return null;
 
-  const handleFavorites = () => {
+  const handleFavorites = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setFavoriteList((prev) => (prev.includes(charId) ? prev.filter((item) => item !== charId) : [...prev, charId]));
   };
 
@@ -38,14 +39,14 @@ export const CharCard: FC<CharCardProps> = ({ character }) => {
   };
 
   return (
-    <article className={styles.cardBorder}>
+    <article className={styles.cardBorder} onClick={handleOpenDetails} role="button" tabIndex={0}>
       <div className={styles.charImage}>
         <img alt={character.name ?? ''} src={character.image ?? ''} width={140} />
         <button className={styles.starButton} type="button" aria-label="Favorito" onClick={handleFavorites}>
           <StarFavorite className={classNames(styles.star, isFavorite && styles.starSelected)} />
         </button>
       </div>
-      <button type="button" onClick={handleOpenDetails} className={styles.charDetails}>
+      <div className={styles.charDetails}>
         <div className={styles.rowLine}>
           <span className={classNames(styles.sphereStatus, character.status !== 'Alive' && styles.sphereDead)} />
           <span className={styles.textStatus}>
@@ -61,7 +62,7 @@ export const CharCard: FC<CharCardProps> = ({ character }) => {
           <p className={styles.textLocation}>First seen in:</p>
           {character.episode?.[0]?.name}
         </div>
-      </button>
+      </div>
     </article>
   );
 };

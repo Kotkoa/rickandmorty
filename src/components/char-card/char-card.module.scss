@@ -7,6 +7,7 @@
   height: 140px;
   display: flex;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .starButton {
@@ -18,7 +19,7 @@
   height: 30px;
   border-radius: 50%;
   border: none;
-  background: none;
+  background: radial-gradient(circle, #fff 60%, rgba(255, 255, 255, 0) 100%);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -35,12 +36,6 @@
 }
 
 .charDetails {
-  background: none;
-  color: inherit;
-  border: none;
-  font: inherit;
-  cursor: pointer;
-  outline: inherit;
   width: 100%;
   padding: 10px 12px;
   text-align: left;
