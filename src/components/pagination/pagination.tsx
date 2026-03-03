@@ -6,53 +6,39 @@ import { CharacterFiltersE } from '@/types/common.types';
 
 import styles from './pagination.module.scss';
 
-type PaginationI = {
+type PaginationProps = {
   pagination: NonNullable<NonNullable<CharactersQuery['characters']>['info']>;
 };
 
-export const Pagination: FC<PaginationI> = ({ pagination }) => {
+export const Pagination: FC<PaginationProps> = ({ pagination }) => {
   const { setParam } = useFilterSearchParams();
 
-  if (!pagination) return null;
-
-  const totalPages = pagination.pages;
-
-  const getActivePageNumber = () => {
-    if (!pagination.prev) {
-      return 1;
-    }
-    if (!pagination.next && pagination.pages) {
-      return totalPages;
-    }
-    return pagination.next ? pagination.next - 1 : 1;
-  };
-  const activePageNumber = getActivePageNumber();
+  const totalPages = pagination.pages ?? 1;
+  const activePage = pagination.next ? pagination.next - 1 : totalPages;
 
   const handlePageChange = (page: number) => {
     setParam(CharacterFiltersE.Page, page.toString());
   };
 
   return (
-    <div className={styles.pagination}>
+    <nav className={styles.pagination} aria-label="Paginación">
       <button
-        key="prevPage"
+        className={styles.button}
         type="button"
-        aria-label="Página anterior"
         disabled={!pagination.prev}
         onClick={() => pagination.prev && handlePageChange(pagination.prev)}>
         Anterior
       </button>
-      <div>
-        Página {activePageNumber} de {totalPages}
-      </div>
+      <span className={styles.pageInfo}>
+        Página {activePage} de {totalPages}
+      </span>
       <button
-        key="nextPage"
+        className={styles.button}
         type="button"
-        aria-label="Página siguiente"
         disabled={!pagination.next}
         onClick={() => pagination.next && handlePageChange(pagination.next)}>
         Siguiente
       </button>
-    </div>
+    </nav>
   );
 };
