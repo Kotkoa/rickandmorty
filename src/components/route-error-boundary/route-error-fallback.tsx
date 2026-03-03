@@ -3,30 +3,36 @@ import { isRouteErrorResponse, useNavigate, useRouteError } from 'react-router-d
 
 import styles from './route-error-boundary.module.scss';
 
-export const RouteErrorFallback: FC = () => {
+type RouteErrorFallbackProps = {
+  showStatus?: boolean;
+};
+
+export const RouteErrorFallback: FC<RouteErrorFallbackProps> = ({ showStatus }) => {
   const error = useRouteError();
   const navigate = useNavigate();
 
+  let title = 'Error';
   let message = 'Algo salió mal al cargar los datos.';
 
   if (isRouteErrorResponse(error)) {
+    if (showStatus) title = `Error ${error.status}`;
     message = error.statusText || message;
   } else if (error instanceof Error) {
     message = error.message;
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.title}>Error</div>
-      <div className={styles.message}>{message}</div>
+    <section className={styles.container}>
+      <h1 className={styles.title}>{title}</h1>
+      <p className={styles.message}>{message}</p>
       <div className={styles.actions}>
-        <button className={styles.button} onClick={() => navigate('/home?page=1')}>
+        <button className={styles.button} type="button" onClick={() => navigate('/home?page=1')}>
           Ir al inicio
         </button>
-        <button className={styles.buttonOutline} onClick={() => navigate(0)}>
+        <button className={styles.buttonOutline} type="button" onClick={() => navigate(0)}>
           Intentar de nuevo
         </button>
       </div>
-    </div>
+    </section>
   );
 };
