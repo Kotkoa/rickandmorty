@@ -14,6 +14,8 @@ import { PersonajesInteresantes } from '../personajes-interesantes/personajes-in
 import styles from './details.module.scss';
 import { InfoTab } from './info-tab';
 
+const MAX_EPISODES = 8;
+
 type DetailsProps = {
   characterId: string;
 };
@@ -22,6 +24,7 @@ export const Details: FC<DetailsProps> = ({ characterId }) => {
   const navigate = useNavigate();
   const total = useAtomValue(totalCharactersCount);
   const [interestIds] = useState(() => generateUniqueRandomIds(2, total));
+  const [shareText, setShareText] = useState('Compartir personaje');
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -34,6 +37,30 @@ export const Details: FC<DetailsProps> = ({ characterId }) => {
     const params = new URLSearchParams(window.location.search);
     params.delete('character');
     navigate({ search: params.toString() });
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') handleClose();
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  const handleShare = async () => {
+    const url = window.location.href;
+    const text = `${character?.name} - Rick and Morty`;
+    try {
+      if (navigator.share) {
+        await navigator.share({ title: text, url });
+      } else {
+        await navigator.clipboard.writeText(url);
+        setShareText('Enlace copiado');
+        setTimeout(() => setShareText('Compartir personaje'), 2000);
+      }
+    } catch {
+      /* User cancelled share dialog */
+    }
   };
 
   const favoritesList = useAtomValue(favoriteCharacters);
@@ -60,18 +87,16 @@ export const Details: FC<DetailsProps> = ({ characterId }) => {
             <Close />
           </button>
           <div className={styles.infoBasic}>
-            <div className={styles.infoImg}>
-              <img className={styles.charIm} alt="character" src={`${character?.image}`} />
-            </div>
+            <img className={styles.charIm} alt={character.name ?? 'Character'} src={character.image ?? ''} />
             <div className={styles.infoStar}>
               <StarFavorite
                 className={classNames(styles.starFav, favoritesList.includes(characterId) && styles.starSelected)}
               />
             </div>
             <div className={styles.infoText}>
-              <span className={styles.status}>{character?.status?.toUpperCase()}</span>
-              <h2 className={styles.name}>{character?.name}</h2>
-              <span className={styles.status}>{character?.species?.toUpperCase()}</span>
+              <span className={styles.status}>{character.status?.toUpperCase()}</span>
+              <h2 className={styles.name}>{character.name}</h2>
+              <span className={styles.status}>{character.species?.toUpperCase()}</span>
             </div>
           </div>
         </div>
@@ -79,52 +104,31 @@ export const Details: FC<DetailsProps> = ({ characterId }) => {
         <section className={styles.informacion}>
           <h3 className={styles.textStyle}>Información</h3>
           <div className={styles.tabs}>
-            <InfoTab label="Gender:" value={character?.gender} />
-            <InfoTab label="Origen:" value={character?.origin?.name} />
-            <InfoTab label="Type:" value={character?.type || 'Unknown'} />
+            <InfoTab label="Gender:" value={character.gender} />
+            <InfoTab label="Origen:" value={character.origin?.name} />
+            <InfoTab label="Type:" value={character.type || 'Unknown'} />
           </div>
         </section>
         <hr className={styles.borderLine} />
         <section className={styles.episodes}>
           <h3 className={styles.textStyle}>Episodios</h3>
           <div className={styles.episodeTabs}>
-            {character?.episode?.slice(0, 8).map((episode) => {
-              return (
-                <div className={styles.infEpisoTab} key={episode?.id}>
-                  <div className={styles.epiInfo}>
-                    <div className={styles.epiName}>{episode?.name}</div>
-                    <div className={styles.episode}>{episode?.episode}</div>
-                    <div className={styles.epiDate}>{episode?.air_date}</div>
-                  </div>
-                </div>
-              );
-            })}
+            {character.episode?.slice(0, MAX_EPISODES).map((episode) => (
+              <div className={styles.infEpisoTab} key={episode?.id}>
+                <div className={styles.epiName}>{episode?.name}</div>
+                <div className={styles.episode}>{episode?.episode}</div>
+                <div className={styles.epiDate}>{episode?.air_date}</div>
+              </div>
+            ))}
           </div>
           <hr className={styles.borderLine} />
         </section>
         <Suspense>
           <PersonajesInteresantes ids={interestIds} />
         </Suspense>
-        <div className={styles.compartir}>
-          <button
-            type="button"
-            onClick={async (e) => {
-              const btn = e.currentTarget;
-              const url = window.location.href;
-              const text = `${character?.name} - Rick and Morty`;
-              if (navigator.share) {
-                await navigator.share({ title: text, url });
-              } else {
-                await navigator.clipboard.writeText(url);
-                btn.textContent = 'Enlace copiado';
-                setTimeout(() => {
-                  btn.textContent = 'Compartir personaje';
-                }, 2000);
-              }
-            }}>
-            Compartir personaje
-          </button>
-        </div>
+        <button className={styles.shareBtn} type="button" onClick={handleShare}>
+          {shareText}
+        </button>
       </div>
     </div>
   );
