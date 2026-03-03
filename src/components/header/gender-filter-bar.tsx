@@ -15,11 +15,11 @@ const genderButtons = [
 ];
 
 const genderLabels: Record<FilterButtonsE, string> = {
-  [FilterButtonsE.All]: 'Todos',
-  [FilterButtonsE.Unknown]: 'Desconocido',
-  [FilterButtonsE.Female]: 'Femenino',
-  [FilterButtonsE.Male]: 'Masculino',
-  [FilterButtonsE.Genderless]: 'Sin género',
+  [FilterButtonsE.All]: 'All',
+  [FilterButtonsE.Unknown]: 'Unknown',
+  [FilterButtonsE.Female]: 'Female',
+  [FilterButtonsE.Male]: 'Male',
+  [FilterButtonsE.Genderless]: 'Genderless',
 };
 
 export const GenderFilterBar: FC = () => {

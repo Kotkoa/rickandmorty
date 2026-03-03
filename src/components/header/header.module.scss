@@ -13,13 +13,6 @@
   justify-content: center;
 }
 
-.logo_rickmorty {
-  width: 347px;
-  height: 122px;
-  background: url('../../assets/rick-and-morty.png');
-  background-size: cover;
-}
-
 .search_block {
   position: relative;
 }
@@ -94,10 +87,6 @@
   justify-content: center;
   border-bottom: 1px solid #bdbdbd;
   background: #f2f2f2;
-
-  a {
-    text-decoration: none;
-  }
 }
 
 .buttn {
@@ -105,21 +94,16 @@
   align-items: center;
   justify-content: center;
   border: 0;
+  background: none;
   width: 162px;
   height: 80px;
   cursor: pointer;
+
+  &:hover {
+    border-bottom: 3px solid #c2edcd;
+  }
 }
 
 .buttnHover {
-  display: flex;
-  align-items: center;
-  border: 0;
-  justify-content: center;
-  width: 162px;
-  height: 80px;
   border-bottom: 3px solid #34c759;
-}
-
-.buttn:hover {
-  border-bottom: 3px solid #c2edcd;
 }
