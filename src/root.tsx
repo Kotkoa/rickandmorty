@@ -18,9 +18,11 @@ export const Root: FC = () => {
       <Header />
       <GenderTabs />
       <ShowFavorites />
-      <Suspense fallback={<CharListSkeleton />}>
-        <Outlet />
-      </Suspense>
+      <main style={{ flex: 1, display: 'flex', flexDirection: 'column', backgroundColor: '#fff' }}>
+        <Suspense fallback={<CharListSkeleton />}>
+          <Outlet />
+        </Suspense>
+      </main>
       <Footer />
       {characterId && (
         <Suspense fallback={<div>Cargando detalles...</div>}>

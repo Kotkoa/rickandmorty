@@ -1,7 +1,9 @@
 .charcardContainer {
   width: 100%;
+  flex: 1;
   display: grid;
   grid-template-columns: repeat(3, 326px);
+  align-content: start;
   justify-content: center;
   padding: 0 80px 50px;
   background-color: #fff;
