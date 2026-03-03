@@ -1,6 +1,7 @@
 import { type FC, lazy, Suspense } from 'react';
 import { Outlet, useSearchParams } from 'react-router-dom';
 
+import { Footer } from '@/components/footer';
 import { Header } from '@/components/header';
 
 const Details = lazy(() => import('@/components/details/details').then((m) => ({ default: m.Details })));
@@ -15,6 +16,7 @@ export const Root: FC = () => {
       <Suspense fallback={<div>Cargando...</div>}>
         <Outlet />
       </Suspense>
+      <Footer />
       {characterId && (
         <Suspense fallback={<div>Cargando detalles...</div>}>
           <Details characterId={characterId} />
