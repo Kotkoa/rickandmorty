@@ -4,7 +4,7 @@ import type { FC } from 'react';
 import { useFilterSearchParams } from '@/hooks/use-filter-search-params';
 import { CharacterFiltersE, FilterButtonsE } from '@/types/common.types';
 
-import styles from './header.module.scss';
+import styles from './gender-tabs.module.scss';
 
 const genderButtons = [
   FilterButtonsE.All,
@@ -22,26 +22,32 @@ const genderLabels: Record<FilterButtonsE, string> = {
   [FilterButtonsE.Genderless]: 'Genderless',
 };
 
-export const GenderFilterBar: FC = () => {
-  const { getParam, setParam } = useFilterSearchParams();
+export const GenderTabs: FC = () => {
+  const { getParam, setParam, deleteParam } = useFilterSearchParams();
   const gender = getParam(CharacterFiltersE.Gender);
   const activeButton = gender
     ? (genderButtons.find((b) => b.toLowerCase() === gender) ?? FilterButtonsE.All)
     : FilterButtonsE.All;
 
   return (
-    <div className={styles.navigate}>
+    <nav className={styles.tabList} role="tablist" aria-label="Filter by gender">
       {genderButtons.map((button) => (
         <button
           key={button}
-          className={classNames(styles.buttn, activeButton === button && styles.buttnHover)}
+          role="tab"
+          aria-selected={activeButton === button}
+          className={classNames(styles.tab, activeButton === button && styles.tabActive)}
           type="button"
           onClick={() => {
-            setParam(CharacterFiltersE.Gender, button === FilterButtonsE.All ? '' : button.toLowerCase());
+            if (button === FilterButtonsE.All) {
+              deleteParam(CharacterFiltersE.Gender);
+            } else {
+              setParam(CharacterFiltersE.Gender, button.toLowerCase());
+            }
           }}>
           {genderLabels[button]}
         </button>
       ))}
-    </div>
+    </nav>
   );
 };

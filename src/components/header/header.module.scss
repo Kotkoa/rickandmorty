@@ -99,29 +99,3 @@
     color: black;
   }
 }
-
-.navigate {
-  display: flex;
-  justify-content: center;
-  border-bottom: 1px solid #bdbdbd;
-  background: #f2f2f2;
-}
-
-.buttn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 0;
-  background: none;
-  width: 162px;
-  height: 80px;
-  cursor: pointer;
-
-  &:hover {
-    border-bottom: 3px solid #c2edcd;
-  }
-}
-
-.buttnHover {
-  border-bottom: 3px solid #34c759;
-}

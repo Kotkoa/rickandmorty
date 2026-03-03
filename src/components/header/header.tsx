@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 import rickAndMorty from '@/assets/rick-and-morty.png';
 
+import { GenderTabs } from '../gender-tabs';
 import { ShowFavoriteList } from '../show-favorite-list';
 import { FilterDropdown } from './filter-dropdown';
-import { GenderFilterBar } from './gender-filter-bar';
 import styles from './header.module.scss';
 import { SearchInput } from './search-input';
 
@@ -20,7 +20,7 @@ export const Header: FC = () => (
         <FilterDropdown />
       </div>
     </div>
-    <GenderFilterBar />
+    <GenderTabs />
     <ShowFavoriteList />
   </header>
 );
