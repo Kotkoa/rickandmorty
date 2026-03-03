@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { useAtomValue, useSetAtom } from 'jotai';
 import { selectAtom } from 'jotai/utils';
 import { FC, useMemo } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import type { CharCardFieldsFragment } from '@/generated/graphql';
 import { StarFavorite } from '@/icons/star-favorite';
@@ -16,7 +16,7 @@ type CharCardProps = {
 
 export const CharCard: FC<CharCardProps> = ({ character }) => {
   const charId = character?.id ?? '';
-  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
   const isFavoriteAtom = useMemo(
     () => selectAtom(favoriteCharacters, (favorites) => favorites.includes(charId)),
     [charId],
@@ -31,9 +31,9 @@ export const CharCard: FC<CharCardProps> = ({ character }) => {
   if (!character) return null;
 
   const handleOpenDetails = () => {
-    const newParams = new URLSearchParams(searchParams);
-    newParams.set('character', charId);
-    setSearchParams(newParams);
+    const params = new URLSearchParams(window.location.search);
+    params.set('character', charId);
+    navigate({ search: params.toString() });
   };
 
   return (
