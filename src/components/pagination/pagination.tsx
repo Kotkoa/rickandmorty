@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import { type FC, useTransition } from 'react';
 
 import type { CharactersQuery } from '@/generated/graphql';
 import { useFilterSearchParams } from '@/hooks/use-filter-search-params';
@@ -12,16 +12,19 @@ type PaginationProps = {
 
 export const Pagination: FC<PaginationProps> = ({ pagination }) => {
   const { setParam } = useFilterSearchParams();
+  const [isPending, startTransition] = useTransition();
 
   const totalPages = pagination.pages ?? 1;
   const activePage = pagination.next ? pagination.next - 1 : totalPages;
 
   const handlePageChange = (page: number) => {
-    setParam(CharacterFiltersE.Page, page.toString());
+    startTransition(() => {
+      setParam(CharacterFiltersE.Page, page.toString());
+    });
   };
 
   return (
-    <nav className={styles.pagination} aria-label="Paginación">
+    <nav className={styles.pagination} aria-label="Paginación" style={isPending ? { opacity: 0.6 } : undefined}>
       <button
         className={styles.button}
         type="button"
