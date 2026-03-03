@@ -1,19 +1,24 @@
 import { skipToken, useSuspenseQuery } from '@apollo/client/react';
-import { useAtomValue } from 'jotai';
-import type { FC } from 'react';
+import { useAtomValue, useSetAtom } from 'jotai';
+import { type FC, useEffect } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 
 import { CharactersByIdsDocument, CharactersDocument } from '@/generated/graphql';
 import { useFilterSearchParams } from '@/hooks/use-filter-search-params';
-import { favoriteCharacters } from '@/store/characters.store';
+import { favoriteCharacters, totalCharactersCount } from '@/store/characters.store';
 import { CharacterFiltersE } from '@/types/common.types';
 
 import { CharCard } from '../char-card';
 import { Pagination } from '../pagination/pagination';
 import styles from './char-list.module.scss';
 
-export const CharList: FC = () => {
+type CharListProps = {
+  mode: 'home' | 'favorite';
+};
+
+export const CharList: FC<CharListProps> = ({ mode }) => {
   const favoritIds = useAtomValue(favoriteCharacters);
+  const setTotalCount = useSetAtom(totalCharactersCount);
   const { getParam } = useFilterSearchParams();
   const location = useLocation();
 
@@ -21,8 +26,9 @@ export const CharList: FC = () => {
   const gender = getParam(CharacterFiltersE.Gender);
   const status = getParam(CharacterFiltersE.Status);
   const page = Number(getParam(CharacterFiltersE.Page)) || 1;
+  const originFilter = getParam(CharacterFiltersE.Origin) === 'known';
 
-  const isPageHome = location.pathname === '/home';
+  const isPageHome = mode === 'home';
 
   const { data: charactersData } = useSuspenseQuery(
     CharactersDocument,
@@ -41,7 +47,15 @@ export const CharList: FC = () => {
     !isPageHome && favoritIds.length ? { variables: { ids: favoritIds } } : skipToken,
   );
 
-  const charactersList = isPageHome ? charactersData?.characters?.results : interestData?.charactersByIds;
+  const count = charactersData?.characters?.info?.count;
+  useEffect(() => {
+    if (count) setTotalCount(count);
+  }, [count, setTotalCount]);
+
+  const rawList = isPageHome ? charactersData?.characters?.results : interestData?.charactersByIds;
+  const charactersList = originFilter
+    ? rawList?.filter((c) => c?.origin?.name && c.origin.name.toLowerCase() !== 'unknown')
+    : rawList;
   const isEmpty = !charactersList?.length;
 
   if (isEmpty) {

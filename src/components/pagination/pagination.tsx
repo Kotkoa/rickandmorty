@@ -1,8 +1,9 @@
 import type { FC } from 'react';
-import { CharacterFiltersE } from '@/types/common.types';
 
 import type { CharactersQuery } from '@/generated/graphql';
 import { useFilterSearchParams } from '@/hooks/use-filter-search-params';
+import { CharacterFiltersE } from '@/types/common.types';
+
 import styles from './pagination.module.scss';
 
 type PaginationI = {
@@ -16,16 +17,13 @@ export const Pagination: FC<PaginationI> = ({ pagination }) => {
 
   const totalPages = pagination.pages;
 
-  const activePageNumber = () => {
-    if (!pagination.prev) {
-      return 1;
-    } else if (!pagination.next && pagination.pages) {
-      return totalPages;
-    } else if (pagination.next) {
-      return pagination.next - 1;
-    }
-    return 1;
-  };
+  const activePageNumber = !pagination.prev
+    ? 1
+    : !pagination.next && pagination.pages
+      ? totalPages
+      : pagination.next
+        ? pagination.next - 1
+        : 1;
 
   const handlePageChange = (page: number) => {
     setParam(CharacterFiltersE.Page, page.toString());
@@ -36,19 +34,21 @@ export const Pagination: FC<PaginationI> = ({ pagination }) => {
       <button
         key="prevPage"
         type="button"
+        aria-label="Página anterior"
         disabled={!pagination.prev}
         onClick={() => pagination.prev && handlePageChange(pagination.prev)}>
-        prev
+        Anterior
       </button>
       <div>
-        Page {activePageNumber()} of {totalPages}
+        Página {activePageNumber} de {totalPages}
       </div>
       <button
         key="nextPage"
         type="button"
+        aria-label="Página siguiente"
         disabled={!pagination.next}
         onClick={() => pagination.next && handlePageChange(pagination.next)}>
-        next
+        Siguiente
       </button>
     </div>
   );

@@ -5,7 +5,7 @@ import type { FC } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { CharacterDocument } from '@/generated/graphql';
-import { Close } from '@/icons/closet';
+import { Close } from '@/icons/close';
 import { Info } from '@/icons/info';
 import { StarFavorite } from '@/icons/star-favorite';
 import { favoriteCharacters } from '@/store/characters.store';
@@ -33,8 +33,9 @@ export const Details: FC<DetailsProps> = ({ characterId }) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const handleClose = () => {
-    searchParams.delete('character');
-    setSearchParams(searchParams);
+    const newParams = new URLSearchParams(searchParams);
+    newParams.delete('character');
+    setSearchParams(newParams);
   };
 
   const favoritesList = useAtomValue(favoriteCharacters);
@@ -46,13 +47,13 @@ export const Details: FC<DetailsProps> = ({ characterId }) => {
 
   const character = characterData?.character;
 
-  if (!character) return <div className={styles.noDataContainer}>No Data...</div>;
+  if (!character) return <div className={styles.noDataContainer}>Sin datos...</div>;
 
   return (
     <div className={styles.detailsLayer}>
       <div className={styles.containerDetails}>
         <div className={styles.bgImg}>
-          <button className={styles.closet} type="button" onClick={handleClose}>
+          <button className={styles.closeBtn} type="button" aria-label="Cerrar" onClick={handleClose}>
             <Close />
           </button>
           <div className={styles.infoBasic}>
@@ -75,9 +76,9 @@ export const Details: FC<DetailsProps> = ({ characterId }) => {
         <div className={styles.informacion}>
           <div className={styles.textStyle}>Información</div>
           <div className={styles.tabs}>
-            <InfoTab label="Gender:" value={character?.gender} />
-            <InfoTab label="Origin:" value={character?.origin?.name} />
-            <InfoTab label="Type:" value={character?.type} />
+            <InfoTab label="Género:" value={character?.gender} />
+            <InfoTab label="Origen:" value={character?.origin?.name} />
+            <InfoTab label="Tipo:" value={character?.type} />
           </div>
         </div>
         <div className={styles.borderLine} />
@@ -100,7 +101,17 @@ export const Details: FC<DetailsProps> = ({ characterId }) => {
         </div>
         <PersonajesInteresantes />
         <div className={styles.compartir}>
-          <button type="button" onClick={handleClose}>
+          <button
+            type="button"
+            onClick={async () => {
+              const url = window.location.href;
+              const text = `${character?.name} - Rick and Morty`;
+              if (navigator.share) {
+                await navigator.share({ title: text, url });
+              } else {
+                await navigator.clipboard.writeText(url);
+              }
+            }}>
             Compartir personaje
           </button>
         </div>

@@ -6,7 +6,7 @@ export enum FilterButtonsE {
   Genderless = 'Genderless',
 }
 
-export type PropsI = {
+export type SvgIconProps = {
   className?: string;
 };
 
@@ -22,4 +22,5 @@ export enum CharacterFiltersE {
   Status = 'status',
   Gender = 'gender',
   Page = 'page',
+  Origin = 'origin',
 }

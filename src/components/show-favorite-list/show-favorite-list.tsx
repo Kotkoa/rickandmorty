@@ -20,6 +20,7 @@ export const ShowFavoriteList: FC = () => {
           key="favorite"
           className={styles.favoritOff}
           type="button"
+          aria-label="Ver favoritos"
           onClick={() => {
             if (!favoritesList.length) return;
             navigate('/favorite');

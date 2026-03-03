@@ -1,4 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
+
 import { CharacterFiltersE } from '@/types/common.types';
 
 export const useFilterSearchParams = () => {

@@ -1,7 +1,8 @@
 import type { FC } from 'react';
-import { PropsI } from '@/types/common.types';
 
-export const StarFavorite: FC<PropsI> = ({ className }) => {
+import { SvgIconProps } from '@/types/common.types';
+
+export const StarFavorite: FC<SvgIconProps> = ({ className }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

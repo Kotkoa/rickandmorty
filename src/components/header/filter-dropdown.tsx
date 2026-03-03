@@ -1,20 +1,21 @@
-import { ChangeEvent, FC, useCallback, useRef, useState } from 'react';
-import { Filtros } from '@/icons/filtros';
-import { CharacterFiltersE, StatusFilterE } from '@/types/common.types';
+import { type ChangeEvent, type FC, useCallback, useRef, useState } from 'react';
 
 import { useClickOutside } from '@/hooks/use-click-outside';
 import { useFilterSearchParams } from '@/hooks/use-filter-search-params';
+import { Filtros } from '@/icons/filtros';
+import { CharacterFiltersE, StatusFilterE } from '@/types/common.types';
+
 import styles from './header.module.scss';
 
 const listStatusFilters = [StatusFilterE.All, StatusFilterE.Alive, StatusFilterE.Dead, StatusFilterE.Unknown];
 
 export const FilterDropdown: FC = () => {
-  const { getParam, setParam } = useFilterSearchParams();
+  const { getParam, setParam, deleteParam } = useFilterSearchParams();
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-  const [origin, setOrigin] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   const status = getParam(CharacterFiltersE.Status);
+  const origin = getParam(CharacterFiltersE.Origin) === 'known';
   const isFilterActive = status || origin;
 
   const closeDropdown = useCallback(() => setIsDropdownVisible(false), []);
@@ -28,13 +29,20 @@ export const FilterDropdown: FC = () => {
   };
 
   const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setOrigin(event.target.checked);
+    if (event.target.checked) {
+      setParam(CharacterFiltersE.Origin, 'known');
+    } else {
+      deleteParam(CharacterFiltersE.Origin);
+    }
   };
 
   return (
     <>
       <div ref={dropdownRef} style={{ display: 'contents' }}>
-        <button className={styles.toggleFilter} onClick={() => setIsDropdownVisible((prev) => !prev)}>
+        <button
+          className={styles.toggleFilter}
+          aria-label="Filtros"
+          onClick={() => setIsDropdownVisible((prev) => !prev)}>
           <Filtros className={styles.filtros} />
         </button>
         {isDropdownVisible && (
@@ -49,21 +57,21 @@ export const FilterDropdown: FC = () => {
                   checked={status === statusValue}
                   onChange={handleRadioChange}
                 />
-                <label htmlFor={`status-${statusValue}`}>{statusValue || 'All'}</label>
+                <label htmlFor={`status-${statusValue}`}>{statusValue || 'Todos'}</label>
               </div>
             ))}
             <div>
               <input type="checkbox" id="origin" name="origin" checked={origin} onChange={handleCheckboxChange} />
-              <label htmlFor="origin">Filter origin</label>
+              <label htmlFor="origin">Origen conocido</label>
             </div>
           </div>
         )}
       </div>
       {isFilterActive && (
         <div className={styles.enabledFiltros}>
-          Filtro aplicados: {status && <p>Status</p>}
+          Filtros aplicados: {status && <p>Estado</p>}
           {status && origin && <p>, </p>}
-          {origin && <p>Origin</p>}
+          {origin && <p>Origen</p>}
         </div>
       )}
     </>

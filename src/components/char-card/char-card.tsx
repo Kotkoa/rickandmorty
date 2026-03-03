@@ -3,10 +3,11 @@ import { useAtomValue, useSetAtom } from 'jotai';
 import { selectAtom } from 'jotai/utils';
 import { FC, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
+
 import type { CharCardFieldsFragment } from '@/generated/graphql';
 import { StarFavorite } from '@/icons/star-favorite';
-
 import { favoriteCharacters } from '@/store/characters.store';
+
 import styles from './char-card.module.scss';
 
 type CharCardProps = {
@@ -27,18 +28,19 @@ export const CharCard: FC<CharCardProps> = ({ character }) => {
     setFavoriteList((prev) => (prev.includes(charId) ? prev.filter((item) => item !== charId) : [...prev, charId]));
   };
 
-  const handleOpenDetails = () => {
-    searchParams.set('character', charId);
-    setSearchParams(searchParams);
-  };
-
   if (!character) return null;
+
+  const handleOpenDetails = () => {
+    const newParams = new URLSearchParams(searchParams);
+    newParams.set('character', charId);
+    setSearchParams(newParams);
+  };
 
   return (
     <div className={styles.cardBorder}>
       <div className={styles.charImage}>
         <img alt={charId} src={character?.image ?? ''} width={140} />
-        <button className={styles.starButton} key="setSelected" type="button" onClick={handleFavorites}>
+        <button className={styles.starButton} key="setSelected" type="button" aria-label="Favorito" onClick={handleFavorites}>
           <StarFavorite className={classNames(styles.star, isFavorite && styles.starSelected)} />
         </button>
       </div>
@@ -51,11 +53,11 @@ export const CharCard: FC<CharCardProps> = ({ character }) => {
         </div>
         <div className={classNames(styles.rowLine, styles.charName)}>{character?.name}</div>
         <div className={styles.rowLine}>
-          <p className={styles.textLocation}>Last known location:</p>
+          <p className={styles.textLocation}>Última ubicación conocida:</p>
           {character?.location?.name}
         </div>
         <div className={styles.rowLine}>
-          <p className={styles.textLocation}>First seen in:</p>
+          <p className={styles.textLocation}>Visto por primera vez en:</p>
           {character?.episode?.[0]?.name}
         </div>
       </button>

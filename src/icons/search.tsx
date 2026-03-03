@@ -1,7 +1,8 @@
 import type { FC } from 'react';
-import { PropsI } from '@/types/common.types';
 
-export const Search: FC<PropsI> = ({ className }) => {
+import { SvgIconProps } from '@/types/common.types';
+
+export const Search: FC<SvgIconProps> = ({ className }) => {
   return (
     <svg
       className={className}

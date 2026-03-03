@@ -14,6 +14,14 @@ const genderButtons = [
   FilterButtonsE.Genderless,
 ];
 
+const genderLabels: Record<FilterButtonsE, string> = {
+  [FilterButtonsE.All]: 'Todos',
+  [FilterButtonsE.Unknown]: 'Desconocido',
+  [FilterButtonsE.Female]: 'Femenino',
+  [FilterButtonsE.Male]: 'Masculino',
+  [FilterButtonsE.Genderless]: 'Sin género',
+};
+
 export const GenderFilterBar: FC = () => {
   const { getParam, setParam } = useFilterSearchParams();
   const gender = getParam(CharacterFiltersE.Gender);
@@ -31,7 +39,7 @@ export const GenderFilterBar: FC = () => {
           onClick={() => {
             setParam(CharacterFiltersE.Gender, button === FilterButtonsE.All ? '' : button.toLowerCase());
           }}>
-          {button}
+          {genderLabels[button]}
         </button>
       ))}
     </div>

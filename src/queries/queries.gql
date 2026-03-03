@@ -4,6 +4,9 @@ fragment CharCardFields on Character {
   species
   status
   image
+  origin {
+    name
+  }
   episode {
     name
   }
@@ -31,6 +34,7 @@ query Character($id: ID!) {
 query Characters($page: Int, $filter: FilterCharacter) {
   characters(page: $page, filter: $filter) {
     info {
+      count
       pages
       next
       prev
