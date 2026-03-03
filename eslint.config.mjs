@@ -1,3 +1,4 @@
+import { fixupPluginRules } from '@eslint/compat';
 import eslint from '@eslint/js';
 import { defineConfig } from 'eslint/config';
 import eslintConfigPrettier from 'eslint-config-prettier';
@@ -10,7 +11,7 @@ export default defineConfig([
   eslint.configs.recommended,
   tseslint.configs.recommended,
   {
-    plugins: { 'simple-import-sort': simpleImportSort, react },
+    plugins: { 'simple-import-sort': simpleImportSort, react: fixupPluginRules(react) },
     settings: { react: { version: 'detect' } },
     rules: {
       'simple-import-sort/imports': 'warn',
