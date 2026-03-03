@@ -45,9 +45,8 @@
 
 .search_icon {
   position: absolute;
-  left: 0;
-  margin-left: 15px;
-  margin-top: 16px;
+  top: 16px;
+  left: 15px;
   color: #bdbdbd;
 }
 
@@ -61,9 +60,8 @@
   outline: none;
   cursor: pointer;
   position: absolute;
-  right: 0;
-  margin-right: 15px;
-  margin-top: 16px;
+  top: 16px;
+  right: 15px;
 }
 
 .dropDown {
@@ -74,6 +72,11 @@
   border: 1px solid #bdbdbd;
   border-radius: 6px;
   padding: 10px;
+
+  label {
+    display: block;
+    cursor: pointer;
+  }
 }
 
 .enabledFiltros {
@@ -86,11 +89,12 @@
   border-radius: 6px;
   padding: 10px;
   display: flex;
+  gap: 4px;
   align-items: baseline;
   color: rgba(52, 199, 89, 1);
   font-weight: 600;
 
-  p {
+  span {
     font-weight: 400;
     color: black;
   }
