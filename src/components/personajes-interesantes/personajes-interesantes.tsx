@@ -18,14 +18,14 @@ export const PersonajesInteresantes: FC<PersonajesInteresantesProps> = ({ ids })
   });
 
   return (
-    <div className={styles.personajes}>
-      <div className={styles.textStyle}>Personajes interesantes</div>
+    <section>
+      <h3 className={styles.textStyle}>Personajes interesantes</h3>
       <div className={styles.personageTabs}>
         {interestData?.charactersByIds?.map((character) => {
           if (!character) return null;
           return <CharCard character={character} key={character.id} />;
         })}
       </div>
-    </div>
+    </section>
   );
 };
