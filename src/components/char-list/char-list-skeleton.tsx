@@ -7,8 +7,10 @@ const SKELETON_COUNT = 20;
 
 export const CharListSkeleton: FC = () => (
   <div className={styles.charcardContainer}>
-    {Array.from({ length: SKELETON_COUNT }, (_, i) => (
-      <CharCardSkeleton key={i} />
-    ))}
+    <div className={styles.cardsGrid}>
+      {Array.from({ length: SKELETON_COUNT }, (_, i) => (
+        <CharCardSkeleton key={i} />
+      ))}
+    </div>
   </div>
 );

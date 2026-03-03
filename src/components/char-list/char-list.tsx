@@ -65,11 +65,13 @@ export const CharList: FC<CharListProps> = ({ mode }) => {
 
   return (
     <div className={styles.charcardContainer}>
-      {charactersList.map((character) => {
-        if (!character) return null;
+      <div className={styles.cardsGrid}>
+        {charactersList.map((character) => {
+          if (!character) return null;
 
-        return <CharCard character={character} key={character.id} />;
-      })}
+          return <CharCard character={character} key={character.id} />;
+        })}
+      </div>
       {isPageHome && charactersData?.characters?.info && <Pagination pagination={charactersData?.characters?.info} />}
     </div>
   );
