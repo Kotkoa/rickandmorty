@@ -2,7 +2,9 @@ import { type FC, lazy, Suspense } from 'react';
 import { Outlet, useSearchParams } from 'react-router-dom';
 
 import { Footer } from '@/components/footer';
+import { GenderTabs } from '@/components/gender-tabs';
 import { Header } from '@/components/header';
+import { ShowFavoriteList } from '@/components/show-favorite-list';
 
 const Details = lazy(() => import('@/components/details/details').then((m) => ({ default: m.Details })));
 
@@ -13,6 +15,8 @@ export const Root: FC = () => {
   return (
     <>
       <Header />
+      <GenderTabs />
+      <ShowFavoriteList />
       <Suspense fallback={<div>Cargando...</div>}>
         <Outlet />
       </Suspense>
