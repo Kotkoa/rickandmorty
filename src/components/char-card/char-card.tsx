@@ -53,13 +53,13 @@ export const CharCard: FC<CharCardProps> = ({ character }) => {
             {character.status} - {character.species}
           </span>
         </div>
-        <div className={classNames(styles.rowLine, styles.charName)}>{character.name}</div>
+        <h3 className={styles.charName}>{character.name}</h3>
         <div className={styles.rowLine}>
-          <p className={styles.textLocation}>Last known location:</p>
+          <span className={styles.textLocation}>Last known location:</span>
           {character.location?.name}
         </div>
         <div className={styles.rowLine}>
-          <p className={styles.textLocation}>First seen in:</p>
+          <span className={styles.textLocation}>First seen in:</span>
           {character.episode?.[0]?.name}
         </div>
       </div>
