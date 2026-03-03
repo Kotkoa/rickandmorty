@@ -2,9 +2,10 @@ import classNames from 'classnames';
 import { useAtomValue } from 'jotai';
 import type { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { favoriteCharacters } from '@/store/characters.store';
 
 import { StarFavorite } from '@/icons/star-favorite';
+import { favoriteCharacters } from '@/store/characters.store';
+
 import styles from './show-favorite-list.module.scss';
 
 export const ShowFavoriteList: FC = () => {
@@ -24,7 +25,7 @@ export const ShowFavoriteList: FC = () => {
             navigate('/favorite');
           }}>
           <div className={styles.round}>
-            <StarFavorite className={classNames(styles.starFav, favoritesList.length && styles.starSelected)} />
+            <StarFavorite className={classNames(styles.starFav, favoritesList.length > 0 && styles.starSelected)} />
           </div>
         </button>
       </div>

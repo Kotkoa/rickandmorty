@@ -1,7 +1,7 @@
 import { skipToken, useSuspenseQuery } from '@apollo/client/react';
-import { useAtom } from 'jotai';
-import { type FC, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useAtomValue } from 'jotai';
+import type { FC } from 'react';
+import { Navigate, useLocation } from 'react-router-dom';
 
 import { CharactersByIdsDocument, CharactersDocument } from '@/generated/graphql';
 import { useFilterSearchParams } from '@/hooks/use-filter-search-params';
@@ -13,10 +13,9 @@ import { Pagination } from '../pagination/pagination';
 import styles from './char-list.module.scss';
 
 export const CharList: FC = () => {
-  const [favoritIds] = useAtom(favoriteCharacters);
+  const favoritIds = useAtomValue(favoriteCharacters);
   const { getParam } = useFilterSearchParams();
   const location = useLocation();
-  const navigate = useNavigate();
 
   const name = getParam(CharacterFiltersE.Name);
   const gender = getParam(CharacterFiltersE.Gender);
@@ -45,15 +44,9 @@ export const CharList: FC = () => {
   const charactersList = isPageHome ? charactersData?.characters?.results : interestData?.charactersByIds;
   const isEmpty = !charactersList?.length;
 
-  useEffect(() => {
-    if (isEmpty) {
-      const basePath = isPageHome ? '/home' : '/favorite';
-      navigate(`${basePath}/empty${location.search}`, { replace: true });
-    }
-  }, [isEmpty, isPageHome, navigate, location.search]);
-
   if (isEmpty) {
-    return null;
+    const basePath = isPageHome ? '/home' : '/favorite';
+    return <Navigate to={`${basePath}/empty${location.search}`} replace />;
   }
 
   return (

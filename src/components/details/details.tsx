@@ -1,6 +1,6 @@
 import { skipToken, useSuspenseQuery } from '@apollo/client/react';
 import classNames from 'classnames';
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai';
 import type { FC } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
@@ -37,7 +37,7 @@ export const Details: FC<DetailsProps> = ({ characterId }) => {
     setSearchParams(searchParams);
   };
 
-  const [favoritesList] = useAtom(favoriteCharacters);
+  const favoritesList = useAtomValue(favoriteCharacters);
 
   const { data: characterData } = useSuspenseQuery(
     CharacterDocument,
