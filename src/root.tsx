@@ -1,6 +1,7 @@
 import { type FC, lazy, Suspense } from 'react';
 import { Outlet, useSearchParams } from 'react-router-dom';
 
+import { CharListSkeleton } from '@/components/char-list/char-list-skeleton';
 import { Footer } from '@/components/footer';
 import { GenderTabs } from '@/components/gender-tabs';
 import { Header } from '@/components/header';
@@ -17,7 +18,7 @@ export const Root: FC = () => {
       <Header />
       <GenderTabs />
       <ShowFavorites />
-      <Suspense fallback={<div>Cargando...</div>}>
+      <Suspense fallback={<CharListSkeleton />}>
         <Outlet />
       </Suspense>
       <Footer />
