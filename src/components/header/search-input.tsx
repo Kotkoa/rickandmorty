@@ -53,9 +53,9 @@ export const SearchInput: FC = () => {
   return (
     <>
       <input
-        type="text"
+        type="search"
         className={styles.search_input}
-        placeholder="Buscar personaje..."
+        placeholder="Search character..."
         aria-label="Search character"
         value={inputValue}
         onChange={handleChange}

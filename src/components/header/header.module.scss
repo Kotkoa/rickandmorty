@@ -22,6 +22,25 @@
   font-size: 18px;
   padding-left: 64px;
   color: #fff;
+  outline: none;
+  transition: border-color 0.2s;
+
+  &::placeholder {
+    color: #bdbdbd;
+  }
+
+  &:hover {
+    border-color: #34c759;
+  }
+
+  &:focus-visible {
+    border-color: #34c759;
+    box-shadow: 0 0 0 2px rgba(52, 199, 89, 0.3);
+  }
+
+  &::-webkit-search-cancel-button {
+    display: none;
+  }
 }
 
 .search_icon {
