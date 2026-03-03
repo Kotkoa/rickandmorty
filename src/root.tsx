@@ -4,7 +4,7 @@ import { Outlet, useSearchParams } from 'react-router-dom';
 import { Footer } from '@/components/footer';
 import { GenderTabs } from '@/components/gender-tabs';
 import { Header } from '@/components/header';
-import { ShowFavoriteList } from '@/components/show-favorite-list';
+import { ShowFavorites } from '@/components/show-favorites';
 
 const Details = lazy(() => import('@/components/details/details').then((m) => ({ default: m.Details })));
 
@@ -16,7 +16,7 @@ export const Root: FC = () => {
     <>
       <Header />
       <GenderTabs />
-      <ShowFavoriteList />
+      <ShowFavorites />
       <Suspense fallback={<div>Cargando...</div>}>
         <Outlet />
       </Suspense>

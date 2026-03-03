@@ -1,0 +1,48 @@
+.wrapper {
+  background-color: #fff;
+}
+
+.container {
+  max-width: 1038px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 45px 0 20px;
+}
+
+.label {
+  color: #000;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #c7c4c4;
+  }
+
+  &:disabled {
+    cursor: default;
+
+    &:hover {
+      background-color: #e0e0e0;
+    }
+  }
+}
+
+.star {
+  color: #828282;
+}
+
+.starActive {
+  color: #f2994a;
+}
