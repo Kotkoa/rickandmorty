@@ -1,7 +1,7 @@
 import { skipToken, useSuspenseQuery } from '@apollo/client/react';
 import classNames from 'classnames';
 import { useAtomValue } from 'jotai';
-import { type FC, Suspense, useState } from 'react';
+import { type FC, Suspense, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { CharacterDocument } from '@/generated/graphql';
@@ -21,7 +21,14 @@ type DetailsProps = {
 export const Details: FC<DetailsProps> = ({ characterId }) => {
   const navigate = useNavigate();
   const total = useAtomValue(totalCharactersCount);
-  const [interestIds] = useState(() => generateUniqueRandomIds(3, total));
+  const [interestIds] = useState(() => generateUniqueRandomIds(2, total));
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, []);
 
   const handleClose = () => {
     const params = new URLSearchParams(window.location.search);
@@ -41,8 +48,13 @@ export const Details: FC<DetailsProps> = ({ characterId }) => {
   if (!character) return <div className={styles.noDataContainer}>Sin datos...</div>;
 
   return (
-    <div className={styles.detailsLayer}>
-      <div className={styles.containerDetails}>
+    <div
+      className={styles.detailsLayer}
+      role="dialog"
+      aria-modal="true"
+      aria-label={character.name ?? undefined}
+      onClick={handleClose}>
+      <div className={styles.containerDetails} onClick={(e) => e.stopPropagation()}>
         <div className={styles.bgImg}>
           <button className={styles.closeBtn} type="button" aria-label="Cerrar" onClick={handleClose}>
             <Close />
@@ -57,24 +69,24 @@ export const Details: FC<DetailsProps> = ({ characterId }) => {
               />
             </div>
             <div className={styles.infoText}>
-              <div className={styles.status}>{character?.status?.toUpperCase()}</div>
-              <div className={styles.name}>{character?.name}</div>
-              <div className={styles.status}>{character?.species?.toUpperCase()}</div>
+              <span className={styles.status}>{character?.status?.toUpperCase()}</span>
+              <h2 className={styles.name}>{character?.name}</h2>
+              <span className={styles.status}>{character?.species?.toUpperCase()}</span>
             </div>
           </div>
         </div>
 
-        <div className={styles.informacion}>
-          <div className={styles.textStyle}>Información</div>
+        <section className={styles.informacion}>
+          <h3 className={styles.textStyle}>Información</h3>
           <div className={styles.tabs}>
-            <InfoTab label="Género:" value={character?.gender} />
+            <InfoTab label="Gender:" value={character?.gender} />
             <InfoTab label="Origen:" value={character?.origin?.name} />
-            <InfoTab label="Tipo:" value={character?.type} />
+            <InfoTab label="Type:" value={character?.type || 'Unknown'} />
           </div>
-        </div>
-        <div className={styles.borderLine} />
-        <div className={styles.episodes}>
-          <div className={styles.textStyle}>Episodios</div>
+        </section>
+        <hr className={styles.borderLine} />
+        <section className={styles.episodes}>
+          <h3 className={styles.textStyle}>Episodios</h3>
           <div className={styles.episodeTabs}>
             {character?.episode?.slice(0, 8).map((episode) => {
               return (
@@ -88,21 +100,26 @@ export const Details: FC<DetailsProps> = ({ characterId }) => {
               );
             })}
           </div>
-          <div className={styles.borderLine}></div>
-        </div>
+          <hr className={styles.borderLine} />
+        </section>
         <Suspense>
           <PersonajesInteresantes ids={interestIds} />
         </Suspense>
         <div className={styles.compartir}>
           <button
             type="button"
-            onClick={async () => {
+            onClick={async (e) => {
+              const btn = e.currentTarget;
               const url = window.location.href;
               const text = `${character?.name} - Rick and Morty`;
               if (navigator.share) {
                 await navigator.share({ title: text, url });
               } else {
                 await navigator.clipboard.writeText(url);
+                btn.textContent = 'Enlace copiado';
+                setTimeout(() => {
+                  btn.textContent = 'Compartir personaje';
+                }, 2000);
               }
             }}>
             Compartir personaje
