@@ -46,7 +46,7 @@ export const SearchInput: FC = () => {
       debouncedNavigate.cancel();
       const params = new URLSearchParams(window.location.search);
       params.delete(CharacterFiltersE.Name);
-      navigate(`${window.location.pathname}?${params.toString()}`);
+      navigate(`/home?${params.toString()}`);
     }
   };
 
@@ -56,6 +56,7 @@ export const SearchInput: FC = () => {
         type="text"
         className={styles.search_input}
         placeholder="Buscar personaje..."
+        aria-label="Search character"
         value={inputValue}
         onChange={handleChange}
       />

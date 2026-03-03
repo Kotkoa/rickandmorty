@@ -10,19 +10,17 @@ import styles from './header.module.scss';
 import { SearchInput } from './search-input';
 
 export const Header: FC = () => (
-  <div>
+  <header>
     <div className={styles.header_background}>
-      <div className={styles.header_overlay}>
-        <Link to="/home">
-          <img src={rickAndMorty} alt="rick and morty" width={347} height={122} />
-        </Link>
-        <div className={styles.search_block}>
-          <SearchInput />
-          <FilterDropdown />
-        </div>
+      <Link to="/home">
+        <img src={rickAndMorty} alt="rick and morty" width={347} height={122} />
+      </Link>
+      <div className={styles.search_block}>
+        <SearchInput />
+        <FilterDropdown />
       </div>
     </div>
     <GenderFilterBar />
     <ShowFavoriteList />
-  </div>
+  </header>
 );
