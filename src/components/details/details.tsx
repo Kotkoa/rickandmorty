@@ -1,14 +1,15 @@
 import { skipToken, useSuspenseQuery } from '@apollo/client/react';
 import classNames from 'classnames';
 import { useAtomValue } from 'jotai';
-import type { FC } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { type FC, Suspense, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { CharacterDocument } from '@/generated/graphql';
 import { Close } from '@/icons/close';
 import { Info } from '@/icons/info';
 import { StarFavorite } from '@/icons/star-favorite';
-import { favoriteCharacters } from '@/store/characters.store';
+import { favoriteCharacters, totalCharactersCount } from '@/store/characters.store';
+import { generateUniqueRandomIds } from '@/utils/get-random-collection';
 
 import { PersonajesInteresantes } from '../personajes-interesantes/personajes-interesantes';
 import styles from './details.module.scss';
@@ -30,12 +31,14 @@ type DetailsProps = {
 };
 
 export const Details: FC<DetailsProps> = ({ characterId }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const total = useAtomValue(totalCharactersCount);
+  const [interestIds] = useState(() => generateUniqueRandomIds(3, total));
 
   const handleClose = () => {
-    const newParams = new URLSearchParams(searchParams);
-    newParams.delete('character');
-    setSearchParams(newParams);
+    const params = new URLSearchParams(window.location.search);
+    params.delete('character');
+    navigate({ search: params.toString() });
   };
 
   const favoritesList = useAtomValue(favoriteCharacters);
@@ -99,7 +102,9 @@ export const Details: FC<DetailsProps> = ({ characterId }) => {
           </div>
           <div className={styles.borderLine}></div>
         </div>
-        <PersonajesInteresantes />
+        <Suspense>
+          <PersonajesInteresantes ids={interestIds} />
+        </Suspense>
         <div className={styles.compartir}>
           <button
             type="button"
