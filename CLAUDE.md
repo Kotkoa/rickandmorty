@@ -89,6 +89,10 @@ Route error boundary: `RouteErrorBoundary` component with fallback UI.
 - Target/Module: ESNext
 - Path alias: `@/*` → `src/*`
 
+## Dependencies
+
+- `rxjs` — peer dependency of Apollo Client 4, used internally (ObservableQuery, QueryManager, cache). Do NOT remove.
+
 ## Pre-commit
 
 Lint-staged hooks:

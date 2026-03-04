@@ -10,6 +10,17 @@ export default defineConfig({
     port: 3000,
     open: true,
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom'],
+          'vendor-apollo': ['@apollo/client', 'graphql'],
+          'vendor-router': ['react-router-dom'],
+        },
+      },
+    },
+  },
   css: {
     preprocessorOptions: {
       scss: {

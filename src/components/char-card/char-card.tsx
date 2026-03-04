@@ -41,7 +41,7 @@ export const CharCard: FC<CharCardProps> = ({ character }) => {
   return (
     <article className={styles.cardBorder} onClick={handleOpenDetails} role="button" tabIndex={0}>
       <div className={styles.charImage}>
-        <img alt={character.name ?? ''} src={character.image ?? ''} width={140} />
+        <img alt={character.name ?? ''} src={character.image ?? ''} width={140} height={140} loading="lazy" decoding="async" />
         <button className={styles.starButton} type="button" aria-label="Favorito" onClick={handleFavorites}>
           <StarFavorite className={classNames(styles.star, isFavorite && styles.starSelected)} />
         </button>

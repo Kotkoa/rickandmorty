@@ -23,6 +23,9 @@ export const apolloClient = new ApolloClient({
           characters: {
             keyArgs: ['page', 'filter'],
           },
+          charactersByIds: {
+            keyArgs: ['ids'],
+          },
         },
       },
     },

@@ -87,7 +87,7 @@ export const Details: FC<DetailsProps> = ({ characterId }) => {
             <Close />
           </button>
           <div className={styles.infoBasic}>
-            <img className={styles.charIm} alt={character.name ?? 'Character'} src={character.image ?? ''} />
+            <img className={styles.charIm} alt={character.name ?? 'Character'} src={character.image ?? ''} width={155} height={155} loading="lazy" decoding="async" />
             <div className={styles.infoStar}>
               <StarFavorite
                 className={classNames(styles.starFav, favoritesList.includes(characterId) && styles.starSelected)}
